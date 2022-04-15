@@ -1,0 +1,3 @@
+[submodule "scenic-view"]
+	path = scenic-view
+	url = https://github.com/JonathanGiles/scenic-view

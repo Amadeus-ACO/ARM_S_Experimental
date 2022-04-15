@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin'
+}
+
+/*application() {
+    mainClass = "STARTERS.qq"
+}*/
+mainClassName = "STARTERS.qq"
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+sourceSets.main.java.srcDir("src/")
+sourceSets.main.resources.srcDir("resources/")
+
+javafx {
+    version = "15.0.1"
+    modules = [ 'javafx.controls', 'javafx.graphics', 'javafx.fxml', 'javafx.swing', 'javafx.web']
+}
+
+compileJava.options.encoding = "UTF-8"
+
+dependencies {
+    implementation group: 'org.jetbrains', name: 'annotations', version: '20.1.0'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+}

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="jquery.min.js"></script>
+    <script src="mathquill-basic-restricted.js"></script>
+    <link rel="stylesheet" type="text/css" href="mathquill.css">
+</head>
+<body>
+  <script>
+      /**
+       * ПОИСК УЗЛА с определённым классом среди ПОТОМКОВ переданного узла
+       *
+       * @param node_where_search - узел, от которого производится поиск
+       * @param searched_class - название класса, по которому ищется узел
+       */
+      function searchInDescendants(node_where_search, searched_class = "") {
+          if (node_where_search) {
+              // Поиск среди потомков узла node_where_search
+              for (let node of node_where_search.children)
+                  if (!searched_class || node.classList.contains(searched_class))
+                      return node
+
+              // Поиск среди узлов, являющихся потомками узлов-потомков node_where_search
+              let temp_search
+              for (let node of node_where_search.children) {
+                  temp_search = searchInDescendants(node, searched_class)
+                  if (temp_search && temp_search.classList.contains(searched_class)) return temp_search
+              }
+          }
+          return null
+      }
+
+      /**
+       * Поиск узла с определённым классом среди ПРЕДКОВ переданного узла
+       * (если искомым узлом оказался узлом, в котором производится поиск,
+       * тогда функция возвращает его)
+       *
+       * @param node_where_search - узел, от которого производится поиск
+       * @param skip_count - количество пропускаемых узлов-предков среди найденных (по умолчанию: 0)
+       * @param searched_class - название класса, по которому ищется узел (по умолчанию отсутствует)
+       */
+      function searchInAncestors(node_where_search, skip_count = 0, searched_class = "") {
+          if (node_where_search) {
+              let parent = node_where_search.parentNode
+              if (parent) {
+                  if (!searched_class || parent.classList.contains(searched_class)) {
+                      if (skip_count === 0) {
+                          return parent
+                      } else {
+                          skip_count--
+                      }
+                  }
+                  return searchInAncestors(parent, skip_count, searched_class)
+              }
+          }
+          return null
+      }
+
+      /**
+       * Формирование нового списка узлов из переданного списка.
+       * В новый список входят узлы-потомки, расположенные на
+       * нижнем уровне каждого узла из переданного списка (или
+       * сами узлы, если у них нет потомков)
+       *
+       * Пример: для списка из элементов [ob1, ob2, ob3] и их иерерхий
+       *       ob1          ob2           ob3
+       *      /   \        /   \
+       *    ob11 ob12   ob21  ob22
+       *                /     /  \
+       *            ob211  ob221 ob222
+       * в реузльтате будет получен следующий список:
+       * [ob11, ob12, ob211, ob221, ob222, ob3]
+       *
+       * Используется для получения списка из узлов-символов,
+       * для которых нужно сменить режим отображения
+       *
+       * @param nodeList - переданный список узлов
+       * @returns {*[]} - сформированный список узлов
+       */
+      function getDeepestChildList(nodeList) {
+          let tempList = []
+          for (let node of nodeList) {
+              if (node.children.length !== 0)
+                  tempList.push(...getDeepestChildList(node.children))
+              else
+                  tempList.push(node)
+          }
+          return tempList
+      }
+
+      // Библиотека MathQuill
+      let MQ = MathQuill.getInterface(2);
+
+      /** ------------------------ *
+       * ПОЛЕ ОТВЕТА ДЛЯ СТУДЕНТА *
+       * ------------------------ */
+
+      let student_answer_paragraph = document.createElement("p")
+
+      let answer_span = document.createElement("span")
+      answer_span.style.width = "140px"
+
+      let answer_span_saved = document.createElement("span")
+      answer_span_saved.style.width = "140px"
+
+      student_answer_paragraph.append(answer_span_saved)
+      document.body.append(student_answer_paragraph)
+
+      /* ----------------------------------------- *
+       *          Математическое поле ввода        *
+       * ----------------------------------------- *
+       * Данное поле содержит в себе узлы-cимволы, *
+       * заключённые в специальные текстовые блоки *
+       * в зависимости от режима отображения       *
+       * ----------------------------------------- */
+
+      // Поле для редактирования
+      let answer_MQ_field = MQ.MathField(answer_span, {supSubsRequireOperand: true})
+
+      // Поле с сохранённым результатом
+      let answer_MQ_field_saved = MQ.StaticMath(answer_span_saved)
+
+      let node_restriction = 15 // Ограничение по кол-ву текстовых узлов
+      let selected_node_list = [] // Список выделенных узлов
+      let cursor // Курсор в поле ввода
+      let field_focused = false // Флаг фокуса в поле ввода
+
+      // Классы используемых узлов/блоков в поле ввода
+      const MQ_CLASS = {
+          CURSOR: "mq-cursor",            // Курсор мыши
+          FOCUSED: "mq-focused",          // Налиичие фокуса на поле ввода
+          FRACTION: "mq-fraction",        // Блок дроби
+          NUMERATOR: "mq-numerator",      // Блок числителя
+          DENOMINATOR: "mq-denominator",  // Блок знаменателя
+          SELECTION: "mq-selection",      // Блок выделение символов
+          SUBSCRIPT: "mq-sub",            // Блок подстрочного текста
+          SUPERSCRIPT: "mq-sup",          // Блок надстрочного текста
+          SUP_SUB_SCRIPT: "mq-supsub"     // Блок смешанного (над/под) текста
+      };
+      Object.freeze(MQ_CLASS)
+
+      /* ---------------------------------------------------- *
+       * СТАНДАРТНАЯ КНОПКА ВЫПОЛНЕНИЯ ОПЕРАЦИИ С ПОЛЕМ ВВОДА *
+       * ---------------------------------------------------- */
+
+      function createOperationButton(buttonText, insertText, latexFlag = true) {
+          let button = document.createElement("button")
+          button.innerHTML = buttonText
+          button.insertText = insertText
+
+          // Стилизация кнопки
+          button.style.width = "30px"
+          button.style.height = "30px"
+          button.style.marginLeft = "4px"
+
+          // Действие по умолчанию - набор символа на клавиатуре
+          button.onclick = () => {
+              if (latexFlag)
+                  answer_MQ_field.typedText(insertText)
+              else
+                  answer_MQ_field.write(insertText)
+              answer_MQ_field.focus()
+          }
+
+          return button
+      }
+
+      /* -------------------------------------------------------------------------- *
+       *                     РЕЖИМЫ ОТОБРАЖЕНИЯ ТЕКСТА В ПОЛЕ ВВОДА                 *
+       * -------------------------------------------------------------------------- *
+       * В поле для ввода ответа текст может отображаться в разных режимах (MODE):  *
+       * - NONE: режим отображения отсутствует (когда поле не в фокусе)             *
+       * - DEFAULT: обычный текст (по умолчанию) (пример: "X")                      *
+       * - SUPERSCRIPT: надстрочный текст (пример: "x²", где 2 - надстрочный текст) *
+       * - SUBSCRIPT: подстрочный текст (пример: "x₂", где 2 - подстрочный текст)   *
+       * - FRACTION: дробь (a/b, где a - числитель, b - знаменатель)                *
+       *                                                                            *
+       * Тип отображения в поле можно менять, используя горячие клавиши в поле      *
+       * ввода (^ для надстрочного и _ для подстрочного режимов) или с помощью      *
+       * специальных кнопок класса ChangeModeButton                                 *
+       * -------------------------------------------------------------------------- */
+
+      const MODE = {
+          NONE: "none",
+          DEFAULT: "default",
+          SUBSCRIPT: "subscript",
+          SUPERSCRIPT: "superscript",
+          FRACTION: "fraction"
+      };
+      Object.freeze(MODE)
+
+      // LATEX символы, которые используются для
+      // разных режимом отображения
+      const LATEX = {
+          SUBSCRIPT: {char: "_", code: 189},
+          SUPERSCRIPT: {char: "^", code: 54},
+          FRACTION: {char: "/", code: 191}
+      }
+
+      // Объект режима отображения
+      let mode = {
+
+          // Текущий режим отображения
+          get current() {
+              return this._current
+          },
+          set current(current) {
+              this._current = current
+              switch (current) {
+                  case MODE.NONE:
+                      this.changeButtonsView(false, true,
+                          superscript_button, subscript_button, fraction_button)
+                      break
+                  case MODE.DEFAULT:
+                      this.changeButtonsView(false, false,
+                          superscript_button, subscript_button, fraction_button)
+                      break
+                  case MODE.SUPERSCRIPT:
+                      this.changeButtonsView(true, false, superscript_button)
+                      this.changeButtonsView(false, true, subscript_button)
+                      this.changeButtonsView(false, false, fraction_button)
+                      break
+                  case MODE.SUBSCRIPT:
+                      this.changeButtonsView(true, false, subscript_button)
+                      this.changeButtonsView(false, true, superscript_button)
+                      this.changeButtonsView(false, false, fraction_button)
+                      break
+                  case MODE.FRACTION:
+                      this.changeButtonsView(false, false,
+                          superscript_button, subscript_button)
+                      this.changeButtonsView(true, true, fraction_button)
+              }
+          },
+
+          /**
+           * Изменение подсветки и статуса "отключения"
+           * для cписка кнопок
+           *
+           * @param highlight_flag - флаг изменения подстветки
+           * @param disable_flag - флаг "отключения" кнопки
+           * @param button_list - cписок кнопок
+           */
+          changeButtonsView(highlight_flag, disable_flag, ...button_list) {
+              button_list.forEach(button => {
+                  button.highlight(highlight_flag)
+                  button.disabled = disable_flag
+              })
+          }
+      }
+
+      // Обработка нажатия горячих клавиш (по умолчанию
+      // происходит иммитация нажатия на кнопку смены
+      // режима отображения), исключение - режим дроби
+      document.body.addEventListener('keydown', (e) => {
+          console.log("keydown " + e.keyCode);
+
+          switch (e.keyCode) {
+              case LATEX.SUPERSCRIPT.code:
+                  console.log("superScript");
+                  if (field_focused && !superscript_button.disabled) {
+                      console.log("insert");
+                      superscript_button.onmousedown()
+                      superscript_button.onmouseup()
+                  }
+                  e.preventDefault()
+                  break
+              case LATEX.SUBSCRIPT.code:
+                  console.log("subScript")
+                  if (field_focused && !subscript_button.disabled) {
+                      console.log("insert");
+                      subscript_button.onmousedown()
+                      subscript_button.onmouseup()
+                  }
+                  e.preventDefault()
+                  break
+              case LATEX.FRACTION.code:
+                  if (field_focused && !fraction_button.disabled)
+                      answer_MQ_field.write(LATEX.FRACTION.char)
+                  e.preventDefault()
+                  break
+          }
+      })
+
+      /* ------------------------------------------------------- *
+       * КНОПКА ИЗМЕНЕНИЯ РЕЖИМА ОТОБРАЖЕНИЯ ТЕКСТА В ПОЛЕ ВВОДА *
+       * ------------------------------------------------------- */
+
+      /**
+       * Метод создания кнопки, отвечающей за
+       * изменение режима отображения текста
+       *
+       * @param type - режим отображения текста, за который отвечает кнопка
+       */
+      function createChangeModeButton(type) {
+
+          // Кнопка смены режима отображения текста
+          let button
+
+          // Список исключённых режимов (если на момент нажатия кнопки
+          // один из режимов в данном списке является текущим, смена
+          // режима отображения не произойдёт)
+          let exclude_in_mode_list
+
+          switch (type) {
+              case MODE.SUBSCRIPT: // Кнопка режима ПОДстрочного текста
+                  button = createOperationButton("X₀", LATEX.SUBSCRIPT.char)
+                  exclude_in_mode_list = [MODE.SUBSCRIPT, MODE.SUPERSCRIPT]
+                  break
+              case MODE.SUPERSCRIPT: // Кнопка режима НАДстрочного текста
+                  button = createOperationButton("X⁰", LATEX.SUPERSCRIPT.char)
+                  exclude_in_mode_list = [MODE.SUBSCRIPT, MODE.SUPERSCRIPT]
+                  break
+              case MODE.FRACTION: // Кнопка режима дроби
+                  button = createOperationButton("ʸ/ₓ", LATEX.FRACTION.char)
+                  exclude_in_mode_list = [MODE.FRACTION]
+                  break
+              default:
+                  throw "Wrong ChangeModeButton type"
+          }
+
+          // Флаг нажатия кнопки
+          button.pressed = false
+
+          // Метод, срабатывающий при нажатии на кнопку
+          button.onmousedown = (e) => {
+              console.log("onmousedown " + type)
+              //console.log("Selected node list length = " + selected_node_list.length)
+
+              // Имеется выделенный текст
+              if (selected_node_list.length) {
+                  console.log("ЕСТЬ ВЫДЕЛЕНИЕ");
+
+                  // Текущий режим отображения в поле ввода
+                  // НЕ соответствует режиму отображения нажатой кнопки
+                  if (!(exclude_in_mode_list.includes(mode.current))) {
+                      console.log("НЕ СООТВЕТСТВУЕТ РЕЖИМУ")
+                      answer_MQ_field.typedText(button.insertText)
+                  }
+                      // Текущий режим отображения в поле ввода
+                  // соответствует режиму отображения нажатой кнопки
+                  else if (mode.current === type) {
+                      console.log("СООТВЕТСТВУЕТ РЕЖИМУ")
+
+                      /**
+                       * Функция извлечения строки из списка узлов-символов
+                       *
+                       * @param nodeList - список узлов-символов
+                       * @param count - кол-во задействованных узлов-символов (по умолчанию - все)
+                       **/
+                      let getStringFromNodeList = (nodeList, count = nodeList.length) => {
+                          let string = ""
+                          console.log("nodeList:")
+                          nodeList.forEach(node => console.log(node))
+
+                          // i = 1, так как первый узел - курсор
+                          for (let i = 0; i < count; i++) {
+                              string += nodeList[i].innerText
+                              answer_MQ_field.keystroke("Del")
+                          }
+                          return string
+                      }
+
+                      // Список выделенных узлов символов сохраняется для
+                      // последующего изменения их режима отображения
+                      let change_node_list = selected_node_list.slice()
+
+                      // Установка в курсора в начальную позицию родительского узла
+                      answer_MQ_field.keystroke("Home")
+
+                      // Получение родительского узла
+                      let parentNode = change_node_list[0].parentNode
+                      let childList = Array.from(parentNode.children).slice(1)
+
+                      // Сохранение текста из левой, выделенной и правой частей в отдельные строки
+                      let leftCount = childList.indexOf(change_node_list[0])
+                      console.log("leftCount: " + leftCount);
+                      let leftString = getStringFromNodeList(childList, leftCount)
+                      console.log("leftString: " + leftString + " " + leftString.length)
+                      let changeModeString = getStringFromNodeList(change_node_list)
+                      console.log("cMString: " + changeModeString + " " + changeModeString.length)
+                      let rightLength = childList.length - leftCount - change_node_list.length
+                      let rightString = getStringFromNodeList(childList, rightLength)
+                      console.log("rightString" + rightString + " " + rightString.length);
+
+                      // Удаление родительского узла
+                      answer_MQ_field.keystroke("Del")
+
+                      // Формирование новой строки для записи в поле ввода
+                      let new_string =
+                          (leftString.length !== 0 ? (button.insertText + "{" + leftString + "}") : "")
+                          + changeModeString
+                          + (rightString.length !== 0 ? (button.insertText + "{" + rightString + "}") : "")
+                      console.log("new_string: " + new_string)
+
+                      // Запись сформированной строки в поле ввода
+                      answer_MQ_field.write(new_string)
+                  }
+              } else {
+                  // Текущий режим отображения в поле ввода
+                  // соответствует режиму отображения нажатой кнопки
+                  if (mode.current === type)
+                      answer_MQ_field.keystroke("End Right")
+                      // Текущий режим отображения в поле ввода
+                  // НЕ соответствует режиму отображения нажатой кнопки
+                  else if (!(exclude_in_mode_list.includes(mode.current)))
+                      answer_MQ_field.typedText(button.insertText)
+              }
+              e.preventDefault()
+          }
+
+          button.onmouseup = () => {
+              console.log("onmouseup " + type)
+              answer_MQ_field.focus()
+          }
+
+          // Очистка метода onclick по умолчанию
+          button.onclick = () => {
+          }
+
+          // Установка подстветки для текущей кнопки
+          button.highlight = (value) => {
+              button.style.backgroundColor = value ? "lightblue" : ""
+          };
+
+          return button
+      }
+
+      // Кнопка изменения режима отображения на надстрочный текст
+      let superscript_button = createChangeModeButton(MODE.SUPERSCRIPT)
+
+      // Кнопка изменения режима отображения на подстрочный текст
+      let subscript_button = createChangeModeButton(MODE.SUBSCRIPT)
+
+      // Кнопка добавления дроби
+      let fraction_button = createChangeModeButton(MODE.FRACTION)
+
+      /* --- АРИФМЕТИЧЕСКИЕ ОПЕРАЦИИ --- */
+      /*let plus_button = createOperationButton("+", "+")          // Сложение
+      let minus_button = createOperationButton("-", "-")           // Вычитание
+      let multiply_button = createOperationButton("×", "*")        // Умножение
+      let divide_button = createOperationButton("/", "/", false)   // Деление */
+
+      /* --- ЛОГИЧЕСКИЕ ОПЕРАЦИИ --- */
+      /* let conjunction_button = createOperationButton("∧ (AND)", "∧")
+      let disjunction_button = createOperationButton("∨ (OR)", "∨")
+      let */
+
+      let button_list = [superscript_button, subscript_button, fraction_button] // Режимы отображения
+          //plus_button, minus_button, multiply_button, divide_button // Арифметические операции
+
+      button_list.forEach(button => button.hidden = true)
+      student_answer_paragraph.append(...button_list)
+      mode.current = MODE.NONE
+
+      /**
+       *
+       */
+      function saveAction() {
+          button_list.forEach(button => button.hidden = true)
+          answer_MQ_field_saved.latex(answer_MQ_field.latex())
+          student_answer_paragraph.removeChild(answer_span)
+          student_answer_paragraph.prepend(answer_span_saved)
+      }
+
+      /**
+       *
+       */
+      function editAction() {
+          button_list.forEach(button => button.hidden = false)
+          answer_MQ_field.latex(answer_MQ_field_saved.latex())
+          student_answer_paragraph.removeChild(answer_span_saved)
+          student_answer_paragraph.prepend(answer_span)
+      }
+
+      /* -------------------------------------- *
+      *  НАСТРОЙКА НАБЛЮДАТЕЛЕЙ ЗА ПОЛЕМ ВВОДА  *
+      * --------------------------------------- */
+      function setCurrentMode(mutation) {
+          // Курсор перешёл в корневой узел математического поля (обычный текст)
+          if (mutation.target.classList.contains("mq-root-block")) {
+              console.log("DEFAULT");
+              mode.current = MODE.DEFAULT
+          }
+
+          // Курсор перешёл в узел с надстрочным текстом
+          else if (mutation.target.classList.contains(MQ_CLASS.SUPERSCRIPT)) {
+              console.log("SUPERSCRIPT")
+              mode.current = MODE.SUPERSCRIPT
+          }
+
+          // Курсор перешёл в узел с подстрочным текстом
+          else if (mutation.target.classList.contains(MQ_CLASS.SUBSCRIPT)) {
+              console.log("SUBSCRIPT")
+              mode.current = MODE.SUBSCRIPT
+          }
+
+          // Курсор перешёл в узел с числителем/знаменателем дроби
+          else if (mutation.target.classList.contains(MQ_CLASS.NUMERATOR) ||
+              mutation.target.classList.contains(MQ_CLASS.DENOMINATOR)) {
+              console.log("FRACTION")
+              mode.current = MODE.FRACTION
+          }
+      }
+
+      new MutationObserver((mutationRecords) => {
+          for (let mutation of mutationRecords) {
+              //console.log(mutation)
+
+              /* ----------------------------------- *
+               * Действия при добавлении новых узлов *
+               * ----------------------------------- */
+
+              // Имеются добавленные узлы в блок текста
+              if (mutation.addedNodes.length) {
+
+                  console.log("ADDING")
+
+                  let children = getDeepestChildList([...answer_span.children])
+                  if (children.length - 1 > node_restriction) {
+                      answer_MQ_field.keystroke("Backspace")
+                  }
+                  else if (children.length - 1 === node_restriction) {
+                      mode.current = MODE.NONE
+                  }
+                  else {
+
+                      // Добавленным узел - КУРСОР МЫШИ
+                      if (mutation.addedNodes[0].classList &&
+                          mutation.addedNodes[0].classList.contains(MQ_CLASS.CURSOR)) {
+                          console.log("ДОБАВЛЕНИЕ КУРСОРА")
+
+                          // Сохранение текущего узла-курсора
+                          cursor = mutation.addedNodes[0]
+                          setCurrentMode(mutation)
+                      }
+
+                      // Добавилось выделение текста
+                      if (mutation.addedNodes[0].classList &&
+                          mutation.addedNodes[0].classList.contains("mq-selection")) {
+
+                          // Получение списка выделенных узлов
+                          selected_node_list = Array.from(mutation.addedNodes[0].children)
+                      }
+                  }
+
+                  // Проверка ограничения на количество символов в поле при добавлении узла
+              }
+
+              /* ------------------------------------ *
+               *      Действия при удалении узлов     *
+               * ------------------------------------ */
+              if (mutation.removedNodes.length) {
+
+                  // Удалённый узел - КУРСОР МЫШИ
+                  if (mutation.removedNodes[0].classList &&
+                      mutation.removedNodes[0].classList.contains(MQ_CLASS.CURSOR)) {
+                      console.log("УДАЛЕНИЕ КУРСОРА " + mutation)
+                  }
+
+                  // Удаляемый узел - БЛОК ВЫДЕЛЕНИЯ
+                  else if (mutation.removedNodes[0].classList &&
+                      mutation.removedNodes[0].classList.contains(MQ_CLASS.SELECTION)) {
+                      console.log("УДАЛЕНИЕ ВЫДЕЛЕНИЯ " + mutation)
+                      selected_node_list = []
+                  }
+
+                  // Проверка ограничения на количество символов в поле при удалении узла
+                  let children = getDeepestChildList([...answer_span.children])
+                  if (children.length - 1 < node_restriction)
+                      setCurrentMode(mutation)
+              }
+
+              /* ------------------------------------ *
+               * Действия при выделении текста в поле *
+               * ------------------------------------ */
+              if (selected_node_list.length !== 0) {
+                  /*
+                   * Отключение кнопок смены режима отображения
+                   * в случае присутствия в выделении смешанных
+                   * режимов отображения (пример: дробь)
+                   */
+                  let sup_sub_flag = false // флаг присутствия смешанного (над/подстрочного) текста
+                  let fraction_flag = false // флаг присутствия дроби
+
+                  for (let node of selected_node_list)
+                      if (node.classList.contains(MQ_CLASS.SUP_SUB_SCRIPT))
+                          sup_sub_flag = true
+                      else if (node.classList.contains(MQ_CLASS.FRACTION))
+                          fraction_flag = true
+
+                  // В выделенном тексте присутствуют узлы смешанных типов
+                  if (sup_sub_flag || fraction_flag) {
+                      console.log("MODE.NONE SEL");
+                      mode.current = MODE.NONE
+                  }
+              }
+
+              /* -------------------------------------- *
+               * Действия при изменении атрибутов узлов *
+               * -------------------------------------- */
+              if (mutation.type === "attributes") {
+
+                  // Изменение класса (атрибута "class") у основного узла поля ввода
+                  if (mutation.attributeName === "class" && mutation.target === answer_span)
+
+                      // Поле ввода перестало находится в фокусе
+                      if (!answer_span.classList.contains(MQ_CLASS.FOCUSED)) {
+                          console.log("ПОЛЕ НЕ В ФОКУСЕ");
+                          field_focused = false
+
+                          // Отсутствует выделение в поле ввода
+                          if (!searchInDescendants(answer_span, MQ_CLASS.SELECTION)) {
+                              console.log("MODE.NONE FIELD");
+                              mode.current = MODE.NONE
+                          }
+                      }
+                      // Поле ввода стало находится в фокусе
+                      else {
+                          console.log("ПОЛЕ В ФОКУСЕ");
+                          field_focused = true
+                      }
+              }
+          }
+      }).observe(
+          answer_span, {childList: true, subtree: true, attributes: true}
+      )
+  </script>
+</body>
+</html>
