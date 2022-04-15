@@ -1,0 +1,4 @@
+build
+gradle/wrapper/*.jar
+.gradle
+.idea/workspace.xml

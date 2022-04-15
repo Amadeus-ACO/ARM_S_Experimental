@@ -1,0 +1,9 @@
+[submodule "src/Tools"]
+	path = src/Tools
+	url = https://github.com/Amadeus-ACO/Tools
+[submodule "src/client/mainWindow/pages/AOVT"]
+	path = src/client/mainWindow/pages/AOVT
+	url = https://github.com/Amadeus-ACO/AOVT
+[submodule "src/client/mainWindow/pages/LogisimFX"]
+	path = src/client/mainWindow/pages/LogisimFX
+	url = https://github.com/Pe3aTeJlb/LogisimFX.git
