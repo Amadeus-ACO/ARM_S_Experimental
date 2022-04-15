@@ -1,0 +1,87 @@
+{
+  "stageList": [
+      {
+        "name": "Постановка задачи",
+        "type": "formulationProblem",
+        "passed": true,
+        "config": {}
+      },
+      {
+        "name": "Входное тестирование",
+        "type": "nullTest",
+        "passed": false,
+        "config": {
+          "current": 1,
+          "questionList": [
+            {
+              "question": "Объект - это система?",
+              "type": "multiple",
+              "answerList": [
+                {
+                  "text": "Да"
+                },
+                {
+                  "text": "Нет"
+                },
+                {
+                  "text": "... ответ"
+                }
+              ]
+            },
+            {
+              "question": "Cистема - это объект?",
+              "type": "single",
+              "answerList": [
+                {
+                  "text": "Да"
+                },
+                {
+                  "text": "Нет"
+                },
+                {
+                  "text": "Этот вопрос уже был"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "name": "Алгоритм",
+        "type": "algorithm",
+        "passed": false,
+        "config": {
+          "stepList": [
+            {
+              "name": "Вася"
+            },
+            {
+              "name": "Петя"
+            }
+          ]
+        }
+      },
+      {
+        "name": "Реализация",
+        "type": "realization",
+        "passed": false,
+        "config": {}
+      },
+      {
+        "name": "Финальное тестирование",
+        "type": "finalTest",
+        "passed": false,
+        "config": {
+          "questions": {
+
+          }
+        }
+      },
+      {
+        "name": "Отчёт",
+        "type": "report",
+        "passed": false,
+        "config": {}
+      }
+    ]
+}

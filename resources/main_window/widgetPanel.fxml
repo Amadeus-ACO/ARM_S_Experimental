@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.widgetPanel.WidgetPanelController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+      <RowConstraints maxHeight="114.0" minHeight="111.0" prefHeight="113.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="0.0" minHeight="-Infinity" prefHeight="0.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Label fx:id="FIOLabel" text="Иванов И.И.">
+         <font>
+            <Font name="Lucida Sans Demibold" size="16.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="groupLabel" text="ИВБО-01-22" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Lucida Sans Demibold" size="16.0" />
+         </font></Label>
+      <Label fx:id="studLabel" text="123456" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Lucida Sans Demibold" size="16.0" />
+         </font></Label>
+      <ProgressBar maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" progress="0.38" GridPane.columnSpan="2" GridPane.rowIndex="5">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+      </ProgressBar>
+      <Label fx:id="workStatusLabel" text="Сейчас: идёт пара" GridPane.columnSpan="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Lucida Sans Demibold" size="14.0" />
+         </font></Label>
+      <ComboBox maxWidth="1.7976931348623157E308" GridPane.columnSpan="2" GridPane.rowIndex="6">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin></ComboBox>
+      <Button mnemonicParsing="false" text="Редактировать панель" textOverrun="WORD_ELLIPSIS" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="11" GridPane.valignment="CENTER">
+         <font>
+            <Font name="Lucida Sans Demibold" size="12.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+      </Button>
+      <Label fx:id="workStatusLabel1" layoutX="30.0" layoutY="110.0" text="Заметки" GridPane.rowIndex="9">
+         <font>
+            <Font name="Lucida Sans Demibold" size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <TextArea minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="163.0" GridPane.rowIndex="10">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+      </TextArea>
+      <Label fx:id="workStatusLabel11" layoutX="67.0" layoutY="322.0" text="Календарь" GridPane.rowIndex="7">
+         <font>
+            <Font name="Lucida Sans Demibold" size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>

@@ -1,0 +1,85 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'org.openjfx.javafxplugin'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    flatDir {
+        dirs 'src/client/mainWindow/pages/LogisimFX/libs'
+    }
+}
+
+application {
+    mainClass = "main.Main"
+
+    applicationDefaultJvmArgs = ['--add-exports=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED',
+                                 '--add-exports=javafx.graphics/com.sun.javafx.geom=ALL-UNNAMED',
+                                 '--add-exports=javafx.controls/com.sun.javafx.scene.control.skin.resources=ALL-UNNAMED'
+    ]
+
+    if (project.hasProperty("terminal"))
+        if (project.property("terminal") == "bash")
+            applicationDefaultJvmArgs.add('-Dfile.encoding=ISO-8859-5')
+        else if (project.property("terminal") == "pwsh")
+            applicationDefaultJvmArgs.add('-Dfile.encoding=CP866')
+        else
+            applicationDefaultJvmArgs.add('-Dfile.encoding=UTF-8')
+    else
+        applicationDefaultJvmArgs.add('-Dfile.encoding=UTF-8')
+}
+
+sourceSets.main.java {compileJava {
+    options.encoding = "UTF-8"
+
+    exclude "**/*_8.java"
+    exclude "**/*_tmp.java"
+
+    options.compilerArgs.add('--add-exports=javafx.graphics/com.sun.javafx.tk=ALL-UNNAMED')
+    options.compilerArgs.add('--add-exports=javafx.graphics/com.sun.javafx.geom=ALL-UNNAMED')
+    options.compilerArgs.add('--add-exports=javafx.controls/com.sun.javafx.scene.control.skin.resources=ALL-UNNAMED')
+}
+    srcDirs = ["src/"]
+    exclude 'client/mainWindow/tabs'
+   // exclude 'client/mainWindow/pages/LogisimFX'
+}
+
+sourceSets.main.resources.srcDir("resources/")
+
+javafx {
+    version = "15.0.1"
+    modules = ['javafx.controls', 'javafx.graphics', 'javafx.fxml', 'javafx.swing', 'javafx.web', 'javafx.base']
+}
+
+
+
+dependencies {
+    implementation group: 'com.calendarfx', name: 'view', version: '11.8.3'
+    implementation group: 'org.apache.xmlgraphics', name: 'batik-transcoder', version: '1.14'
+    implementation group: 'org.apache.xmlgraphics', name: 'xmlgraphics-commons', version: '2.6'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.30'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.2.10'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.10'
+    implementation group: 'org.jetbrains', name: 'annotations', version: '20.1.0'
+    implementation 'org.reflections:reflections:0.10.2'
+
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.5'
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.6.5'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux:2.6.5'
+
+    compileOnly 'org.projectlombok:lombok:1.18.22'
+    annotationProcessor 'org.projectlombok:lombok:1.18.22'
+
+    implementation project(':entity_base')
+    implementation 'com.fasterxml.jackson.core:jackson-core:2.13.2'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.2.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.13.2'
+
+    implementation project(':AOVT')
+
+    implementation project(':LogisimFX')
+    implementation 'org.controlsfx:controlsfx:11.1.1'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+}

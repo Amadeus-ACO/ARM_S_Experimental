@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.tabManager.TabManagerController">
+   <children>
+      <BorderPane fx:id="borderPane" minHeight="-Infinity" minWidth="-Infinity" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <Region prefHeight="5.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
+         </top>
+         <center>
+            <GridPane fx:id="gridPane" BorderPane.alignment="CENTER">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="5.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
+         </center>
+         <left>
+            <Region prefWidth="5.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
+         </left>
+         <right>
+            <Region prefWidth="5.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
+         </right>
+         <bottom>
+            <Region prefHeight="5.0" style="-fx-background-color: red;" BorderPane.alignment="CENTER" />
+         </bottom>
+      </BorderPane>
+   </children>
+</AnchorPane>

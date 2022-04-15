@@ -1,0 +1,34 @@
+{
+  "questionList": [
+      {
+        "question": "Объект - это система?",
+        "type": "multiple",
+        "answerList": [
+          {
+            "text": "Да"
+          },
+          {
+            "text": "Нет"
+          },
+          {
+            "text": "... ответ"
+          }
+        ]
+      },
+      {
+        "question": "Cистема - это объект?",
+        "type": "multiple",
+        "answerList": [
+          {
+            "text": "Да"
+          },
+          {
+            "text": "Нет"
+          },
+          {
+            "text": "Этот вопрос уже был"
+          }
+        ]
+      }
+  ]
+}

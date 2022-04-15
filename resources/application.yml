@@ -1,0 +1,51 @@
+icon:
+  url: resources/icon.jpg
+
+login:
+  scene:
+    button:
+      name: "Войти"
+    login:
+      label:
+        name: "Логин:"
+    password:
+      label:
+        name: "Пароль:"
+    forgetPassword:
+      label:
+        name: "Забыли пароль"
+    forgetPasswordLabel:
+      LayoutX: 265.0
+      LayoutY: 204.0
+    enterButton:
+      LayoutY: 244.0
+      LayoutX: 275.0
+      PrefWidth: 99.0
+      PrefHeight: 27.0
+    passwordLabel:
+      LayoutY: 170.0
+      LayoutX: 165.0
+    loginField:
+      LayoutX: 250.0
+      LayoutY: 130.0
+    passwordField:
+      LayoutX: 250.0
+      LayoutY: 171.0
+    loginLabel:
+      LayoutY: 129.0
+      LayoutX: 176.0
+    loginPane:
+      prefHeight: 400.0
+      prefWidth: 600.0
+
+    font: 18.0
+
+spring:
+  application:
+    ui:
+      title: "ACO-Amadeus ARM Teacher"
+      title.login: "ACO-Amadeus ARM Teacher Auth"
+  main:
+    web-application-type: none
+
+

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="TOP_CENTER" fillWidth="false" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@sectionMenu.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.sectionMenu.SectionMenuController">
+   <children>
+      <Button fx:id="labListButton" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLabListButtonClick" onMouseEntered="#onSectionEntered" onMouseExited="#onSectionExited" onMousePressed="#onSectionPressed" onMouseReleased="#onSectionReleased" prefHeight="40.0" prefWidth="40.0" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <styleClass>
+            <String fx:value="sectionButton_lab" />
+            <String fx:value="sectionButton_default" />
+         </styleClass>
+      </Button>
+      <Label alignment="TOP_CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onLabListButtonClick" prefHeight="60.0" prefWidth="90.0" text="Лабораторныеработы" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="trainButton" alignment="CENTER" contentDisplay="TOP" layoutX="42.0" layoutY="20.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseClicked="#onTrainButtonClick" onMouseEntered="#onSectionEntered" onMouseExited="#onSectionExited" onMousePressed="#onSectionPressed" onMouseReleased="#onSectionReleased" prefHeight="30.0" prefWidth="50.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <styleClass>
+            <String fx:value="sectionButton_train" />
+            <String fx:value="sectionButton_default" />
+         </styleClass>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                  <MenuItem mnemonicParsing="false" text="АОВТ" />
+                <MenuItem mnemonicParsing="false" text="ЛОВТ" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </Button>
+      <Label alignment="TOP_CENTER" layoutX="12.0" layoutY="62.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="90.0" text="Тренажёры" textAlignment="CENTER">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="statisticsButton" alignment="CENTER" contentDisplay="TOP" layoutX="42.0" layoutY="107.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseEntered="#onSectionEntered" onMouseExited="#onSectionExited" onMousePressed="#onSectionPressed" onMouseReleased="#onSectionReleased" prefHeight="42.0" prefWidth="40.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <styleClass>
+            <String fx:value="sectionButton_lecture" />
+            <String fx:value="sectionButton_default" />
+         </styleClass>
+      </Button>
+      <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="12.0" layoutY="149.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="90.0" text="Лекции" textAlignment="CENTER">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+      <Button fx:id="statisticsButton1" alignment="CENTER" contentDisplay="TOP" layoutX="37.0" layoutY="200.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onMouseEntered="#onSectionEntered" onMouseExited="#onSectionExited" onMousePressed="#onSectionPressed" onMouseReleased="#onSectionReleased" prefHeight="30.0" prefWidth="40.0" textAlignment="CENTER" wrapText="true">
+         <font>
+            <Font size="10.0" />
+         </font>
+         <styleClass>
+            <String fx:value="sectionButton_statistics" />
+            <String fx:value="sectionButton_default" />
+         </styleClass>
+      </Button>
+      <Label alignment="TOP_CENTER" contentDisplay="TOP" layoutX="12.0" layoutY="230.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="90.0" text="Статистика" textAlignment="CENTER">
+         <font>
+            <Font name="Consolas Bold" size="13.0" />
+         </font>
+      </Label>
+   </children>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets left="2.0" right="2.0" top="10.0" />
+   </padding>
+</VBox>

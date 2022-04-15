@@ -1,0 +1,317 @@
+@startuml
+class INSTRUMENTS.Const {
++ {static} ObservableList<String> options_step
++ {static} String regex_bin
++ {static} String button_style
++ {static} String step_result
++ {static} ObservableList<String> options_instrument
+}
+class INSTRUMENTS.MULTIPLICATION_BASED.MultiplicationInstrument {
++ FlowPane separatorPaneMultiplier_2
++ FlowPane separatorPaneResult
++ FlowPane lineManipulator
++ Canvas canvas2
+- {static} ObjectProperty<MultiplicationInstrument> draggingM
++ {static} ArrayList<MultiplicationInstrument> mults
++ int line_amount
+- Background focusBackground
+- Background unfocusBackground
+- Background Green
+- {static} String M_DRAG_KEY
+- void separateResult(ActionEvent)
+- void separateMultiplayer_2(ActionEvent)
+- void separateMultiplayer_1(ActionEvent)
++ void removeDigit()
++ void addDigit()
+- void remove_line(ActionEvent)
+- void add_line(ActionEvent)
++ void checkValue()
++ void delete_1(TranslateFractionalPart)
++ void onDragDropped(DragEvent)
++ void onDragOver(DragEvent)
++ void onDragDone(DragEvent)
++ void onDragDetected(MouseEvent)
+}
+class INSTRUMENTS.SUBCLASS.SwitchButton {
+- DivisionBlock DIVISIONBLOCK
++ void setCoordinate(int,int)
+# void switch_type(ActionEvent)
+}
+class INSTRUMENTS.ADDITION_SUBSTRACTION.SubtractionInstrument {
++ void removeDigit()
++ void checkValue()
+}
+class STARTERS.Main {
++ void start(Stage)
++ {static} void main(String[])
+}
+class INSTRUMENTS.ADDITION_SUBSTRACTION.AdditionInstrument {
++ SwitchCarry result_carry
++ void removeDigit()
++ void checkValue()
+}
+class INSTRUMENTS.DIVISION_BASED.Division {
++ int digit_dem
++ LinkedList<FlowPane> fields
++ ArrayList<FlowPane> demList
++ ArrayList<FlowPane> detList
++ ArrayList<FlowPane> Result_List
++ ArrayList<DivisionBlock> divisionBlocks
++ GridPane digitPane
++ GridPane dividerQuotientDigit
+- LimitedTextField sep_field_dem
+- LimitedTextField sep_field_det
+- LimitedTextField sep_field_cha
+- void sep_cha(ActionEvent)
+- void sep_det(ActionEvent)
+- void sep_dem(ActionEvent)
+- void rem_cha_digit(ActionEvent)
+- void add_cha_digit(ActionEvent)
+- void rem_det_digit(ActionEvent)
+- void add_det_digit(ActionEvent)
+- void rem_dem_digit(ActionEvent)
+- void add_dem_digit(ActionEvent)
+- void deleteBlocks()
+- void deleteBlock(ActionEvent)
++ String getInform()
++ void separate_digits(ActionEvent)
++ void checkValue()
++ FlowPane createFlow()
+}
+class INSTRUMENTS.IEEE.ieeeAdd {
++ Canvas sep1
++ Canvas sep2
++ Canvas sep3
++ Canvas sep4
++ Canvas sep5
++ Canvas sep6
+- void create_digit_net(ActionEvent)
++ String getInform()
++ void separate_digits(ActionEvent)
++ void checkValue()
+- FlowPane createFlow()
+- void behaviour(KeyEvent)
+}
+class INSTRUMENTS.Step {
++ ArrayList<Instrument> instruments
+- VBox vBox_list
++ VBox step_vbox
++ int index
++ ChoiceBox<String> choiceBox
++ Button button
++ TextField stepResultField
++ Label label
++ GridPane insHeader
++ ChoiceBox<String> options_instrument
++ TextField indexField
++ {static} ArrayList<Step> steps
++ TitledPane titledPane
++ Button addInstrument
++ Button addInstrumentIndex
++ TextField instIndexField
++ TextField firstParamField
++ TextField secondParamField
+- {static} String STEP_DRAG_KEY
+- {static} ObjectProperty<Step> draggingStep
+- Background focusBackground
+- Background unfocusBackground
+- Background Green
++ String getInform()
+- void createInstrumentIndex()
+- void createInstrument()
+- void onDragDropped(DragEvent)
+- void onDragOver(DragEvent)
+- void onDragDone(DragEvent)
++ void onDragDetected(MouseEvent)
++ void change_optional_fields()
++ void delete_step()
++ void change_index(int)
++ void change_index_add(int)
+}
+class INSTRUMENTS.EXPRESSION.Expression {
++ TextField textField
++ TextFlow textFlow
+~ String sup
+~ String supchars
+~ String subchars
+~ String sub
+~ char[] csup
+~ char[] characters
+~ char[] csub
+~ char[] character
++ String getInform()
++ void separate_digits(ActionEvent)
++ void checkValue()
++ void superscript()
++ void subscript()
+- String convertSupText(String)
+- String convertSubText(String)
+}
+class INSTRUMENTS.MULTIPLICATION_BASED.TranslateFractionalPart {
++ LinkedList<MultiplicationInstrument> list
++ Button button_plus
++ VBox TranslateVBox
++ FlowPane pane
++ TextField dig
+- void add_multi(ActionEvent)
++ String getInform()
++ void separate_digits(ActionEvent)
++ void checkValue()
+}
+abstract class INSTRUMENTS.IEEE.IEEE {
++ TextField sign
++ TextField expAmount
++ TextField mantAmount
++ VBox vBox_IEEE
++ GridPane ieee_grid
++ boolean notNew
++ Text t
++ Text t1
++ Text t2
++ Text t21
++ Text t22
++ Text t23
++ Text t31
++ Text t32
++ Text t33
++ LinkedList<FlowPane> numbers
+}
+class STARTERS.qq {
++ {static} void main(String[])
+}
+class INSTRUMENTS.IEEE.IEEEStandart {
++ Canvas sep1
++ Canvas sep2
++ void create_digit_net()
++ String getInform()
++ void separate_digits(ActionEvent)
+- FlowPane createFlow()
++ void checkValue()
+- void behaviour(KeyEvent)
+}
+class Controller {
+- Cursor cursor
+- TextField step_index_field
+- ScrollPane main_scroll
+- VBox main_vbox
+~ void addStepToEnd()
+~ void insertByIndex()
+}
+class INSTRUMENTS.SUBCLASS.LimitedTextField {
+- IntegerProperty maxLength
++ IntegerProperty maxLengthProperty()
++ Integer getMaxLength()
++ void setMaxLength(Integer)
++ void replaceText(int,int,String)
+}
+class INSTRUMENTS.SUBCLASS.SwitchCarry {
++ Button button
++ LimitedTextField textField
++ boolean flag
++ int row
++ int column
++ boolean isOverFlowRes
+# void switch_type(ActionEvent)
++ Node get()
++ String getValue()
+}
+class INSTRUMENTS.SUBCLASS.TranslateIntegerStep {
+~ VBox translateIntegerStepVBox
+~ FlowPane Header
+~ Label stepLabel
+~ TextField stepResult
+~ TitledPane instrumentPane
+~ int stepNumber
+}
+abstract class INSTRUMENTS.Instrument {
++ VBox vBox
++ int index
++ FlowPane flowPane
++ TitledPane titledPane
++ Label label_text
++ Label indexLabel
++ TextField resField
++ Button deleteButton
++ Label resStep
++ Step step
++ Label signLabel
++ int digit
++ GridPane digitNet
++ {abstract}String getInform()
+- void delete()
++ void change_index(int)
++ {abstract}void separate_digits(ActionEvent)
++ FlowPane createSeparatorPane()
++ {abstract}void checkValue()
+}
+abstract class INSTRUMENTS.ADDITION_SUBSTRACTION.ADD_SUB_INSTRUMENT {
++ Button plusButton
++ Button minusButton
++ FlowPane separatorPane
++ LinkedList<SwitchCarry> carryList
++ LinkedList<FlowPane> fields
++ Canvas canvas
++ FlowPane createFlow()
++ void separate_digits(ActionEvent)
++ void addDigit()
++ void removeDigit()
+- void change_line()
+- void behaviour(KeyEvent)
++ void create_overflows(int)
++ String getInform()
+}
+class INSTRUMENTS.ADDITION_SUBSTRACTION.ADD_SUB_INSTRUMENT.add_sub_json {
++ String overflow_list
++ String first_term
++ String second_term
++ String result
++ String index
+}
+class INSTRUMENTS.SUBCLASS.DivisionBlock {
+~ Label minus
+~ Division instrument
+~ int maxDigit
++ ArrayList<FlowPane> subtrahend
++ ArrayList<FlowPane> blockResult
++ ArrayList<SwitchButton> underBlockResult
+~ Canvas canvas
+~ Button addDigitSubtrahend
+~ Button removeDigitSubtrahend
+~ Button addDigitBlockResult
+~ Button removeDigitBlockResult
++ Pair<Integer,Integer> firstCoordinate
+- boolean canChange
++ int getMaxDigit()
++ void setMaxDigit(int)
+- void removeDigitSubtrahend(ActionEvent)
+- void addDigitSubtrahend(ActionEvent)
+- void removeDigitBlockResult(ActionEvent)
+- void addDigitBlockResult(ActionEvent)
++ void resize_line()
++ FlowPane createFlow()
++ void place()
++ void placeUnderBlock()
++ void createNewBlock(SwitchButton)
+- void block()
++ void unblock()
++ void remove()
+}
+class INSTRUMENTS.DIVISION_BASED.TranslateIntegerPart {
+}
+
+
+INSTRUMENTS.ADDITION_SUBSTRACTION.ADD_SUB_INSTRUMENT <|-- INSTRUMENTS.MULTIPLICATION_BASED.MultiplicationInstrument
+INSTRUMENTS.SUBCLASS.SwitchCarry <|-- INSTRUMENTS.SUBCLASS.SwitchButton
+INSTRUMENTS.ADDITION_SUBSTRACTION.ADD_SUB_INSTRUMENT <|-- INSTRUMENTS.ADDITION_SUBSTRACTION.SubtractionInstrument
+javafx.application.Application <|-- STARTERS.Main
+INSTRUMENTS.ADDITION_SUBSTRACTION.ADD_SUB_INSTRUMENT <|-- INSTRUMENTS.ADDITION_SUBSTRACTION.AdditionInstrument
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.DIVISION_BASED.Division
+INSTRUMENTS.IEEE.IEEE <|-- INSTRUMENTS.IEEE.ieeeAdd
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.EXPRESSION.Expression
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.MULTIPLICATION_BASED.TranslateFractionalPart
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.IEEE.IEEE
+INSTRUMENTS.IEEE.IEEE <|-- INSTRUMENTS.IEEE.IEEEStandart
+javafx.scene.control.TextField <|-- INSTRUMENTS.SUBCLASS.LimitedTextField
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.ADDITION_SUBSTRACTION.ADD_SUB_INSTRUMENT
+INSTRUMENTS.ADDITION_SUBSTRACTION.ADD_SUB_INSTRUMENT +.. INSTRUMENTS.ADDITION_SUBSTRACTION.ADD_SUB_INSTRUMENT.add_sub_json
+@enduml

@@ -1,0 +1,21 @@
+.accordion {
+    background-color: transparent;
+    cursor: pointer;
+    text-align: left;
+    border: none;
+    outline: none;
+    transition: 0.4s;
+    margin: 0;
+    padding: 0 2px 0 0;
+}
+
+.accordion:after {
+    content: '⮞';
+    font-size: 13px;
+    float: right;
+    text-align: center;
+}
+
+.accordion_active:after {
+    content: "⮟";
+}

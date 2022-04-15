@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+
+<ScrollPane xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <GridPane fx:id="gridPane" alignment="TOP_CENTER" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@mainPage.css">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <ImageView fx:id="addPanelButton" fitHeight="75.0" fitWidth="100.0" onMouseEntered="#onAddPanelButtonEntered" onMouseExited="#onAddPanelButtonExited" onMousePressed="#onAddPanelButtonPressed" onMouseReleased="#onAddPanelButtonReleased" pickOnBounds="true" preserveRatio="true" styleClass="addPanelButton_default" GridPane.halignment="LEFT" GridPane.valignment="TOP">
+               <GridPane.margin>
+                  <Insets top="20.0" />
+               </GridPane.margin>
+            </ImageView>
+         </children>
+      </GridPane>
+   </content>
+</ScrollPane>

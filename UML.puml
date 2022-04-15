@@ -1,0 +1,516 @@
+@startuml
+class client.mainWindow.sectionMenu.labs.Lab {
+~ int status
+~ String taskHelp
+~ Test nullTest
+~ String taskFormulation
+~ String theoryBackground
+~ String instrumentAlgorithm
+~ Test finalTest
+}
+class client.mainWindow.sectionMenu.SectionMenuModel {
+}
+class client.mainWindow.MainModel {
+- MainController mainController
+~ void parseConfig(JsonObject)
+}
+class INSTRUMENTS.MultiplicationInstrument {
++ FlowPane separatorPaneMultiplier_2
++ FlowPane separatorPaneResult
++ FlowPane lineManipulator
++ Canvas canvas2
+- {static} ObjectProperty<MultiplicationInstrument> draggingM
++ {static} ArrayList<MultiplicationInstrument> mults
++ int line_amount
+- Background focusBackground
+- Background unfocusBackground
+- Background Green
+- {static} String M_DRAG_KEY
+- void separateResult(ActionEvent)
+- void separateMultiplayer_2(ActionEvent)
+- void separateMultiplayer_1(ActionEvent)
++ void removeDigit()
++ void addDigit()
+- void remove_line(ActionEvent)
+- void add_line(ActionEvent)
++ void checkValue()
++ void delete_1(TranslateFractionalPart)
++ void onDragDropped(DragEvent)
++ void onDragOver(DragEvent)
++ void onDragDone(DragEvent)
++ void onDragDetected(MouseEvent)
+}
+class client.mainWindow.tabs.TabPaneView {
+}
+class STARTERS.Main {
++ void start(Stage)
++ {static} void main(String[])
+}
+class client.mainWindow.widgetPanel.calendar.CalendarController {
+}
+class client.mainWindow.tabs.TabsZoneModel {
+- ArrayList<TabPaneModel> TabPaneModelList
++ {static} String MAIN_PAGE
++ {static} String LAB_LIST_PAGE
++ {static} String AOVT_PAGE
++ ArrayList<TabPaneModel> getTabPaneModelList()
+- String getMainPageModel()
+- String getLabListPageModel()
+- String getAOVTModel()
+}
+class client.mainWindow.tabs.TabsZoneModel.TabPaneModel {
++ ArrayList<String> tabsModelList
++ String createTabModel(String)
+}
+class client.mainWindow.pages.mainPage.Model {
++ VBox createPanel()
+- ObservableList<String> getTitlePanelList()
+}
+class INSTRUMENTS.Step {
++ ArrayList<Instrument> instruments
+- VBox vBox_list
++ VBox step_vbox
++ int index
++ ChoiceBox<String> choiceBox
++ Button button
++ TextField stepResultField
++ Label label
++ GridPane insHeader
++ ChoiceBox<String> options_instrument
++ TextField indexField
++ {static} ArrayList<Step> steps
++ TitledPane titledPane
++ Button addInstrument
++ Button addInstrumentIndex
++ TextField instIndexField
++ TextField firstParamField
++ TextField secondParamField
+- {static} String STEP_DRAG_KEY
+- {static} ObjectProperty<Step> draggingStep
+- Background focusBackground
+- Background unfocusBackground
+- Background Green
++ String getInform()
+- void createInstrumentIndex()
+- void createInstrument()
+- void onDragDropped(DragEvent)
+- void onDragOver(DragEvent)
+- void onDragDone(DragEvent)
++ void onDragDetected(MouseEvent)
++ void change_optional_fields()
++ void delete_step()
++ void change_index(int)
++ void change_index_add(int)
+}
+class client.mainWindow.tab.TabController {
+}
+class main.App {
+- Stage primaryStage
+- boolean loginSuccess
++ Stage getPrimaryStage()
++ void setLoginSuccess(boolean)
++ void start(Stage)
+- void initLoginWindow()
+- void initMainWindow()
++ {static} void main(String[])
+}
+class client.mainWindow.tabPane.TabPaneModel {
+- TabPaneController tabPaneController
++ void parseConfig()
+}
+class client.Config {
++ {static} JsonObject load()
+}
+class client.mainWindow.sectionMenu.labs.LabController {
+}
+abstract class INSTRUMENTS.Instrument {
++ VBox vBox
++ int index
++ FlowPane flowPane
++ TitledPane titledPane
++ Label label_text
++ Label indexLabel
++ TextField resField
++ Button deleteButton
++ Label resStep
++ Step step
++ Label signLabel
++ int digit
++ GridPane digitNet
++ {abstract}String getInform()
+- void delete()
++ void change_index(int)
++ {abstract}void separate_digits(ActionEvent)
++ FlowPane createSeparatorPane()
++ {abstract}void checkValue()
+}
+class client.loginWindow.LoginModel {
+- String login
+- String password
++ void setLogin(String)
++ void setPassword(String)
+}
+class client.mainWindow.sectionMenu.labs.Test {
+}
+class INSTRUMENTS.AdditionInstrument {
++ SwitchCarry result_carry
++ void removeDigit()
++ void checkValue()
+}
+class client.mainWindow.menuBar.MenuBarController {
+- MenuBarModel menuBarModel
+- MenuBarView menuBarView
++ void setMenuBarModel(MenuBarModel)
++ void setMenuBarView(MenuBarView)
+}
+class client.mainWindow.widgetPanel.WidgetPanelView {
+}
+class client.mainWindow.widgetPanel.WidgetPanelController {
+- WidgetPanelView widgetPanelView
+- WidgetPanelModel widgetPanelModel
++ void setWidgetPanelView(WidgetPanelView)
++ void setWidgetPanelModel(WidgetPanelModel)
++ void initialize(URL,ResourceBundle)
+}
+class client.mainWindow.pages.mainPage.View {
+- Text lastEventsText
+- Text customPanelText
+# ImageView addPanelButton
+# GridPane gridPane
+~ void onAddPanelButtonEntered(MouseEvent)
+~ void onAddPanelButtonExited(MouseEvent)
+~ void onAddPanelButtonPressed(MouseEvent)
+}
+class client.mainWindow.tab.TabModel {
+- ArrayList<TabPaneModel> TabPaneModelList
++ ArrayList<TabPaneModel> getTabPaneModelList()
+}
+class client.mainWindow.tabPane.TabPaneView {
+}
+class INSTRUMENTS.TranslateIntegerPart {
+}
+class client.mainWindow.tabs.TabPaneController {
+}
+class client.mainWindow.sectionMenu.trainers.TrainerView {
+}
+class INSTRUMENTS.Expression {
++ TextField textField
++ TextFlow textFlow
+~ String sup
+~ String supchars
+~ String subchars
+~ String sub
+~ char[] csup
+~ char[] characters
+~ char[] csub
+~ char[] character
++ String getInform()
++ void separate_digits(ActionEvent)
++ void checkValue()
++ void superscript()
++ void subscript()
+- String convertSupText(String)
+- String convertSubText(String)
+}
+class client.mainWindow.widgetPanel.calendar.Calendar {
+}
+class client.mainWindow.sectionMenu.SectionMenuController {
+- SectionMenuModel sectionMenuModel
+- SectionMenuView sectionMenuView
++ void setSectionMenuModel(SectionMenuModel)
++ void setSectionMenuView(SectionMenuView)
+}
+class client.mainWindow.tabManager.TabManagerView {
+~ GridPane gridPane
+~ void configGridPane(JsonObject)
+}
+class client.mainWindow.widgetPanel.profile.ProfileView {
+}
+class client.mainWindow.pages.mainPage.MainPageController {
+- Model mainPageModel
+- Parent root
+~ void onAddPanelButtonReleased(MouseEvent)
++ void initialize(URL,ResourceBundle)
++ Parent getRoot()
+}
+class main.Main {
++ {static} void main(String[])
+}
+class client.mainWindow.widgetPanel.WidgetPanelModel {
+}
+class client.loginWindow.LoginController {
+- TextField loginField
+- PasswordField passwordField
+- CheckBox rememberPasswordCheckBox
+- Button loginButton
+- Label errorLabel
+- App app
+- LoginView loginView
+- LoginModel loginModel
+~ void onLoginButtonAction(ActionEvent)
++ void initialize(URL,ResourceBundle)
++ void setApp(App)
+}
+class client.loginWindow.LoginView {
+}
+abstract class INSTRUMENTS.IEEE {
++ TextField sign
++ TextField expAmount
++ TextField mantAmount
++ VBox vBox_IEEE
++ GridPane ieee_grid
++ boolean notNew
++ Text t
++ Text t1
++ Text t2
++ Text t21
++ Text t22
++ Text t23
++ Text t31
++ Text t32
++ Text t33
++ LinkedList<FlowPane> numbers
+}
+class INSTRUMENTS.ieeeAdd {
++ Canvas sep1
++ Canvas sep2
++ Canvas sep3
++ Canvas sep4
++ Canvas sep5
++ Canvas sep6
+- void create_digit_net(ActionEvent)
++ String getInform()
++ void separate_digits(ActionEvent)
++ void checkValue()
+- FlowPane createFlow()
+- void behaviour(KeyEvent)
+}
+class client.mainWindow.widgetPanel.profile.Profile {
+}
+class client.mainWindow.roadMap.RoadMapView {
+- ArrayList<Circle> circleList
++ void setCircleList(ArrayList<Circle>)
++ ArrayList getCircleList()
++ void delete()
++ void updateCircles()
++ void createCircle()
+}
+class client.mainWindow.widgetPanel.profile.ProfileController {
+}
+class client.mainWindow.MainView {
+~ void createTabStage(JsonObject,AnchorPane)
+}
+class client.mainWindow.roadMap.RoadMapController {
+- Circle ballVasya
+- RoadMapModel roadMapModel
+- RoadMapView roadMapView
++ void setRoadMapModel(RoadMapModel)
++ void setRoadMapView(RoadMapView)
++ RoadMapModel getRoadMapModel()
++ RoadMapView getRoadMapView()
++ void initialize(URL,ResourceBundle)
+}
+class client.mainWindow.sectionMenu.trainers.TrainerController {
+}
+abstract class INSTRUMENTS.ADD_SUB_INSTRUMENT {
++ Button plusButton
++ Button minusButton
++ FlowPane separatorPane
++ LinkedList<SwitchCarry> carryList
++ LinkedList<FlowPane> fields
++ Canvas canvas
++ FlowPane createFlow()
++ void separate_digits(ActionEvent)
++ void addDigit()
++ void removeDigit()
+- void change_line()
+- void behaviour(KeyEvent)
++ void create_overflows(int)
++ String getInform()
+}
+class INSTRUMENTS.ADD_SUB_INSTRUMENT.add_sub_json {
++ String overflow_list
++ String first_term
++ String second_term
++ String result
++ String index
+}
+class client.mainWindow.tabPane.TabPaneController {
+- TabPaneModel tabPaneModel
+- TabPaneView tabPaneView
++ void initialize(URL,ResourceBundle)
+}
+class client.mainWindow.tabs.TabsZoneController {
+- TabsZoneModel tabsZoneModel
++ void initialize(URL,ResourceBundle)
+}
+class client.mainWindow.menuBar.MenuBarModel {
+}
+class INSTRUMENTS.SUBCLASS.SwitchCarry {
++ Button button
++ LimitedTextField textField
++ boolean flag
++ int row
++ int column
++ boolean isOverFlowRes
+- void switch_type(ActionEvent)
++ Node get()
++ String getValue()
+}
+class client.mainWindow.sectionMenu.labs.LabView {
+}
+class client.mainWindow.tabs.TabPaneModel {
+}
+class client.mainWindow.tabs.TabsZoneView {
+~ ArrayList<TabPane> tabPaneList
+~ AnchorPane anchorPane
+~ BorderPane borderPane
+- Tab currentDraggingTab
+- {static} AtomicLong idGenerator
+- String draggingID
+# TabPane createTabPane()
+# Tab createNewTab(String)
+- Tab createMainTab()
+~ void onTabDragging(Event)
++ void addDragAndDropSupport(TabPane)
+- void addDragHandlers(Tab)
+- void removeDragHandlers(Tab)
+}
+class INSTRUMENTS.Const {
++ {static} ObservableList<String> options_step
++ {static} String regex_bin
++ {static} String button_style
++ {static} String step_result
++ {static} ObservableList<String> options_instrument
+}
+class client.mainWindow.tab.TabView {
+}
+class client.mainWindow.tabManager.TabManagerController {
+- TabManagerModel tabsManagerModel
+- TabManagerView tabsManagerView
++ {static} String FXML_PATH
++ void initialize(URL,ResourceBundle)
++ void requestConfigure(JsonObject)
++ void requestConfigureGridPane(JsonObject)
++ void requestCreateTabPane(JsonObject)
+}
+class client.mainWindow.widgetPanel.calendar.CalendarView {
+}
+class client.mainWindow.sectionMenu.trainers.Trainer {
+}
+class client.mainWindow.menuBar.MenuBarView {
+- MenuBarModel menuBarModel
+- MenuBarView menuBarView
++ void setMenuBarModel(MenuBarModel)
++ void setMenuBarView(MenuBarView)
+}
+class client.mainWindow.sectionMenu.SectionMenuView {
+- Button labButton
+- Button trainButton
+- Button statisticsButton
+~ void onSectionEntered(MouseEvent)
+~ void onSectionExited(MouseEvent)
+~ void onSectionPressed(MouseEvent)
+~ void onSectionReleased(MouseEvent)
+}
+class INSTRUMENTS.SubtractionInstrument {
++ void removeDigit()
++ void checkValue()
+}
+class STARTERS.qq {
++ {static} void main(String[])
+}
+class INSTRUMENTS.IEEEStandart {
++ Canvas sep1
++ Canvas sep2
++ void create_digit_net()
++ String getInform()
++ void separate_digits(ActionEvent)
+- FlowPane createFlow()
++ void checkValue()
+- void behaviour(KeyEvent)
+}
+class Controller {
+- Cursor cursor
+- TextField step_index_field
+- ScrollPane main_scroll
+- VBox main_vbox
+~ void addStepToEnd()
+~ void insertByIndex()
+}
+class client.mainWindow.MainController {
+- MainModel mainModel
+- MainView mainView
+- ArrayList<TabManagerController> tabManagerControllerList
+~ RoadMapController roadMapController
+~ WidgetPanelController widgetPanelController
+~ TabManagerController tabManagerController
+~ SectionMenuController sectionMenuController
+~ MenuBarController menuBarController
+- App app
+- JsonObject config
++ void setApp(App)
++ void setConfig(JsonObject)
++ void initialize(URL,ResourceBundle)
+~ void requestCreateTabManager(JsonObject)
+~ void requestConfigureMainTabManagerView(JsonObject)
++ void requestParseConfig(JsonObject)
++ JsonObject requestGetConfig()
+}
+class INSTRUMENTS.TranslateFractionalPart {
++ LinkedList<MultiplicationInstrument> list
++ Button button_plus
++ VBox TranslateVBox
++ FlowPane pane
++ TextField dig
+- void add_multi(ActionEvent)
++ String getInform()
++ void separate_digits(ActionEvent)
++ void checkValue()
+}
+class INSTRUMENTS.SUBCLASS.LimitedTextField {
+- IntegerProperty maxLength
++ IntegerProperty maxLengthProperty()
++ Integer getMaxLength()
++ void setMaxLength(Integer)
++ void replaceText(int,int,String)
+}
+class client.mainWindow.tabManager.TabManagerModel {
+- TabManagerController tabManagerController
+- ArrayList<TabPaneModel> tabPaneModelList
+~ void parseConfig(JsonObject)
+}
+class client.mainWindow.roadMap.RoadMapModel {
+}
+
+
+INSTRUMENTS.ADD_SUB_INSTRUMENT <|-- INSTRUMENTS.MultiplicationInstrument
+javafx.application.Application <|-- STARTERS.Main
+client.mainWindow.tabs.TabsZoneModel +.. client.mainWindow.tabs.TabsZoneModel.TabPaneModel
+javafx.application.Application <|-- main.App
+INSTRUMENTS.ADD_SUB_INSTRUMENT <|-- INSTRUMENTS.AdditionInstrument
+javafx.fxml.Initializable <|.. client.mainWindow.widgetPanel.WidgetPanelController
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.Expression
+client.mainWindow.sectionMenu.SectionMenuView <|-- client.mainWindow.sectionMenu.SectionMenuController
+javafx.fxml.Initializable <|.. client.mainWindow.pages.mainPage.MainPageController
+java.io.Serializable <|.. client.mainWindow.pages.mainPage.MainPageController
+client.mainWindow.pages.mainPage.View <|-- client.mainWindow.pages.mainPage.MainPageController
+javafx.fxml.Initializable <|.. client.loginWindow.LoginController
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.IEEE
+INSTRUMENTS.IEEE <|-- INSTRUMENTS.ieeeAdd
+javafx.fxml.Initializable <|.. client.mainWindow.roadMap.RoadMapController
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.ADD_SUB_INSTRUMENT
+INSTRUMENTS.ADD_SUB_INSTRUMENT +.. INSTRUMENTS.ADD_SUB_INSTRUMENT.add_sub_json
+javafx.fxml.Initializable <|.. client.mainWindow.tabPane.TabPaneController
+client.mainWindow.tabPane.TabPaneView <|-- client.mainWindow.tabPane.TabPaneController
+javafx.fxml.Initializable <|.. client.mainWindow.tabs.TabsZoneController
+client.mainWindow.tabs.TabsZoneView <|-- client.mainWindow.tabs.TabsZoneController
+javafx.fxml.Initializable <|.. client.mainWindow.tabManager.TabManagerController
+client.mainWindow.tabManager.TabManagerView <|-- client.mainWindow.tabManager.TabManagerController
+INSTRUMENTS.ADD_SUB_INSTRUMENT <|-- INSTRUMENTS.SubtractionInstrument
+INSTRUMENTS.IEEE <|-- INSTRUMENTS.IEEEStandart
+javafx.fxml.Initializable <|.. client.mainWindow.MainController
+client.mainWindow.MainView <|-- client.mainWindow.MainController
+INSTRUMENTS.Instrument <|-- INSTRUMENTS.TranslateFractionalPart
+javafx.scene.control.TextField <|-- INSTRUMENTS.SUBCLASS.LimitedTextField
+@enduml

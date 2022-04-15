@@ -1,0 +1,115 @@
+{
+  "theme": "light",
+  "tabManagerList": [
+      {
+        "name": "main",
+        "bounds":  {
+          "width": 100,
+          "height": 150
+        },
+        "paneType": "HorizontalSplitPane",
+        "paneList": [
+              {
+                "paneType": "VerticalSplitPane",
+                "paneList": [
+                  {
+                    "paneType": "TabPane",
+                    "bounds": {
+                      "width": 60,
+                      "height": 50
+                    },
+                    "tabList": [
+                      {
+                        "page": {
+                          "type": "Main",
+                          "config": {}
+                        }
+                      },
+                      {
+                        "page": {
+                          "type": "Main",
+                          "config": {}
+                        }
+                      }
+                    ]
+                  },
+                  {
+                    "paneType": "TabPane",
+                    "bounds": {
+                      "width": 60,
+                      "height": 50
+                    },
+                    "tabList": [
+                      {
+                        "page": {
+                          "type": "Main",
+                          "config": {}
+                        }
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                  "paneType": "TabPane",
+                  "bounds": {
+                    "width": 100,
+                    "height": 50
+                  },
+                  "tabList": [
+                    {
+                      "page": {
+                        "type": "AOVT",
+                        "config": {}
+                      }
+                    }
+                  ]
+              }
+          ]
+      },
+
+
+
+
+
+
+
+
+
+
+
+      {
+        "name": "grid1",
+        "stage": {
+          "screen": 2,
+          "x": 10,
+          "y": 20
+        },
+        "paneType": "TabPane",
+        "bounds": {
+          "width": 100,
+          "height": 50
+        },
+        "tabList": [
+          {
+            "page": {
+              "type": "AOVT",
+              "config": {}
+            }
+          },
+          {
+            "page": {
+              "type": "AOVT",
+              "config": {}
+            }
+          },
+          {
+            "page": {
+              "type": "AOVT",
+              "config": {}
+            }
+          }
+        ]
+      }
+  ]
+}

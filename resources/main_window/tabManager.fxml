@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="borderPane" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.tabManager.TabManagerController">
+   <top>
+      <Region id="top" onDragDropped="#onRegionDragDropped" onDragEntered="#onRegionDragEntered" onDragExited="#onRegionDragExited" onDragOver="#onRegionDragOver" prefHeight="0" style="-fx-background-color: ghostwhite;" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <AnchorPane fx:id="anchorPane" BorderPane.alignment="CENTER" />
+   </center>
+   <left>
+      <Region id="left" onDragDropped="#onRegionDragDropped" onDragEntered="#onRegionDragEntered" onDragExited="#onRegionDragExited" onDragOver="#onRegionDragOver" prefWidth="0" style="-fx-background-color: ghostwhite;" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <Region id="right" onDragDropped="#onRegionDragDropped" onDragEntered="#onRegionDragEntered" onDragExited="#onRegionDragExited" onDragOver="#onRegionDragOver" prefWidth="0" style="-fx-background-color: ghostwhite;" BorderPane.alignment="CENTER" />
+   </right>
+   <bottom>
+      <Region id="bottom" onDragDropped="#onRegionDragDropped" onDragEntered="#onRegionDragEntered" onDragExited="#onRegionDragExited" onDragOver="#onRegionDragOver" prefHeight="0" style="-fx-background-color: ghostwhite;" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

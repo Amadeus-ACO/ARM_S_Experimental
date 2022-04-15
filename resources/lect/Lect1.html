@@ -1,0 +1,1372 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script src="Lect1_files/polyfill.js"></script>
+<script id="MathJax-script" async="" src="Lect1_files/tex-mml-chtml.js"></script>
+<style>
+   .brd {
+    border: 4px double black; /* Параметры границы */
+    background: #fc3; /* Цвет фона */
+    padding: 10px; /* Поля вокруг текста */
+	margin-left: auto; 
+	margin-right: auto;
+   }
+   .scheme {
+	border: 4px;
+	background: #00FF00;
+	padding: 10px;
+   }
+   .proposition{
+	margin-left: 60px;
+	font-size: 25px;
+   }
+   .innerheader1{
+	margin-left: 30px; 
+	font-size: 25px;
+   }
+   .innerheader1_underline{
+	margin-left: 30px; 
+	font-size: 25px;
+	text-decoration: underline;
+   }
+   .text{
+	margin-left: 30px; 
+	font-size: 25px;
+   }
+   
+</style>
+
+<style type="text/css">.CtxtMenu_InfoClose {  top:.2em; right:.2em;}
+.CtxtMenu_InfoContent {  overflow:auto; text-align:left; font-size:80%;  padding:.4em .6em; border:1px inset; margin:1em 0px;  max-height:20em; max-width:30em; background-color:#EEEEEE;  white-space:normal;}
+.CtxtMenu_Info.CtxtMenu_MousePost {outline:none;}
+.CtxtMenu_Info {  position:fixed; left:50%; width:auto; text-align:center;  border:3px outset; padding:1em 2em; background-color:#DDDDDD;  color:black;  cursor:default; font-family:message-box; font-size:120%;  font-style:normal; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 15px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius:15px;               /* Safari and Chrome */  -moz-border-radius:15px;                  /* Firefox */  -khtml-border-radius:15px;                /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */  filter:progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color="gray", Positive="true"); /* IE */}
+</style><style type="text/css">.CtxtMenu_MenuClose {  position:absolute;  cursor:pointer;  display:inline-block;  border:2px solid #AAA;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  font-family: "Courier New", Courier;  font-size:24px;  color:#F0F0F0}
+.CtxtMenu_MenuClose span {  display:block; background-color:#AAA; border:1.5px solid;  border-radius:18px;  -webkit-border-radius: 18px;             /* Safari and Chrome */  -moz-border-radius: 18px;                /* Firefox */  -khtml-border-radius: 18px;              /* Konqueror */  line-height:0;  padding:8px 0 6px     /* may need to be browser-specific */}
+.CtxtMenu_MenuClose:hover {  color:white!important;  border:2px solid #CCC!important}
+.CtxtMenu_MenuClose:hover span {  background-color:#CCC!important}
+.CtxtMenu_MenuClose:hover:focus {  outline:none}
+</style><style type="text/css">.CtxtMenu_Menu {  position:absolute;  background-color:white;  color:black;  width:auto; padding:5px 0px;  border:1px solid #CCCCCC; margin:0; cursor:default;  font: menu; text-align:left; text-indent:0; text-transform:none;  line-height:normal; letter-spacing:normal; word-spacing:normal;  word-wrap:normal; white-space:nowrap; float:none; z-index:201;  border-radius: 5px;                     /* Opera 10.5 and IE9 */  -webkit-border-radius: 5px;             /* Safari and Chrome */  -moz-border-radius: 5px;                /* Firefox */  -khtml-border-radius: 5px;              /* Konqueror */  box-shadow:0px 10px 20px #808080;         /* Opera 10.5 and IE9 */  -webkit-box-shadow:0px 10px 20px #808080; /* Safari 3 & Chrome */  -moz-box-shadow:0px 10px 20px #808080;    /* Forefox 3.5 */  -khtml-box-shadow:0px 10px 20px #808080;  /* Konqueror */}
+.CtxtMenu_MenuItem {  padding: 1px 2em;  background:transparent;}
+.CtxtMenu_MenuArrow {  position:absolute; right:.5em; padding-top:.25em; color:#666666;  font-family: null; font-size: .75em}
+.CtxtMenu_MenuActive .CtxtMenu_MenuArrow {color:white}
+.CtxtMenu_MenuArrow.CtxtMenu_RTL {left:.5em; right:auto}
+.CtxtMenu_MenuCheck {  position:absolute; left:.7em;  font-family: null}
+.CtxtMenu_MenuCheck.CtxtMenu_RTL { right:.7em; left:auto }
+.CtxtMenu_MenuRadioCheck {  position:absolute; left: .7em;}
+.CtxtMenu_MenuRadioCheck.CtxtMenu_RTL {  right: .7em; left:auto}
+.CtxtMenu_MenuInputBox {  padding-left: 1em; right:.5em; color:#666666;  font-family: null;}
+.CtxtMenu_MenuInputBox.CtxtMenu_RTL {  left: .1em;}
+.CtxtMenu_MenuComboBox {  left:.1em; padding-bottom:.5em;}
+.CtxtMenu_MenuSlider {  left: .1em;}
+.CtxtMenu_SliderValue {  position:absolute; right:.1em; padding-top:.25em; color:#333333;  font-size: .75em}
+.CtxtMenu_SliderBar {  outline: none; background: #d3d3d3}
+.CtxtMenu_MenuLabel {  padding: 1px 2em 3px 1.33em;  font-style:italic}
+.CtxtMenu_MenuRule {  border-top: 1px solid #DDDDDD;  margin: 4px 3px;}
+.CtxtMenu_MenuDisabled {  color:GrayText}
+.CtxtMenu_MenuActive {  background-color: #606872;  color: white;}
+.CtxtMenu_MenuDisabled:focus {  background-color: #E8E8E8}
+.CtxtMenu_MenuLabel:focus {  background-color: #E8E8E8}
+.CtxtMenu_ContextMenu:focus {  outline:none}
+.CtxtMenu_ContextMenu .CtxtMenu_MenuItem:focus {  outline:none}
+.CtxtMenu_SelectionMenu {  position:relative; float:left;  border-bottom: none; -webkit-box-shadow:none; -webkit-border-radius:0px; }
+.CtxtMenu_SelectionItem {  padding-right: 1em;}
+.CtxtMenu_Selection {  right: 40%; width:50%; }
+.CtxtMenu_SelectionBox {  padding: 0em; max-height:20em; max-width: none;  background-color:#FFFFFF;}
+.CtxtMenu_SelectionDivider {  clear: both; border-top: 2px solid #000000;}
+.CtxtMenu_Menu .CtxtMenu_MenuClose {  top:-10px; left:-10px}
+</style><style id="MJX-CHTML-styles">
+mjx-container[jax="CHTML"] {
+  line-height: 0;
+}
+
+mjx-container [space="1"] {
+  margin-left: .111em;
+}
+
+mjx-container [space="2"] {
+  margin-left: .167em;
+}
+
+mjx-container [space="3"] {
+  margin-left: .222em;
+}
+
+mjx-container [space="4"] {
+  margin-left: .278em;
+}
+
+mjx-container [space="5"] {
+  margin-left: .333em;
+}
+
+mjx-container [rspace="1"] {
+  margin-right: .111em;
+}
+
+mjx-container [rspace="2"] {
+  margin-right: .167em;
+}
+
+mjx-container [rspace="3"] {
+  margin-right: .222em;
+}
+
+mjx-container [rspace="4"] {
+  margin-right: .278em;
+}
+
+mjx-container [rspace="5"] {
+  margin-right: .333em;
+}
+
+mjx-container [size="s"] {
+  font-size: 70.7%;
+}
+
+mjx-container [size="ss"] {
+  font-size: 50%;
+}
+
+mjx-container [size="Tn"] {
+  font-size: 60%;
+}
+
+mjx-container [size="sm"] {
+  font-size: 85%;
+}
+
+mjx-container [size="lg"] {
+  font-size: 120%;
+}
+
+mjx-container [size="Lg"] {
+  font-size: 144%;
+}
+
+mjx-container [size="LG"] {
+  font-size: 173%;
+}
+
+mjx-container [size="hg"] {
+  font-size: 207%;
+}
+
+mjx-container [size="HG"] {
+  font-size: 249%;
+}
+
+mjx-container [width="full"] {
+  width: 100%;
+}
+
+mjx-box {
+  display: inline-block;
+}
+
+mjx-block {
+  display: block;
+}
+
+mjx-itable {
+  display: inline-table;
+}
+
+mjx-row {
+  display: table-row;
+}
+
+mjx-row > * {
+  display: table-cell;
+}
+
+mjx-mtext {
+  display: inline-block;
+}
+
+mjx-mstyle {
+  display: inline-block;
+}
+
+mjx-merror {
+  display: inline-block;
+  color: red;
+  background-color: yellow;
+}
+
+mjx-mphantom {
+  visibility: hidden;
+}
+
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0px;
+  left: 0px;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0px 0px 0px !important;
+  border: 0px !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}
+
+mjx-math {
+  display: inline-block;
+  text-align: left;
+  line-height: 0;
+  text-indent: 0;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 100%;
+  font-size-adjust: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  word-spacing: normal;
+  white-space: nowrap;
+  direction: ltr;
+  padding: 1px 0;
+}
+
+mjx-container[jax="CHTML"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="CHTML"][display="true"][width="full"] {
+  display: flex;
+}
+
+mjx-container[jax="CHTML"][display="true"] mjx-math {
+  padding: 0;
+}
+
+mjx-container[jax="CHTML"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="CHTML"][justify="right"] {
+  text-align: right;
+}
+
+mjx-mi {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mo {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-stretchy-h {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-stretchy-h > * {
+  display: table-cell;
+  width: 0;
+}
+
+mjx-stretchy-h > * > mjx-c {
+  display: inline-block;
+  transform: scalex(1.0000001);
+}
+
+mjx-stretchy-h > * > mjx-c::before {
+  display: inline-block;
+  width: initial;
+}
+
+mjx-stretchy-h > mjx-ext {
+  overflow: hidden;
+  width: 100%;
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c::before {
+  transform: scalex(500);
+}
+
+mjx-stretchy-h > mjx-ext > mjx-c {
+  width: 0;
+}
+
+mjx-stretchy-h > mjx-beg > mjx-c {
+  margin-right: -.1em;
+}
+
+mjx-stretchy-h > mjx-end > mjx-c {
+  margin-left: -.1em;
+}
+
+mjx-stretchy-v {
+  display: inline-block;
+}
+
+mjx-stretchy-v > * {
+  display: block;
+}
+
+mjx-stretchy-v > mjx-beg {
+  height: 0;
+}
+
+mjx-stretchy-v > mjx-end > mjx-c {
+  display: block;
+}
+
+mjx-stretchy-v > * > mjx-c {
+  transform: scaley(1.0000001);
+  transform-origin: left center;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext {
+  display: block;
+  height: 100%;
+  box-sizing: border-box;
+  border: 0px solid transparent;
+  overflow: hidden;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c::before {
+  width: initial;
+  box-sizing: border-box;
+}
+
+mjx-stretchy-v > mjx-ext > mjx-c {
+  transform: scaleY(500) translateY(.075em);
+  overflow: visible;
+}
+
+mjx-mark {
+  display: inline-block;
+  height: 0px;
+}
+
+mjx-mn {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-mfrac {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-frac {
+  display: inline-block;
+  vertical-align: 0.17em;
+  padding: 0 .22em;
+}
+
+mjx-frac[type="d"] {
+  vertical-align: .04em;
+}
+
+mjx-frac[delims] {
+  padding: 0 .1em;
+}
+
+mjx-frac[atop] {
+  padding: 0 .12em;
+}
+
+mjx-frac[atop][delims] {
+  padding: 0;
+}
+
+mjx-dtable {
+  display: inline-table;
+  width: 100%;
+}
+
+mjx-dtable > * {
+  font-size: 2000%;
+}
+
+mjx-dbox {
+  display: block;
+  font-size: 5%;
+}
+
+mjx-num {
+  display: block;
+  text-align: center;
+}
+
+mjx-den {
+  display: block;
+  text-align: center;
+}
+
+mjx-mfrac[bevelled] > mjx-num {
+  display: inline-block;
+}
+
+mjx-mfrac[bevelled] > mjx-den {
+  display: inline-block;
+}
+
+mjx-den[align="right"], mjx-num[align="right"] {
+  text-align: right;
+}
+
+mjx-den[align="left"], mjx-num[align="left"] {
+  text-align: left;
+}
+
+mjx-nstrut {
+  display: inline-block;
+  height: .054em;
+  width: 0;
+  vertical-align: -.054em;
+}
+
+mjx-nstrut[type="d"] {
+  height: .217em;
+  vertical-align: -.217em;
+}
+
+mjx-dstrut {
+  display: inline-block;
+  height: .505em;
+  width: 0;
+}
+
+mjx-dstrut[type="d"] {
+  height: .726em;
+}
+
+mjx-line {
+  display: block;
+  box-sizing: border-box;
+  min-height: 1px;
+  height: .06em;
+  border-top: .06em solid;
+  margin: .06em -.1em;
+  overflow: hidden;
+}
+
+mjx-line[type="d"] {
+  margin: .18em -.1em;
+}
+
+mjx-msub {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-munder {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-over {
+  text-align: left;
+}
+
+mjx-munder:not([limits="false"]) {
+  display: inline-table;
+}
+
+mjx-munder > mjx-row {
+  text-align: left;
+}
+
+mjx-under {
+  padding-bottom: .1em;
+}
+
+mjx-TeXAtom {
+  display: inline-block;
+  text-align: left;
+}
+
+mjx-c {
+  display: inline-block;
+}
+
+mjx-utext {
+  display: inline-block;
+  padding: .75em 0 .2em 0;
+}
+
+mjx-c::before {
+  display: block;
+  width: 0;
+}
+
+.MJX-TEX {
+  font-family: MJXZERO, MJXTEX;
+}
+
+.TEX-B {
+  font-family: MJXZERO, MJXTEX-B;
+}
+
+.TEX-I {
+  font-family: MJXZERO, MJXTEX-I;
+}
+
+.TEX-MI {
+  font-family: MJXZERO, MJXTEX-MI;
+}
+
+.TEX-BI {
+  font-family: MJXZERO, MJXTEX-BI;
+}
+
+.TEX-S1 {
+  font-family: MJXZERO, MJXTEX-S1;
+}
+
+.TEX-S2 {
+  font-family: MJXZERO, MJXTEX-S2;
+}
+
+.TEX-S3 {
+  font-family: MJXZERO, MJXTEX-S3;
+}
+
+.TEX-S4 {
+  font-family: MJXZERO, MJXTEX-S4;
+}
+
+.TEX-A {
+  font-family: MJXZERO, MJXTEX-A;
+}
+
+.TEX-C {
+  font-family: MJXZERO, MJXTEX-C;
+}
+
+.TEX-CB {
+  font-family: MJXZERO, MJXTEX-CB;
+}
+
+.TEX-FR {
+  font-family: MJXZERO, MJXTEX-FR;
+}
+
+.TEX-FRB {
+  font-family: MJXZERO, MJXTEX-FRB;
+}
+
+.TEX-SS {
+  font-family: MJXZERO, MJXTEX-SS;
+}
+
+.TEX-SSB {
+  font-family: MJXZERO, MJXTEX-SSB;
+}
+
+.TEX-SSI {
+  font-family: MJXZERO, MJXTEX-SSI;
+}
+
+.TEX-SC {
+  font-family: MJXZERO, MJXTEX-SC;
+}
+
+.TEX-T {
+  font-family: MJXZERO, MJXTEX-T;
+}
+
+.TEX-V {
+  font-family: MJXZERO, MJXTEX-V;
+}
+
+.TEX-VB {
+  font-family: MJXZERO, MJXTEX-VB;
+}
+
+mjx-stretchy-v mjx-c, mjx-stretchy-h mjx-c {
+  font-family: MJXZERO, MJXTEX-S1, MJXTEX-S4, MJXTEX, MJXTEX-A ! important;
+}
+
+@font-face /* 0 */ {
+  font-family: MJXZERO;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Zero.woff") format("woff");
+}
+
+@font-face /* 1 */ {
+  font-family: MJXTEX;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Regular.woff") format("woff");
+}
+
+@font-face /* 2 */ {
+  font-family: MJXTEX-B;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Bold.woff") format("woff");
+}
+
+@font-face /* 3 */ {
+  font-family: MJXTEX-I;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-Italic.woff") format("woff");
+}
+
+@font-face /* 4 */ {
+  font-family: MJXTEX-MI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Main-Italic.woff") format("woff");
+}
+
+@font-face /* 5 */ {
+  font-family: MJXTEX-BI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Math-BoldItalic.woff") format("woff");
+}
+
+@font-face /* 6 */ {
+  font-family: MJXTEX-S1;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size1-Regular.woff") format("woff");
+}
+
+@font-face /* 7 */ {
+  font-family: MJXTEX-S2;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size2-Regular.woff") format("woff");
+}
+
+@font-face /* 8 */ {
+  font-family: MJXTEX-S3;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size3-Regular.woff") format("woff");
+}
+
+@font-face /* 9 */ {
+  font-family: MJXTEX-S4;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Size4-Regular.woff") format("woff");
+}
+
+@font-face /* 10 */ {
+  font-family: MJXTEX-A;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_AMS-Regular.woff") format("woff");
+}
+
+@font-face /* 11 */ {
+  font-family: MJXTEX-C;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Regular.woff") format("woff");
+}
+
+@font-face /* 12 */ {
+  font-family: MJXTEX-CB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Calligraphic-Bold.woff") format("woff");
+}
+
+@font-face /* 13 */ {
+  font-family: MJXTEX-FR;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Regular.woff") format("woff");
+}
+
+@font-face /* 14 */ {
+  font-family: MJXTEX-FRB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Fraktur-Bold.woff") format("woff");
+}
+
+@font-face /* 15 */ {
+  font-family: MJXTEX-SS;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Regular.woff") format("woff");
+}
+
+@font-face /* 16 */ {
+  font-family: MJXTEX-SSB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Bold.woff") format("woff");
+}
+
+@font-face /* 17 */ {
+  font-family: MJXTEX-SSI;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_SansSerif-Italic.woff") format("woff");
+}
+
+@font-face /* 18 */ {
+  font-family: MJXTEX-SC;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Script-Regular.woff") format("woff");
+}
+
+@font-face /* 19 */ {
+  font-family: MJXTEX-T;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Typewriter-Regular.woff") format("woff");
+}
+
+@font-face /* 20 */ {
+  font-family: MJXTEX-V;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Regular.woff") format("woff");
+}
+
+@font-face /* 21 */ {
+  font-family: MJXTEX-VB;
+  src: url("https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2/MathJax_Vector-Bold.woff") format("woff");
+}
+
+mjx-c.mjx-c28::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: "(";
+}
+
+mjx-c.mjx-c29::before {
+  padding: 0.75em 0.389em 0.25em 0;
+  content: ")";
+}
+
+mjx-c.mjx-c2B::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "+";
+}
+
+mjx-c.mjx-c2C::before {
+  padding: 0.121em 0.278em 0.194em 0;
+  content: ",";
+}
+
+mjx-c.mjx-c2E::before {
+  padding: 0.12em 0.278em 0 0;
+  content: ".";
+}
+
+mjx-c.mjx-c30::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "0";
+}
+
+mjx-c.mjx-c31::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "1";
+}
+
+mjx-c.mjx-c32::before {
+  padding: 0.666em 0.5em 0 0;
+  content: "2";
+}
+
+mjx-c.mjx-c33::before {
+  padding: 0.665em 0.5em 0.022em 0;
+  content: "3";
+}
+
+mjx-c.mjx-c34::before {
+  padding: 0.677em 0.5em 0 0;
+  content: "4";
+}
+
+mjx-c.mjx-c35::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "5";
+}
+
+mjx-c.mjx-c36::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "6";
+}
+
+mjx-c.mjx-c37::before {
+  padding: 0.676em 0.5em 0.022em 0;
+  content: "7";
+}
+
+mjx-c.mjx-c38::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "8";
+}
+
+mjx-c.mjx-c39::before {
+  padding: 0.666em 0.5em 0.022em 0;
+  content: "9";
+}
+
+mjx-c.mjx-c3B::before {
+  padding: 0.43em 0.278em 0.194em 0;
+  content: ";";
+}
+
+mjx-c.mjx-c3D::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "=";
+}
+
+mjx-c.mjx-c5B::before {
+  padding: 0.75em 0.278em 0.25em 0;
+  content: "[";
+}
+
+mjx-c.mjx-c5D::before {
+  padding: 0.75em 0.278em 0.25em 0;
+  content: "]";
+}
+
+mjx-c.mjx-c67::before {
+  padding: 0.453em 0.5em 0.206em 0;
+  content: "g";
+}
+
+mjx-c.mjx-c6C::before {
+  padding: 0.694em 0.278em 0 0;
+  content: "l";
+}
+
+mjx-c.mjx-c6F::before {
+  padding: 0.448em 0.5em 0.01em 0;
+  content: "o";
+}
+
+mjx-c.mjx-c2061::before {
+  padding: 0 0 0 0;
+  content: "";
+}
+
+mjx-c.mjx-c2208::before {
+  padding: 0.54em 0.667em 0.04em 0;
+  content: "\2208";
+}
+
+mjx-c.mjx-c2212::before {
+  padding: 0.583em 0.778em 0.082em 0;
+  content: "\2212";
+}
+
+mjx-c.mjx-c2217::before {
+  padding: 0.465em 0.5em 0 0;
+  content: "\2217";
+}
+
+mjx-c.mjx-c2248::before {
+  padding: 0.483em 0.778em 0 0;
+  content: "\2248";
+}
+
+mjx-c.mjx-c1D43C.TEX-I::before {
+  padding: 0.683em 0.504em 0 0;
+  content: "I";
+}
+
+mjx-c.mjx-c1D441.TEX-I::before {
+  padding: 0.683em 0.888em 0 0;
+  content: "N";
+}
+
+mjx-c.mjx-c1D456.TEX-I::before {
+  padding: 0.661em 0.345em 0.011em 0;
+  content: "i";
+}
+
+mjx-c.mjx-c1D45B.TEX-I::before {
+  padding: 0.442em 0.6em 0.011em 0;
+  content: "n";
+}
+
+mjx-c.mjx-c1D45D.TEX-I::before {
+  padding: 0.442em 0.503em 0.194em 0;
+  content: "p";
+}
+</style></head><body><h1><span style="text-decoration: underline; color: #000000; font-size: 50px"><strong>Тема 1. Информация и информатика</strong></span></h1>
+<h2 style="color: #5e9ca0; margin-left: 20px;"><span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline; font-size: 35px;">Информация</span></span></h2>
+
+<div class="text">
+<p><span style="text-decoration: underline;"><strong>Информация</strong></span> - от латинского слова "<span style="font-style: italic; text-decoration: underline;" lang="la"><span style="color: #000000;">infōrmātiō</span></span>".</p>
+<p>forma - фиксация идеи на материальном носителе в виде чертежей или 
+форм для отливки изделий. In forma tio подразумевало идею, существующую в
+ голове человека или произносимую с помощью слов.</p>
+<p>С развитием всех возможных наук оказалось, что, так или иначе, все 
+они имеют дело с информацией. Попытки дать единое определение информации
+ для всех сфер деятельности человека пока не увенчались успехом, т.к. 
+оказалось, что в каждой сфере используется своя терминология, даже 
+иногда вкладывается разный смысл в одни и те же термины. Поэтому 
+согласовать разные определения информации и выработать единое и при том 
+практически полезное определение оказалось крайне затруднительно. В 
+связи с этим корректно говорить, что в настоящее время существует 
+множество понятий об информации, подходящих для использования в 
+конкретных сферах деятельности человека.</p>
+</div>
+<h3><span class="innerheader1_underline"><strong>Высказывания о информации известных людей</strong></span></h3>
+<p class="proposition">1. <strong>Рональд Фишер</strong></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="Lect1_files/RonaldFisher.jpg" alt="" width="240" height="358"></p>
+<p>&nbsp;</p>
+<p class="proposition">&nbsp;в 1921 г.:"Информация - набор статистических данных"</p>
+<p class="proposition">2. <strong>Ральф Хартли</strong></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="Lect1_files/HartleyRalph.jpg" alt="" width="240" height="358"></p>
+<p class="proposition">в 1928 г.:</p>
+<p class="proposition">"Информация - математическая переменная, принимающая одно из значений с одинаковой вероятностью"</p>
+<p class="proposition">3. <strong>Клод Шеннон</strong></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="Lect1_files/Shannon.jpg" alt="" width="260" height="358"></p>
+<p class="proposition">в 1948 г.:</p>
+<p class="proposition">"Информация - сигналы, полезные для получателя, в результате получения которых уменьшается неопределенность знаний"</p>
+<p class="proposition">4. <strong>Норберт Винер</strong></p>
+<p>&nbsp;</p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="Lect1_files/Norbert_wiener.jpg" alt="" width="259" height="358"></p>
+<p class="proposition"> в 1948 г.:</p>
+<p class="proposition">"Информация - это знания, которые используются для управления системой"</p>
+<p class="proposition">"Информация - это информация, а не материя или энергия"</p>
+<p class="proposition">5.<strong> Виктор Михаилович Глушков</strong></p>
+<p><img style="display: block; margin-left: auto; margin-right: auto;" src="Lect1_files/Viktor_Glushkov.jpg" alt="" width="266" height="358"></p>
+<p class="proposition">"Информация - это совокупность сведений, которые циркулируют в природе, обществе и технических системах"</p>
+<p class="proposition">6. <strong>Андрей Николаевич Колмогоров</strong></p>
+<p class="proposition"><strong><img style="display: block; margin-left: auto; margin-right: auto;" src="Lect1_files/Andrej_Kolmogorov.jpg" alt="" width="248" height="358"></strong>"Информация - это характеристика не самого сообщения, а результат взаимодействия между сообщением и потребителем"</p>
+<p>&nbsp;</p>
+<p class="innerheader1"><strong>Документы:</strong></p>
+<p class="proposition"><strong>Федеральный Закон от 27.07.2006 № 149-ФЗ </strong><strong>"Об информации, информационных технологиях и защите информации"</strong></p>
+<p class="proposition">"Информация - сведения (сообщения, данные) независимо от формы их представления"</p>
+<p class="proposition"><strong>ISO/IEC 2382:2015 Information technology - Vocabulary</strong></p>
+<p class="proposition">Информация - это знания относительно фактов, 
+событий, вещей, идей и понятий, которые в определенном контексте имеют 
+конкретный смысл.</p>
+<p>&nbsp;</p>
+<h3 style="text-align: center;"><span class="innerheader1_underline"><strong>Варианты классификаций понятия информации</strong></span></h3>
+<p class="innerheader1_underline"><em><span>С точки зрения источников и потребителей</span></em></p>
+<p class="proposition"><span style="text-decoration: underline;"><strong>Антропоцентризм</strong></span><strong> - </strong>информация
+ возникает только в момент осознания человеком фактов из 
+окружающей&nbsp; действительности. Не учитывают информационные процессы,
+ протекающие без участия человека (Например: обмен генетической 
+информацией в живой природе)</p>
+<p class="proposition"><span style="text-decoration: underline;"><strong>Техноцентризм</strong></span>
+ - отождествление информации с данными, которые обрабатываются 
+компьютером. Проблема: одни и те же данные могут являться источниками 
+разных знаний.</p>
+<p class="proposition"><strong><span style="text-decoration: underline;">Философский взгляд, например недетерминированный подход</span></strong>
+ - отказ от попыток дать определение информации и она рассматривается 
+как фундаментальная категория на равне с материей и энергией.</p>
+<p class="innerheader1_underline"><em><span>Семантическая классификация</span></em></p>
+<p class="proposition">1. С учетом смысловой составляющей</p>
+<p class="proposition" style="margin-left: 120px;">1.1. С учетом новизны сведений</p> 
+<p class="proposition" style="margin-left: 120px;">1.2. Без учета новизны сведений (№149-ФЗ)</p>
+<p class="proposition">2. Без учета смысловой составляющей</p>
+<p style="text-align: center;"><img class="scheme" src="Lect1_files/Scheme_information.png" alt="" width="515" height="381"></p>
+<p>&nbsp;</p>
+<p class="innerheader1"><strong>Данные</strong> - сигналы, зафиксированные на материальном носителе.</p>
+<p class="innerheader1" style="font-size: 25px;"><strong>Сигнал</strong> - это изменяющийся во времени физический процесс, обладающий различными характеристиками. Например, электромагнитный сигнал</p>
+<div style="text-align: center;">
+<p class="innerheader1_underline">Аналоговый сигнал</p>
+<p><img class="brd" src="Lect1_files/analog_signal.png" alt=""></p>
+<p>&nbsp; </p>
+<p><img class="brd" src="Lect1_files/Amplitude_.png" alt=""></p>
+<p><img class="brd" src="Lect1_files/Chastot_modulation.png" alt=""></p>
+<p><img class="brd" src="Lect1_files/Pfaze_modulation.png" alt=""></p>
+<p>&nbsp; </p>
+<p>&nbsp; </p>
+<p><img class="brd" src="Lect1_files/Digit_signal.png" alt=""></p>
+<p><img class="brd" src="Lect1_files/Bin_signal.png" alt=""></p>
+<p><img class="brd" src="Lect1_files/Struct_Bin_signal.png" alt=""></p>
+</div>
+
+<p class="innerheader1"><strong>Материальные носители</strong></p>
+<div style="text-align: center;">
+<p><img class="brd" src="Lect1_files/mat_nositel.png" alt=""></p>
+</div>
+
+<p class="innerheader1"><strong>Метод интерпретации</strong></p>
+<p class="proposition"><strong>Пример: </strong>1234567 - что это?</p>
+<p class="proposition">1) 1234567 - это начало числового ряда? 1 2 3 4 5 6 7 <span style="color: red">8 9 10 11 </span>...</p>
+<p class="proposition">2) 1234567 - это номер телефона? 123 45 67</p>
+<p class="proposition">3) 1234567 - это слово искусственного языка?</p>
+<table class="proposition" border="1">
+<tbody><tr>
+	<td>1</td>
+	<td>2</td>
+	<td>3</td>
+	<td>4</td>
+	<td>5</td>
+	<td>6</td>
+	<td>7</td>
+</tr>
+<tr>
+	<td>С</td>
+	<td>Е</td>
+	<td>Г</td>
+	<td>О</td>
+	<td>Д</td>
+	<td>Н</td>
+	<td>Я</td>
+</tr>
+</tbody></table>
+<p class="innerheader1"><strong>Выводы:</strong></p>
+<div class="proposition">
+<ol>	
+	<li>Из одних и тех же данных <strong>можно извлечь разные сведения</strong> при помощи разных методов интерпретации.</li>
+	<li><strong>Если неизвестен метод</strong>, при помощи которого источник сведений записал данные, <strong>то невозможно применить адекватный метод интерпретации</strong>, чтобы извлечь эти сведения из данных и получить информацию.</li>
+</ol>
+</div>
+
+<p class="proposition"><strong>Метод интерпретации</strong> - это алгоритм получения информации из данных.</p>
+<h2 style="color: #5e9ca0; margin-left: 20px;"><span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline; font-size: 35px;">Свойства информации</span></span></h2>
+<p class="innerheader1"><strong>Объективность.</strong> Информация считается объективной, если она не зависит от способов её получения и не зависит от чьего-либо мнения</p>
+
+<div class="innerheader1" style="margin-left: 45px">
+<p><strong style="text-decoration: underline; color: #8b00ff">Пример 1:</strong> <em><span>&nbsp;&nbsp; МИРЭА находится в России.</span></em> Можно взять карту и убедиться, что он расположен в Москве и имеет несколько филиалов в других городах.<br>Вердикт: <span style="color: green"> Объективная</span></p>
+<p><strong style="text-decoration: underline; color: #8b00ff">Пример 2:</strong> <em><span>&nbsp;&nbsp; Рост студента 1,86 м.</span></em>
+ Можно убедиться, если воспользоваться линейкой или иным измерительным 
+прибором, при том вне зависимости от человека, проводящего измерения.<br>Вердикт: <span style="color: green"> Объективная</span></p>
+<p><strong style="text-decoration: underline; color: #8b00ff">Пример 3:</strong> <em><span>&nbsp;&nbsp; Студент имеет высокий рост.
+</span></em> Информация не является объективной, но является 
+субъективной, потому что термин "высокий" - нечёткое понятие, кторое 
+интерпретируется каждым конкретным человеком по-своему. 
+Если рост говорящего небольшой (метр с небольшим), то 1,86 м для него - 
+высокий рост. Если же рост говорящего выше (2 метра, например) то рост 
+1,86 для него будет небольшим.
+<br>Вердикт: <span style="color: red"> Не объективная</span></p>
+<p><strong style="text-decoration: underline; color: #8b00ff">Пример 4:</strong> <em><span>&nbsp;&nbsp; В мире нет ВУЗа престижнее МИРЭА.</span></em> Для патриота МИРЭА это так, а для профессора Кэмбриджского ВУЗа такое утверждение явно сомнительно.<br>Вердикт: <span style="color: red"> Не объективная</span></p>
+</div>
+<p>&nbsp;</p>
+
+<p class="innerheader1"><strong>Точность.</strong> Это степень соответствия информации тому объекту, процессу или явлению, который она описывает</p>
+<div class="innerheader1" style="margin-left: 45px">
+	<p><strong style="text-decoration: underline; color: #8b00ff">Пример 1:</strong> <em><span>&nbsp;&nbsp; Пусть есть арбуз.</span></em> 
+	</p><p>&nbsp;</p>
+	<img style="display: block; " src="Lect1_files/watermelon.png" alt="">
+	<p>&nbsp;</p>
+	И его точная масса 7 кг 342 гр. Допустим, что мы этого не знаем и захотим найти его массу.
+		<ul>
+			<li>Если мы будем использовать для проверки весы с точностью 5 грамм,
+ то результат взвешивания будет с ошибкой в 2 грамма - 7 кг 340 гр. 
+(округлен в меньшую сторону).</li>
+			<li>Если мы будем использовать для проверки весы с точностью 100 
+грамм (старые весы), то результат взвешивания будет с ошибкой в 42 
+грамма - 7 кг 300 гр. (округлен в меньшую сторону).</li>
+		</ul>
+	<p></p>
+</div>
+<p>&nbsp;</p>
+<p class="innerheader1">
+	<strong>Достоверность.</strong> 
+	Информация считается достоверной, если она соответствует действительности. Синонимом достоверности можно считать ПРАВДИВОСТЬ.
+	<br>
+	<br>1. Объективная информация <strong>всегда</strong> достоверна (в пределах определенной точности).
+	<br>2. Субъективная информация <strong>не всегда</strong> достоверна.<br>
+
+</p>
+
+<p class="innerheader1">
+	<strong>Полнота.</strong> 
+	Достаточность информации для принятия каких-то решений в рамках решения задач.
+	</p><div class="innerheader1" style="margin-left: 45px">
+		<p><strong style="text-decoration: underline; color: #8b00ff">Пример 1:</strong> Необходимо принять решение о допуске или недопуске студента к экзамену по информатике.
+			</p><ul>
+				<li>Пусть нам известно, что Студент <span style="text-decoration: underline">не выполнил обязательный минимум по практике</span>. Этой информации <span style="color: green">достаточно</span>, чтобы принять решение о недопуске до экзамена.</li>
+				<li>Пусть нам известно, что Студент <span style="text-decoration: underline">выполнил не все практические работы</span>. Этой информации <span style="color: red">не достаточно</span>, чтобы принять решение, поскольку эта фраза может означать 2 различные ситуации:
+				<ol>
+					<li>Студент не выпонил минимум необходимый (тогда он <strong>не допускается</strong>).</li>
+					<li>Студент выпонил минимум необходимый, но не выполнил работы для получения хорошей оценки (тогда он <strong>допускается</strong>).</li>
+				</ol>
+				</li>
+			</ul>
+		<p></p>
+	</div>
+<p></p>
+
+<p class="innerheader1">
+	<strong>Актуальность (своевременность).</strong> 
+	Информации должна быть предоставлена в тот момент, когда в ней имеется потребность.
+	</p><div class="innerheader1" style="margin-left: 45px">
+		<p><strong style="text-decoration: underline; color: #8b00ff">Пример 1:</strong> Спросим у некого человека: Где находится МИРЭА?
+			</p><ul>
+				<li>Он <span style="text-decoration: underline">сразу</span> отвечает: г. Москва, Проспект Вернадского, д. 78. Тогда эта информация для нас является <span style="color: green">актуальной</span> - мы можем взять и туда поехать.</li>
+				<li>Он отвечает: "Послушай, вот адрес МГУ, ты вчера спрашивал". Данная информация <span style="color: red">не актуальна</span> для нас. (В МГУ мы хотели поступать раньше, а теперь хотиим в МИРЭА)</li>
+			</ul>
+		<p></p>
+	</div>
+	<span class="innerheader1" style="text-decoration: underline; color: #800000"> <strong> Только актуальная информация может быть полезна.</strong></span>
+<p></p>
+
+<p class="innerheader1">
+	<strong>Полезность.</strong> 
+	Применимость информации для решения конкретных задач.
+	</p><div class="innerheader1" style="margin-left: 45px">
+		<p><strong style="text-decoration: underline; color: #8b00ff">Пример 1:</strong> Мы хотим приготовить необычный пирог и спрашиваем у кого-то рецепт.
+			</p><ul>
+				<li>Если <span style="text-decoration: underline">этот рецепт дают,</span> то информация в виде рецепта для нас <span style="color: green">полезна</span>.</li>
+				<li>Если это дело начинают рассказывать с момента, <span style="text-decoration: underline">как разводить кур и сеять пшено</span>, то эта информация <span style="color: red">не полезна</span> для нас.</li>
+			</ul>
+		<p></p>
+	</div>
+<p></p>
+
+<p class="innerheader1">
+	<strong>Синтаксическая адекватность (потребностям получателя).</strong> 
+	Свойство является собирательным и подразделяется на:
+</p><div class="innerheader1" style="margin-left: 30px">
+	<ul>
+		<li>Тип носителя</li>
+		<li>Скорость передачи информации</li>
+		<li>Способ кодирования информации</li>
+		<li>Точность представления информации</li>
+	</ul>
+</div>
+<div class="innerheader1" style="margin-left: 45px">
+	Если хотя бы одно из перечисленных свойств нарушается, то информация считается <span style="color: red">синтаксически неадекватной</span>.
+
+	<p>
+		<strong style="text-decoration: underline; color: #8b00ff">Пример 1:</strong>
+ 
+		Мы ожидаем информацию на флешке, а нам её передают на компакт-диске (у
+ нас нет соответствующего дисковода), то мы не сможем воспользоваться 
+такой информацией.
+	</p>
+
+	<p>
+		<strong style="text-decoration: underline; color: #8b00ff">Пример 2:</strong>
+ 
+		Мы ожидаем передачу информации на скорости 100 Мбит/c, а нам её 
+передают на скорости, которая гораздо больше, то, очевидно, мы её не 
+сможем получить, следовательно, такая информация для нас <span style="color: red">синтаксически неадекватная</span>.
+	</p>
+
+	<p>
+		<strong style="text-decoration: underline; color: #8b00ff">Пример 3:</strong>
+ 
+		Мы ожидаем информацию в zip формате (свободно распространяемом), а 
+получаем в каком-то коммерческом, то, как честные люди, мы не сможем 
+воспользоваться данной информацией, следовательно, такая информация для 
+нас <span style="color: red">синтаксически неадекватная</span>.
+	</p>
+
+	<p>
+		<strong style="text-decoration: underline; color: #8b00ff">Пример 4:</strong>
+ 
+		Имеется стрелок, который ожидает указаний координат цели с точностью 
+до 1 метра. Если наводчик сообщает её с точностью до 1 километра, то 
+цель поразить будет почти невозможно, следовательно, такая информация 
+для стрелка <span style="color: red">синтаксически неадекватная</span>.
+	</p>
+
+
+	<span style="text-decoration: underline; color: #800000"> Если интересуют только <strong>синтаксические особенности</strong> информации, то мы имеем дело с <strong>данными</strong>.</span>
+</div>
+<p></p>
+
+<p class="innerheader1">
+	<strong>Связность (с носителем).</strong> 
+	Для потребителя информация не существует отдельно от своего материального носителя.
+</p>
+
+<p class="innerheader1">
+	<strong>Осмысленность.</strong> 
+	Содержание информации не теряется вне зависимости от формы её представления. (спорно)
+</p>
+<p class="innerheader1">
+	<strong>Неисчерпаемость.</strong> (неподверженность физическому старению, накопляемость, тиражируемость)
+	<br>Физическому старению подвержен только носитель информациит, а 
+значит при своевременной замене носителя (исключая ошибки копирования) 
+информацию можно накапливать и тиражировать. Благодаря этому свойству мы
+ можем передавать информацию между поколениями и реализовывать процесс 
+обучения.
+	</p><div class="innerheader1" style="margin-left: 45px">
+		<p><strong style="text-decoration: underline; color: #8b00ff">Пример 1:</strong> Мы хотим приготовить необычный пирог и спрашиваем у кого-то рецепт.
+			</p><ul>
+				<li>Если <span style="text-decoration: underline">этот рецепт дают,</span> то информация в виде рецепта для нас <span style="color: green">полезна</span>.</li>
+				<li>Если это дело начинают рассказывать с момента, <span style="text-decoration: underline">как разводить кур и сеять пшено</span>, то эта информация <span style="color: red">не полезна</span> для нас.</li>
+			</ul>
+		<p></p>
+	</div>
+<p></p>
+
+<p class="innerheader1">
+	<strong>Количество.</strong> 
+	Предположим, что имеется система (природа системы не имеет значения). 
+Система в процессе своего существования может находиться в разных 
+состояниях (S<sub>1</sub>,S<sub>2</sub>, ..., S<sub>n</sub>). 
+	Система переходит из одного состояния в другое либо самостоятельно, 
+либо под внешними воздействиями (не имеет значения).
+	Также есть наблюдатель, который может взаимодействовать с этой 
+системой. Предположим, что наблюдатель начинает взаимодействие в момент 
+времени t и в этот момент времени состояние системы неизвестно 
+наблюдателю.
+	Иными словами у наблюдателя имеется неопределенность знаний о состоянии
+ системы в момент времени t. Однако, эту неопределенность знаний он 
+может устранить, выполняя над системой некоторые диагностические 
+действия.
+	Простейшее действие - наблюдение. Или можно реально что-то сделать с 
+системой. Обозначим это как отправление запроса Q о её состоянии S в 
+момент времени t. В ответ мы получаем состояние системы. 
+	Таким образом мы устранили неопределенность знаний наблюдателя о 
+состоянии системы в момент времени t.
+	</p><p style="text-align: center;"><img class="brd" src="Lect1_files/Zapros.png" alt=""></p>
+	<div class="innerheader1">
+		Теперь перейдем к подходам к измерению количества информации.
+		<br><br> <span style="text-decoration: underline"><strong>По Хартли:</strong></span> Состояния системы равновероятны, т.е. если система может находиться всего в n состояниях то вероятность каждого состояния это  <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="0"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D45B TEX-I"></mjx-c></mjx-mi></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mfrac><mn>1</mn><mi>n</mi></mfrac></math></mjx-assistive-mml></mjx-container>
+		<br> Тогда при получении информации о состоянии системы наблюдатель 
+получает какое-то количество информации. Хартли предложил меру 
+количества информации, основанную на двоичной системе счисления. Было 
+введено понятие одного бита информации. 
+		<strong>1 бит</strong> это количество информации, приобретаемое получателем <strong>одного из двух равновероятных</strong> сообщений о состоянии некоторой системы.
+		<br> <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="1"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">б</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">и</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">т</mjx-utext><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mn>1</mn><mo>бит=</mo><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mn>2</mn></math></mjx-assistive-mml></mjx-container>
+		<br> При этом неопределенность знаний о состеме <strong>уменьшается в 2 раза</strong>.
+	</div>
+	<div class="innerheader1" style="margin-left: 45px">
+	<p>
+		<strong style="text-decoration: underline; color: #8b00ff">Пример:</strong>
+ 
+		Предположим, что есть система из шарика цветного, который помещён в 
+мешок. Нам предварительно известно, что шарик может иметь 1 из двух 
+цветов: 
+		либо чёрный, либо белый. Однако, мы ещё не знаем, какой именно цвет у 
+этого шарика. 
+		Чтобы это узнать, мы должны выполнить диагностическое действие - 
+достать шарик из мешка и посмотреть.
+		В этот момент мы снимаем неопределенность наших знаний о состоянии 
+системы, т.е. узнаем цвет шарика.
+		И в этот момент мы получаем информацию в количестве 1 бит.
+	</p>
+	</div>
+	<div class="innerheader1">
+		<p>Если же у системы N состояний, то при получении сообщения о том, 
+что система находится в одном из N состояний мы получим количество 
+информации <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="2"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>I</mi><mo>=</mo><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mi>N</mi></math></mjx-assistive-mml></mjx-container></p>
+		<br>Вообще не обязательно было в качестве меры информации брать <strong>бит</strong>.
+		<div style="margin-left: 45px">
+			<strong>11010111<sub>2</sub> - 8 бит (англ. bit - binary digit)</strong>
+		</div>
+		<br>Если в основе была бы троичная система счисления и логарифм бы стал <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="3"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>I</mi><mo>=</mo><msub><mi>log</mi><mn>3</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mi>N</mi></math></mjx-assistive-mml></mjx-container>, то единицей информации были бы <strong>триты</strong>.
+		<div style="margin-left: 45px">
+			<strong>10122<sub>3</sub> - 5 трит</strong>
+		</div>
+		<br>Если в основе была бы десятичная система счисления и логарифм бы стал <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="4"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mi class="mjx-n" space="4"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>I</mi><mo>=</mo><mi>lg</mi><mo data-mjx-texclass="NONE">⁡</mo><mi>N</mi></math></mjx-assistive-mml></mjx-container>, то единицей информации были бы <strong>диты</strong>.
+		<div style="margin-left: 45px">
+			<strong>1234<sub>10</sub> - 4 дит</strong>
+		</div>
+	</div>
+	
+	<div class="innerheader1" style="margin-left: 45px">
+		<p>
+			<strong style="text-decoration: underline; color: #8b00ff">Пример:</strong>
+ 
+			Студент выучил 50% вопросов к экзамену. Тогда из педагогической 
+практики известно, что любая из оценок 2,3,4,5 примерно равновероятны 
+для такого студента. 
+			Пусть студент пришёл на сдачу экзамена и получает сообщение от 
+преподавателя, что его оценка - 3.
+			Вопрос: какое количество информации для студента несет это сообщение.
+			<br><br>Поскольку исходы равновероятны, то можно применить формулу Хартли: всего исходов 4, следовательно, <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="5"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">б</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">и</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">т</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">а</mjx-utext></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>I</mi><mo>=</mo><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mn>4</mn><mo>=</mo><mn>2</mn><mo>бита</mo></math></mjx-assistive-mml></mjx-container>.
+		</p>
+	
+	</div>
+	
+	<div class="innerheader1">		
+		<br><br> <span style="text-decoration: underline">Подход, предложенный Хартли, был развит <strong>Шенноном</strong></span>. 
+		<br>Он исходил из более общего положения, что система находится чаще в
+ одних состояних, чем в других. Т.е. одни состояния системы более 
+вероятны, чем другие состояния системы.
+		Таким образом каждому состоянию системы можно приписать определенную 
+вероятность.
+		<br> Предположим, что мы получаем сообщение № i о том, что система 
+находится в каком-то состоянии. Вероятность того, что система находится в
+ этом состоянии обозначим <strong>p<sub>i</sub></strong>.
+		<br> Тогда количество информации, которая содержится в таком сообщении: <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="6"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c3B"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2208"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c5B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c2E"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mi class="mjx-i" space="2"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n"><mjx-c class="mjx-c5D"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>I</mi><mo>=</mo><mo>−</mo><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><msub><mi>p</mi><mi>i</mi></msub><mo>;</mo><mi>i</mi><mo>∈</mo><mo stretchy="false">[</mo><mn>1.</mn><mo>.</mo><mi>N</mi><mo stretchy="false">]</mo></math></mjx-assistive-mml></mjx-container>. Знак "-" появляется потому что <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="7"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2208"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c5B"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c2E"></mjx-c></mjx-mn><mjx-mn class="mjx-n"><mjx-c class="mjx-c2E"></mjx-c><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c5D"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>p</mi><mi>i</mi></msub><mo>∈</mo><mo stretchy="false">[</mo><mn>0.</mn><mn>.1</mn><mo stretchy="false">]</mo></math></mjx-assistive-mml></mjx-container> и результат взятия логарифма получится отрицательный. 
+		Чтобы количество не выражалось отрицательным число и появляется перед логарифмом знак "-".
+	</div>
+	<div class="innerheader1" style="margin-left: 45px">
+		<p>
+			<strong style="text-decoration: underline; color: #8b00ff">Пример:</strong>
+ 
+			Студент считает, что выучил все экзаменационные вопросы. В таком 
+случае вероятность благоприятного исхода (сдача экзамена на высокую 
+отметку) достаточно высока.
+			Пусть вероятность получения пятёрки: <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="8"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c35"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-texatom space="4" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>p</mi><mn>5</mn></msub><mo>=</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow></math></mjx-assistive-mml></mjx-container>, вероятность получения четверки: <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="9"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-texatom space="4" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>p</mi><mn>4</mn></msub><mo>=</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>4</mn></mfrac></mrow></math></mjx-assistive-mml></mjx-container>, вероятность получения тройки и двойки одинаковая: <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="10"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c33"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-msub space="4"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-texatom space="4" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c38"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>p</mi><mn>3</mn></msub><mo>=</mo><msub><mi>p</mi><mn>2</mn></msub><mo>=</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>8</mn></mfrac></mrow></math></mjx-assistive-mml></mjx-container>. Сумма же всех вероятностей - это 1.
+			<br>Предположим, что студент пришёл на экзамен и получил пятёрку. Какое количество информации несет это сообщение?
+			<br><br><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="11"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em; margin-left: -0.064em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c35"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-texatom space="2" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">б</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">и</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">т</mjx-utext></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>I</mi><mn>5</mn></msub><mo>=</mo><mo>−</mo><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><mo>=</mo><mn>1</mn><mo>бит</mo></math></mjx-assistive-mml></mjx-container>
+			<br><br>Аналогично для двойки:
+			<br><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="12"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em; margin-left: -0.064em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-texatom space="2" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c38"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c33"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">б</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">и</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">т</mjx-utext></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>I</mi><mn>2</mn></msub><mo>=</mo><mo>−</mo><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>8</mn></mfrac></mrow><mo>=</mo><mn>3</mn><mo>бит</mo></math></mjx-assistive-mml></mjx-container>
+			<br>Как же это понимать? Всё довольно просто. Наиболее вероятные события - наиболее нами <strong>ожидаемые</strong>.
+ Потому они нас не очень-то и удивляют. 
+			Если же случается что-то редкое, то это удивляет нас довольно сильно и
+ в результате редкое сообщение несет больше информации, чем ожидаемое.
+		</p>	
+	</div>
+	
+	<div class="innerheader1">		
+		<br>Ещё интересна формула рассчета усредненного количества информации при получении какого-либо сообщения о состоянии системы:
+		<br><br><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="13"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-msub space="3"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2E"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="2"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-msub><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D441 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-msub space="2"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D45D TEX-I"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.15em;"><mjx-mi class="mjx-i" size="s"><mjx-c class="mjx-c1D456 TEX-I"></mjx-c></mjx-mi></mjx-script></mjx-msub></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>I</mi><mo>=</mo><mo>−</mo><mo stretchy="false">(</mo><msub><mi>p</mi><mn>1</mn></msub><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><msub><mi>p</mi><mn>1</mn></msub><mo>+</mo><msub><mi>p</mi><mn>2</mn></msub><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><msub><mi>p</mi><mn>2</mn></msub><mo>+</mo><mo>.</mo><mo>.</mo><mo>.</mo><mo>+</mo><msub><mi>p</mi><mi>N</mi></msub><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><msub><mi>p</mi><mi>N</mi></msub><mo stretchy="false">)</mo><mo>,</mo><msub><mi>p</mi><mi>i</mi></msub></math></mjx-assistive-mml></mjx-container>-вероятность получения сообщения i
+	</div>
+	<div class="innerheader1" style="margin-left: 45px">
+		<p>
+			<strong style="text-decoration: underline; color: #8b00ff">Пример:</strong>
+ 
+			Предположим, что студент пошёл сдавать экзамены и каким-то образом их
+ сдал, т.е. он получил от преподавателя сообщение о том, что его 
+экзаменационная работа оценена, но как именно - не сказано.
+			<br> Можно ли оценить в среднем количество информации, которое несет некое сообщение о состоянии такой системы?
+			<br> Будем исходить из прошлых условий, что "Студент считает, что 
+выучил все экзаменационные вопросы". Подставим вероятности в формулу:
+			<br><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="14"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mi class="mjx-i"><mjx-c class="mjx-c1D43C TEX-I"></mjx-c></mjx-mi><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2212"></mjx-c></mjx-mo><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-texatom texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-texatom space="2" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-texatom space="3" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-texatom space="2" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c32"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo><mjx-texatom space="3" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c38"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom><mjx-msub space="2"><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-texatom space="2" texclass="ORD"><mjx-mfrac><mjx-frac><mjx-num><mjx-nstrut></mjx-nstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c31"></mjx-c></mjx-mn></mjx-num><mjx-dbox><mjx-dtable><mjx-line></mjx-line><mjx-row><mjx-den><mjx-dstrut></mjx-dstrut><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c38"></mjx-c></mjx-mn></mjx-den></mjx-row></mjx-dtable></mjx-dbox></mjx-frac></mjx-mfrac></mjx-texatom><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c2C"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="2"><mjx-c class="mjx-c37"></mjx-c><mjx-c class="mjx-c35"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">б</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">и</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">т</mjx-utext></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mi>I</mi><mo>=</mo><mo>−</mo><mo stretchy="false">(</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>2</mn></mfrac></mrow><mo>+</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>4</mn></mfrac></mrow><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>4</mn></mfrac></mrow><mo>+</mo><mn>2</mn><mo>∗</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>8</mn></mfrac></mrow><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mrow data-mjx-texclass="ORD"><mfrac><mn>1</mn><mn>8</mn></mfrac></mrow><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>,</mo><mn>75</mn><mo>бит</mo></math></mjx-assistive-mml></mjx-container>
+			
+			<br><br>Как такое может быть? Вроде как бит - это двоичный знак, как количество двоичных знаков может быть нецелым???
+			<br>Если такой вопрос у Вас возник, значит Вы спутали количество 
+информации с объемом информации. 
+			Количество информации - мера логарифмическая, при вычислении 
+логарифмов вполне могут возникнуть нецелые числа, к тому же количество 
+информации - мера устранения нашей неопределенности знаний,
+			что тоже не препядствует этой нецелочисленности ответа.			
+		</p>	
+	</div>
+	<div class="innerheader1">	
+	<br>Объем информации - размер памяти, необходимый для хранения <strong>текста</strong> сообщения.
+	</div>
+	<div class="innerheader1" style="margin-left: 45px">
+		<p>
+			<strong style="text-decoration: underline; color: #8b00ff">Пример:</strong> 
+			<br>Пусть имеется сообщение - "Оценка за Экзамен 3". Вопрос: какой минимальный объем занимает эта информация?
+			</p><ul>
+			<li>используются 9 уникальных букв</li>
+			<li>потенциально используются 4 цифры</li>
+			<li>1 специальный символ пробел в качестве разделителя</li>
+			<li>всего 19 символов в сообщении</li>
+			</ul>
+			<br><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="15"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-msub><mjx-mi class="mjx-n"><mjx-c class="mjx-c6C"></mjx-c><mjx-c class="mjx-c6F"></mjx-c><mjx-c class="mjx-c67"></mjx-c></mjx-mi><mjx-script style="vertical-align: -0.241em;"><mjx-mn class="mjx-n" size="s"><mjx-c class="mjx-c32"></mjx-c></mjx-mn></mjx-script></mjx-msub><mjx-mo class="mjx-n"><mjx-c class="mjx-c2061"></mjx-c></mjx-mo><mjx-texatom space="2" texclass="ORD"><mjx-mo class="mjx-n"><mjx-c class="mjx-c28"></mjx-c></mjx-mo><mjx-mn class="mjx-n"><mjx-c class="mjx-c39"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2B"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c></mjx-mn><mjx-mo class="mjx-n"><mjx-c class="mjx-c29"></mjx-c></mjx-mo></mjx-texatom><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c2248"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><msub><mi>log</mi><mn>2</mn></msub><mo data-mjx-texclass="NONE">⁡</mo><mrow data-mjx-texclass="ORD"><mo stretchy="false">(</mo><mn>9</mn><mo>+</mo><mn>4</mn><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><mo>≈</mo></math></mjx-assistive-mml></mjx-container> 3,8 бит на символ <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="16"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-c class="mjx-c2248"></mjx-c></mjx-mo></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>≈</mo></math></mjx-assistive-mml></mjx-container> 4 бит на символ
+			<br><mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="17"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">О</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">б</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">ъ</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">ё</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">м</mjx-utext><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c39"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c34"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c37"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>Объём=</mo><mn>19</mn><mo>∗</mo><mn>4</mn><mo>=</mo><mn>76</mn></math></mjx-assistive-mml></mjx-container> бит
+		<p></p>	
+	</div>
+	<div class="innerheader1">	
+	<br>Однако пример является очень абстрактным, т.к. при реальном хранении <strong>текста</strong> сообщения объем памяти <strong>зависит от используемой кодировки</strong>.
+	<br>Пусть мы используем кодировку UTF-16 (от англ. Unicode 
+Transformation Format). В нём на символ отводится 16 бит. Всего символов
+ может быть закодировано 2<sup>16</sup> символов из различных языков мира.
+	<br>Тогда: <mjx-container class="MathJax CtxtMenu_Attached_0" jax="CHTML" style="font-size: 101.2%; position: relative;" tabindex="0" ctxtmenu_counter="18"><mjx-math class="MJX-TEX" aria-hidden="true"><mjx-mo class="mjx-n"><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">О</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">б</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">ъ</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">ё</mjx-utext><mjx-utext style="font-size: 98.8%; padding: 0.759em 0px 0.202em; font-family: MJXZERO, serif;" variant="normal">м</mjx-utext><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c39"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="3"><mjx-c class="mjx-c2217"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="3"><mjx-c class="mjx-c31"></mjx-c><mjx-c class="mjx-c36"></mjx-c></mjx-mn><mjx-mo class="mjx-n" space="4"><mjx-c class="mjx-c3D"></mjx-c></mjx-mo><mjx-mn class="mjx-n" space="4"><mjx-c class="mjx-c33"></mjx-c><mjx-c class="mjx-c30"></mjx-c><mjx-c class="mjx-c34"></mjx-c></mjx-mn></mjx-math><mjx-assistive-mml unselectable="on" display="inline"><math xmlns="http://www.w3.org/1998/Math/MathML"><mo>Объём=</mo><mn>19</mn><mo>∗</mo><mn>16</mn><mo>=</mo><mn>304</mn></math></mjx-assistive-mml></mjx-container> бита
+	</div>
+	
+	<div class="innerheader1_underline">	
+	<br>Единицы измерения информационных объёмов
+	</div>
+	<div class="innerheader1">
+	<br>Т.к. бит довольно маленькая единица информации, то если мы возьмем группу битов 2<sup>3</sup> бит = 8 бит = 1 байт.
+	<br>Если мы возьмем группу байтов 2<sup>10</sup> байт = 1024 бит = 1 Кбайт.
+	<br>Возникает вопрос: насколько грамотно использовать приставку Кило? В метрической системе мер "Кило" = 10<sup>3</sup>
+ и подразумевает наличие десятичной системы счисления, в то время как 
+бит - двоичная.
+	Поэтому лучше не использовать эти приставки, более корректным будет 
+использование иных приставок: Кибибайт (описаны Международной 
+Электротехнической Комиссией)
+	<br>Однако в России иммется следующий ГОСТ 8.417-2002, который делает 
+законным использование приставки Кило применительно к измерению 
+количества байт.
+	<br>
+	<br> 2<sup>20</sup> байт = 1 Мегабайт = <strong>1 Мебибайт</strong>
+	<br> 2<sup>30</sup> байт = 1 Гигабайт = <strong>1 Гибибайт</strong>
+	<br> 2<sup>40</sup> байт = 1 Терабайт = <strong>1 Тебибайт</strong>
+	<br> 2<sup>50</sup> байт = 1 Петабайт = <strong>1 Пебибайт</strong>
+	<br> ...
+	</div>
+<p></p>
+
+<h2 style="color: #5e9ca0; margin-left: 20px;"><span style="text-decoration: underline;"><span style="color: #000000; text-decoration: underline; font-size: 35px;">Информатика</span></span></h2>
+<div class="text">
+<p><span style="text-decoration: underline;"><strong>Информатика (обобщенно)</strong></span>
+ - междисциплинарное научное направление, изучающее вопросы 
+производства, хранения, накопления, передачи, обработки и использования 
+информациии.</p>
+<p> В мире существует 2 группы взглядов на содержание информатики. 
+<br>Первая группа взглядов (первая концепция): <strong>Информ[ация + Автом]атика = Информатика</strong>.
+ 
+Сторонники этой концепции настаивают на главенствующей роли ЭВМ в 
+становлении информатики и на том, что общее определение следует 
+дополнить: "... при помощи вычислительной техники".
+<br>Вторая группа взглядов (вторая концепция) исходит из того, что <strong>первая концепция слишком узка</strong>. 
+Информатика - это <strong>методология работы</strong> с информацией, определяющая информационную культуру личности человека.
+</p>
+</div>
+
+<p style="text-decoration: underline; color: #000000; font-size: 40px; text-align: center;">Видеоматериал по лекции. Автор и лектор Старший преподаватель кафедры ОИ Смирнов Сергей Сергеевич.</p>
+
+
+<video style="margin-left: auto; margin-right: auto; display: block" src="Lect1_files/Lec_1.mp4" controls></video>
+</body></html>

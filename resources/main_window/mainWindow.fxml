@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+
+<SplitPane dividerPositions="0.5" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <items>
+      <fx:include fx:id="menuBar" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" source="menuBar.fxml" />
+      <SplitPane minHeight="-Infinity" minWidth="-Infinity">
+         <items>
+            <SplitPane dividerPositions="0.09233449477351917" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL">
+              <items>
+                  <ScrollPane maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                     <content>
+                        <fx:include fx:id="roadMap" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" source="roadMap.fxml" />
+                     </content>
+                  </ScrollPane>
+                  <SplitPane dividerPositions="0.1676470588235294, 0.5">
+                    <items>
+                        <fx:include fx:id="sectionMenu" minHeight="-Infinity" minWidth="-Infinity" source="sectionMenu.fxml" />
+                        <fx:include fx:id="tabManager" source="tabManager.fxml" />
+                        <fx:include fx:id="widgetPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" source="widgetPanel.fxml" />
+                    </items>
+                  </SplitPane>
+              </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </items>
+</SplitPane>
