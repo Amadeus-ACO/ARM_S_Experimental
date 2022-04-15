@@ -1,0 +1,16 @@
+package  entity.work;
+
+import  entity.Entity;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
+
+import java.util.UUID;
+
+@Getter
+@Setter
+public class ShortDescription extends entity.Entity {
+    private UUID id;
+    private String innerText;
+
+}

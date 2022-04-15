@@ -13,4 +13,4 @@ include(':LogisimFX')
 project(':LogisimFX').projectDir = new File('src/client/mainWindow/pages/LogisimFX')
 
 include(':entity_base')
-project(':entity_base').projectDir = new File('../entity_base')
+project(':entity_base').projectDir = new File('src/entity_base')

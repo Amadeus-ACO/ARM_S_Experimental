@@ -17,11 +17,15 @@ import entity.user.Student;
 import javafx.application.Application;
 import javafx.application.HostServices;
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.web.WebEngine;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;
@@ -142,7 +146,12 @@ public class App extends Application {
     private void initMainWindow() throws IOException {
         Student requestStudent = new Student();
         requestStudent.setId(UUID.fromString("1e99dd7d-c2e5-4550-b0d6-175c1b0e2d33"));
-        Student responseStudent = Web.getStudentData(requestStudent);
+        Student responseStudent = null;
+        try {
+            responseStudent = Web.getStudentData(requestStudent);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         FXMLLoader fxmlLoader = new FXMLLoader(
             Objects.requireNonNull(
@@ -164,6 +173,7 @@ public class App extends Application {
         primaryStage.setMinWidth(1280);
         primaryStage.setMinHeight(800);
         primaryStage.centerOnScreen();
+        primaryStage.setOnCloseRequest(event -> {System.exit(0);});
         primaryStage.show();
     }
 
@@ -174,6 +184,5 @@ public class App extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 
 }

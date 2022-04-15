@@ -15,6 +15,8 @@ import client.mainWindow.widgetPanel.WidgetPanelModel;
 import client.mainWindow.widgetPanel.WidgetPanelView;
 import com.google.gson.JsonObject;
 import entity.user.Student;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -207,4 +209,5 @@ public class MainController extends MainView implements Initializable {
         mainModel.update(student);
         roadMapController.updateModel(student);
     }
+
 }
