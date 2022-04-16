@@ -1,6 +1,7 @@
 package client.mainWindow.tab;
 
 //import LogisimFX.Main;
+import AmadeyLogicGame.AmadeyLogicGame;
 import LogisimFX.Startup;
 import LogisimFX.newgui.AbstractController;
 import LogisimFX.newgui.FrameManager;
@@ -9,6 +10,7 @@ import client.mainWindow.pages.Pages;
 import client.mainWindow.pages.labPages.labListPage.LabListPageController;
 import client.mainWindow.pages.labPages.labPage.LabPageController;
 import client.mainWindow.pages.mainPage.MainPageController;
+import client.mainWindow.pages.trainingPage.TrainerPageController;
 import com.google.gson.JsonObject;
 import javafx.application.Platform;
 import javafx.beans.Observable;
@@ -49,14 +51,16 @@ public class TabController {
         requestOpenPage(type);
     }
 
-    public void requestOpenPage(String type) {
+    public void requestOpenPage(String type, String... params) {
         // Какая-то работа с контроллером страницы....
         switch (type) {
+
             case Pages.MAIN_PAGE -> {
                 MainPageController mainPageController = new MainPageController();
                 tab.setText(type);
                 tab.setContent(mainPageController.getRoot());
             }
+
             case Pages.AOVT_PAGE -> {
                 try {
                     Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("aovt_start.fxml")));
@@ -70,7 +74,6 @@ public class TabController {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-
             }
 
             case Pages.LAB_LIST_PAGE -> {
@@ -86,16 +89,29 @@ public class TabController {
                 tab.setContent(labPageController.getRoot());
             }
 
+            case Pages.TRAINING_PAGE -> {
+                TrainerPageController trainerPageController = new TrainerPageController();
+                tab.setText(type);
+                tab.setContent(trainerPageController.getRoot());
+                System.out.println("lolxd " + trainerPageController.getRoot());
+            }
+
+            case Pages.ALG_PAGE -> {
+
+                  tab.setText(type);
+                  tab.setContent(AmadeyLogicGame.load(params).getRoot());
+                  tab.setOnCloseRequest(event -> AmadeyLogicGame.terminateApp());
+
+            }
+
             case Pages.LOGISIM_PAGE -> {
 
 
                 //Platform.runLater(() -> {
-                System.out.println(FrameManager.stage);
                 tab.setText(type);
-                tab.setContent(FrameManager.stage.getScene().getRoot());
-                FrameManager.stage.close();
+                tab.setContent(FrameManager.scene.getRoot());
+                //FrameManager.stage.close();
                 //});
-
 
 
             }

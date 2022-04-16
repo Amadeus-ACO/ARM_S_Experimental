@@ -31,11 +31,12 @@ public class SectionMenuController extends SectionMenuView implements Initializa
 
     @FXML
     void onTrainButtonClick() {
-        MainController.getInstance().requestOpenPage(Pages.LOGISIM_PAGE);
+        MainController.getInstance().requestOpenPage(Pages.TRAINING_PAGE);
     }
 
     @FXML
     void onLabListButtonClick() {
         mainController.requestOpenPage(Pages.LAB_LIST_PAGE);
     }
+
 }

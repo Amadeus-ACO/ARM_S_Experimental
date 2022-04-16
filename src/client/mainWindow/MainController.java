@@ -197,8 +197,8 @@ public class MainController extends MainView implements Initializable {
      * Запроос на открытие страницы
      * @param pageType - тип страницы
      */
-    public void requestOpenPage(String pageType) {
-        focusedTabPaneController.requestOpenPage(pageType);
+    public void requestOpenPage(String pageType, String... params) {
+        focusedTabPaneController.requestOpenPage(pageType, params);
     }
 
     public int getTabManagerCount() {

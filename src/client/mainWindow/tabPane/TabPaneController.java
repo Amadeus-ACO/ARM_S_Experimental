@@ -96,9 +96,9 @@ public class TabPaneController {
         tabPane.getTabs().add(tabController.getTab());
     }
 
-    public void requestOpenPage(String pageType) {
+    public void requestOpenPage(String pageType, String... params) {
         TabController tabController = new TabController();
-        tabController.requestOpenPage(pageType);
+        tabController.requestOpenPage(pageType, params);
 
         tabPane.getTabs().add(tabController.getTab());
         tabPane.getSelectionModel().select(tabController.getTab());

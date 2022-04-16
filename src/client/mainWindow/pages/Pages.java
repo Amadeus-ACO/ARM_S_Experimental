@@ -17,9 +17,19 @@ public class Pages {
     public static final String LAB_PAGE = "Lab_Page";
 
     /**
+     * Страница тренажеров
+     */
+    public static final String TRAINING_PAGE = "Training_Page";
+
+    /**
      * Алгоритм с инструментами АОВТ
      */
     public static final String AOVT_PAGE = "AOVT";
+
+    /**
+     * Инструмент ALG
+     */
+    public static final String ALG_PAGE = "ALG";
 
     /**
      * Инструмент LogisimFX

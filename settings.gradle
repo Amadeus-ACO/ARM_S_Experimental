@@ -12,5 +12,8 @@ project(':AOVT').projectDir = new File('src/client/mainWindow/pages/AOVT')
 include(':LogisimFX')
 project(':LogisimFX').projectDir = new File('src/client/mainWindow/pages/LogisimFX')
 
+include(':ALG')
+project(':ALG').projectDir = new File('src/client/mainWindow/pages/Amadey-Logic-Game')
+
 include(':entity_base')
 project(':entity_base').projectDir = new File('src/entity_base')
