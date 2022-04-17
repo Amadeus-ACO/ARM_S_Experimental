@@ -35,5 +35,11 @@ public class Pages {
      * Инструмент LogisimFX
      */
     public static final String LOGISIM_PAGE = "LogisimFX";
+
+    /**
+     * Страница лекций
+     */
+    public static final String LECTURE_PAGE = "Lecture_Page";
+
 }
 

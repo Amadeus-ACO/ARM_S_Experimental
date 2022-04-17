@@ -6,6 +6,7 @@ package INSTRUMENTS.ADDITION_SUBSTRACTION;
 
 import INSTRUMENTS.SUBCLASS.SwitchCarry;
 import INSTRUMENTS.Step;
+import com.google.gson.JsonObject;
 import javafx.geometry.HPos;
 import javafx.scene.layout.GridPane;
 
@@ -47,4 +48,29 @@ public class AdditionInstrument extends ADD_SUB_INSTRUMENT {
     public void checkValue() throws IllegalArgumentException {
 
     }
+
+    public JsonObject getJson(){
+        this.result_carry.row = 4;
+        this.result_carry.column = 0;
+        this.result_carry.isOverFlowRes = true;
+        JsonObject addition = new JsonObject();
+        addition.addProperty("type", label_text.getText());
+        addition.addProperty("index", index);
+        addition.addProperty("digit", digit);
+        addition.addProperty("result_carry_row", result_carry.row);
+        addition.addProperty("result_carry_column", result_carry.column);
+        addition.addProperty("result_carry_isOverFlowRes", result_carry.isOverFlowRes);
+
+
+        for(int i = 0; i < this.digitNet.getRowCount(); i++){
+            StringBuilder sb = new StringBuilder();
+            for (int j = 0; j < this.digitNet.getColumnCount(); j++){
+                //sb.append(digitNet.getChil);
+            }
+            addition.addProperty("digitnet_row_"+i, sb.toString());
+        }
+
+        return new JsonObject();
+    }
+
 }

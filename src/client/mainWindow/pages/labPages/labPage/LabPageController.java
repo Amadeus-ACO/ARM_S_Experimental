@@ -71,10 +71,13 @@ public class LabPageController {
                 stageRoot = algorithmController.getRoot();
             }
             // Реализация
+            /*
             case Stages.REALIZATION -> {
                 RealizationController realizationController = new RealizationController(config);
                 stageRoot = realizationController.getRoot();
             }
+
+             */
             // Финальное тестирование
             case Stages.FINAL_TEST -> {
                 FinalTestController finalTestController = new FinalTestController(config);

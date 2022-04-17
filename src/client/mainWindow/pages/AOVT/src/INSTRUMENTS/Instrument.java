@@ -4,6 +4,7 @@
 //TODO: сложение/вычитание в K-Q-ичной системе счисления
 package INSTRUMENTS;
 
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -84,5 +85,6 @@ public abstract class Instrument {
 
     public abstract void checkValue() throws IllegalArgumentException;
 
+    public abstract JsonObject getJson();
 
 }

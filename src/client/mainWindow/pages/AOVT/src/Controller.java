@@ -1,4 +1,7 @@
+import INSTRUMENTS.Instrument;
 import INSTRUMENTS.Step;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import javafx.fxml.FXML;
 import javafx.scene.Cursor;
 import javafx.scene.control.ScrollPane;
@@ -32,4 +35,21 @@ public class Controller {
         }
 
     }
+
+    public void convertToJson(){
+
+        JsonObject root = new JsonObject();
+
+        for(Step step: Step.steps){
+            JsonArray instruments = new JsonArray();
+            for(Instrument instrument: step.instruments){
+                instruments.add(instrument.getJson());
+            }
+            root.add(step.choiceBox.getValue(), instruments);
+        }
+
+        System.out.println(root.toString());
+
+    }
+
 }

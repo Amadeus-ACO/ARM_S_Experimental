@@ -10,6 +10,7 @@ import INSTRUMENTS.SUBCLASS.LimitedTextField;
 import INSTRUMENTS.SUBCLASS.SwitchCarry;
 import INSTRUMENTS.Step;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
 import javafx.geometry.HPos;
 import javafx.scene.canvas.Canvas;
@@ -329,6 +330,10 @@ public abstract class ADD_SUB_INSTRUMENT extends Instrument {
         //System.out.println(g.toJson(new add_sub_json(overflows.toString(), first.toString(), second.toString(), res.toString(), String.valueOf(this.index))));
 
         return new Gson().toJson(new add_sub_json(overflows.toString(), first.toString(), second.toString(), res.toString(), String.valueOf(this.index)));
+    }
+
+    public JsonObject getJson(){
+        return null;
     }
 
 }

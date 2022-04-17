@@ -3,6 +3,7 @@ package client.mainWindow.sectionMenu;
 import client.mainWindow.MainController;
 import client.mainWindow.MainModel;
 import client.mainWindow.pages.Pages;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -15,6 +16,9 @@ public class SectionMenuController extends SectionMenuView implements Initializa
 
     @FXML
     private Button labListButton;
+
+    @FXML
+    private Button lectureButton;
 
     private SectionMenuModel sectionMenuModel = new SectionMenuModel();
     private SectionMenuView sectionMenuView = new SectionMenuView();
@@ -37,6 +41,11 @@ public class SectionMenuController extends SectionMenuView implements Initializa
     @FXML
     void onLabListButtonClick() {
         mainController.requestOpenPage(Pages.LAB_LIST_PAGE);
+    }
+
+    @FXML
+    void onLectureButtonClick() {
+        MainController.getInstance().requestOpenPage(Pages.LECTURE_PAGE);
     }
 
 }

@@ -11,10 +11,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.web.WebEngine;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    public static ImageView icon_imgvw = new ImageView("icon_128.jpg");
 
     @Override
     public void start(Stage primaryStage) throws Exception{

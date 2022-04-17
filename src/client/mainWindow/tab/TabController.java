@@ -1,9 +1,6 @@
 package client.mainWindow.tab;
 
-//import LogisimFX.Main;
 import AmadeyLogicGame.AmadeyLogicGame;
-import LogisimFX.Startup;
-import LogisimFX.newgui.AbstractController;
 import LogisimFX.newgui.FrameManager;
 import client.Config;
 import client.mainWindow.pages.Pages;
@@ -12,12 +9,10 @@ import client.mainWindow.pages.labPages.labPage.LabPageController;
 import client.mainWindow.pages.mainPage.MainPageController;
 import client.mainWindow.pages.trainingPage.TrainerPageController;
 import com.google.gson.JsonObject;
-import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.SubScene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.AnchorPane;
@@ -90,30 +85,44 @@ public class TabController {
             }
 
             case Pages.TRAINING_PAGE -> {
-                TrainerPageController trainerPageController = new TrainerPageController();
-                tab.setText(type);
-                tab.setContent(trainerPageController.getRoot());
-                System.out.println("lolxd " + trainerPageController.getRoot());
+                try {
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main_window/pages/trainers_list_page/trainersPage.fxml")));
+                    tab.setText(type);
+                    tab.setContent(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
 
             case Pages.ALG_PAGE -> {
-
                   tab.setText(type);
                   tab.setContent(AmadeyLogicGame.load(params).getRoot());
                   tab.setOnCloseRequest(event -> AmadeyLogicGame.terminateApp());
-
             }
 
             case Pages.LOGISIM_PAGE -> {
-
-
                 //Platform.runLater(() -> {
                 tab.setText(type);
                 tab.setContent(FrameManager.scene.getRoot());
                 //FrameManager.stage.close();
                 //});
+            }
 
+            case Pages.LECTURE_PAGE -> {
 
+                try {
+                    Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main_window/pages/lecture_page/lecturePage.fxml")));
+                    tab.setText(type);
+                    tab.setContent(root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                /*
+                LecturePageController lecturePageController = new LecturePageController();
+                tab.setText(type);
+                tab.setContent(lecturePageController.getRoot());
+
+                 */
             }
 
         }
