@@ -25,7 +25,7 @@ public class FormulationTaskController {
         return root;
     }
 
-    public FormulationTaskController(JsonObject config) {
+    public FormulationTaskController() {
 
         // Кнопка "Теоретическая справка по заданию"
         Button readHelpButton = new Button("Теоретическая справка по заданию");

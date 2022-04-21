@@ -1,18 +1,12 @@
-package client.mainWindow.pages.labPages.labPage.nullTest.base;
-
-import entity.work.test.base.Answer;
-
-import java.util.ArrayList;
+package client.mainWindow.pages.labPages.labPage.finalTest.base;
 
 public class Question {
     private String text;
     private entity.work.test.base.Question.TYPE type;
-    private ArrayList<Answer> answerList;
 
-    public Question(String text, entity.work.test.base.Question.TYPE type, ArrayList<Answer> answerList) {
+    public Question(String text, entity.work.test.base.Question.TYPE type) {
         this.text = text;
         this.type = type;
-        this.answerList = answerList;
     }
 
     public entity.work.test.base.Question.TYPE getType(){
@@ -21,10 +15,6 @@ public class Question {
 
     public String getText() {
         return text;
-    }
-
-    public ArrayList<Answer> getAnswerList() {
-        return answerList;
     }
 
     public enum POSITION {

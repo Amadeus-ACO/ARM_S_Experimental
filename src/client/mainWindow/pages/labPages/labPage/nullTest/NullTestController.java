@@ -3,6 +3,7 @@ package client.mainWindow.pages.labPages.labPage.nullTest;
 import client.mainWindow.pages.labPages.labPage.base.stage.StageController;
 import client.mainWindow.pages.labPages.labPage.nullTest.base.Question;
 import com.google.gson.JsonObject;
+import entity.work.test.base.Answer;
 import entity.work.test.nullTest.NullTest;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -26,7 +27,7 @@ public class NullTestController extends StageController {
     private NullTestView nullTestView = new NullTestView(this);
 
 
-    public NullTestController(JsonObject config) {
+    public NullTestController() {
         super();
 
         Button previousButton = new Button("Назад");
@@ -42,7 +43,7 @@ public class NullTestController extends StageController {
         nullTestView.init(root, previousButton, endTestButton, nextButton);
 
         // Инициализация модели нулевого тестирования
-        nullTestModel.loadConfig(config);
+        nullTestModel.loadConfig(nullTestModel.fakeNullTest);
     }
 
     private void onEndTestButtonClick(ActionEvent actionEvent) {
@@ -62,10 +63,19 @@ public class NullTestController extends StageController {
         //TODO: Нужно ли делать возможность выбора только одного ответа?
         ArrayList<CheckBox> answerCheckBoxList = new ArrayList<>();
         int aIndex = 0;
-        for (String answer: question.getAnswerList()) {
-            CheckBox answerCheckBox = new CheckBox(answer);
+        for (Answer answer: question.getAnswerList()) {
+            CheckBox answerCheckBox = new CheckBox(answer.getText());
             int finalAIndex = aIndex;
-            answerCheckBox.setOnAction(event -> onAnswerCheckBoxClick(qIndex, finalAIndex));
+            if(question.getType() == entity.work.test.base.Question.TYPE.NULL_ONE_ANSWER){
+                answerCheckBox.setOnAction(event -> {
+                    for(CheckBox checkBox: answerCheckBoxList){
+                        if(checkBox != answerCheckBox) checkBox.setSelected(false);
+                    }
+                    onAnswerCheckBoxClick(qIndex, finalAIndex);
+                });
+            }else if(question.getType() == entity.work.test.base.Question.TYPE.NULL_MULTIPLE_ANSWER) {
+                answerCheckBox.setOnAction(event -> onAnswerCheckBoxClick(qIndex, finalAIndex));
+            }
             answerCheckBoxList.add(answerCheckBox);
             aIndex++;
         }

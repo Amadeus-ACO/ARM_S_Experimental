@@ -6,13 +6,12 @@ import client.mainWindow.pages.labPages.labPage.finalTest.FinalTestController;
 import client.mainWindow.pages.labPages.base.formulationTask.FormulationTaskController;
 import client.mainWindow.pages.labPages.labPage.base.stage.StageButton;
 import client.mainWindow.pages.labPages.labPage.nullTest.NullTestController;
-import client.mainWindow.pages.labPages.labPage.report.ReportController;
-import client.mainWindow.pages.labPages.labPage.realization.RealizationController;
+
 import com.google.gson.JsonObject;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
@@ -36,7 +35,7 @@ public class LabPageController {
         return stagePane;
     }
 
-    public LabPageController(JsonObject config) {
+    public LabPageController() {
         root = new ScrollPane();
         labPageView.setRoot(root);
 
@@ -46,7 +45,37 @@ public class LabPageController {
         stageTitleButtonGrid = new GridPane();
         labPageView.setStageTitleButtonGrid(stageTitleButtonGrid);
 
-        labPageModel.loadConfig(config);
+        FormulationTaskController formulationTaskController = new FormulationTaskController();
+        StageButton stageButton = new StageButton("Постановка задачи", root);
+        stageButton.setOnAction(event -> onStageButtonAction(Stages.FORMULATION_PROBLEM, formulationTaskController.getRoot()));
+        labPageView.addStageButton(stageButton);
+
+        NullTestController nullTestController = new NullTestController();
+        stageButton = new StageButton("Входное тестирование", root);
+        stageButton.setOnAction(event -> onStageButtonAction(Stages.NULL_TEST, nullTestController.getRoot()));
+        labPageView.addStageButton(stageButton);
+
+        AlgorithmController algorithmController = new AlgorithmController();
+        stageButton = new StageButton("Алгоритм", root);
+        stageButton.setOnAction(event -> onStageButtonAction(Stages.ALGORITHM, algorithmController.getRoot()));
+        labPageView.addStageButton(stageButton);
+
+        FinalTestController finalTestController = new FinalTestController();
+        stageButton = new StageButton("Финальное тестирование", root);
+        stageButton.setOnAction(event -> onStageButtonAction(Stages.FINAL_TEST, finalTestController.getRoot()));
+        labPageView.addStageButton(stageButton);
+
+        stageButton = new StageButton("Отчет", root);
+        stageButton.setOnAction(event -> {
+            try {
+                onStageButtonAction(Stages.REPORT, FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main_window/pages/lab_list_page/labReportTab.fxml"))));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        labPageView.addStageButton(stageButton);
+
+
     }
 
     /**
@@ -59,23 +88,24 @@ public class LabPageController {
      */
     void requestAddNewStage(String name, String type,
                             boolean passed, JsonObject config) {
+
         StageButton stageButton;
         Region stageRoot;
         Parent root = null;
         switch (type) {
             // Постановка задачи
             case Stages.FORMULATION_PROBLEM -> {
-                FormulationTaskController formulationTaskController = new FormulationTaskController(config);
+                FormulationTaskController formulationTaskController = new FormulationTaskController();
                 root = formulationTaskController.getRoot();
             }
             // Входное тестирование
             case Stages.NULL_TEST -> {
-                NullTestController nullTestController = new NullTestController(config);
+                NullTestController nullTestController = new NullTestController();
                 root = nullTestController.getRoot();
             }
             // Алгоритм
             case Stages.ALGORITHM -> {
-                AlgorithmController algorithmController = new AlgorithmController(config);
+                AlgorithmController algorithmController = new AlgorithmController();
                 root = algorithmController.getRoot();
             }
             // Реализация
@@ -88,7 +118,7 @@ public class LabPageController {
              */
             // Финальное тестирование
             case Stages.FINAL_TEST -> {
-                FinalTestController finalTestController = new FinalTestController(config);
+                FinalTestController finalTestController = new FinalTestController();
                 root = finalTestController.getRoot();
             }
             // Отчёт
@@ -105,10 +135,10 @@ public class LabPageController {
             }
         }
 
-        stageButton = new StageButton(name, passed, root);
-        Parent finalRoot = root;
-        stageButton.setOnAction(event -> onStageButtonAction(type, finalRoot));
-        labPageView.addStageButton(stageButton);
+       // stageButton = new StageButton(name, passed, root);
+       //Parent finalRoot = root;
+        //stageButton.setOnAction(event -> onStageButtonAction(type, finalRoot));
+       // labPageView.addStageButton(stageButton);
 
         // TODO: Перенести StageButton в контроллер
         // TODO: Подумать над базовым классом для контроллеров и использованием ScrollPane/AnchorPane

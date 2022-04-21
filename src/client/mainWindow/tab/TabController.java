@@ -79,7 +79,8 @@ public class TabController {
             }
 
             case Pages.LAB_PAGE -> {
-                LabPageController labPageController = new LabPageController(Config.load("lab"));
+                //Config.load("lab")
+                LabPageController labPageController = new LabPageController();
                 tab.setText(type);
                 tab.setContent(labPageController.getRoot());
             }

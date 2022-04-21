@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 
 public class StageButton extends Button {
-    public StageButton(String title, boolean passed,  Parent stageRoot) {
+    public StageButton(String title,  Parent stageRoot) {
         super(title);
         this.setMaxWidth(Double.MAX_VALUE);
 

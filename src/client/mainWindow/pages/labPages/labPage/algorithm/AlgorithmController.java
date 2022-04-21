@@ -8,7 +8,7 @@ public class AlgorithmController extends StageController {
     private AlgorithmModel algorithmModel;
     private AlgorithmView algorithmView;
 
-    public AlgorithmController(JsonObject config) {
+    public AlgorithmController() {
         super();
     }
 }
