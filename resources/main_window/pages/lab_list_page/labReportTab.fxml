@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.pages.labPages.labPage.report.ReportController">
+   <children>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <HBox alignment="TOP_RIGHT" prefHeight="20.0" prefWidth="600.0" spacing="10.0" VBox.vgrow="NEVER">
+               <children>
+                  <Button fx:id="closeViewerButton" mnemonicParsing="false" text="Закрыть" />
+                  <Button fx:id="sendReportButton" mnemonicParsing="false" text="Отправить на проверку" />
+                  <Button fx:id="reportRulesButton" mnemonicParsing="false" text="Требования к оформлению" />
+               </children>
+               <padding>
+                  <Insets bottom="5.0" />
+               </padding>
+            </HBox>
+            <ScrollPane fx:id="viewerRoot" fitToHeight="true" fitToWidth="true" VBox.vgrow="ALWAYS" />
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -33,12 +33,9 @@ public class TabPaneController {
 
     // Переписать под менеджер панелей
     private void onCloseTab(Event event) {
-        System.out.println("BRAAT");
 
         // На панели одна вкладка, и она - удаляемая
-
         if (tabPane.getTabs().size() == 1) {
-            System.out.println("lolxd");
             requestOpenPage(Pages.MAIN_PAGE);
         }
 

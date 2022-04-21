@@ -12,6 +12,10 @@ public class EntityView {
     public static class TEACHER_STUDENT_LIST_IN_GROUP extends ID {
     }
 
+    /*------------- METHODIST -------------*/
+
+    public static class METHODIST_QUESTION extends ID {}
+
     // Короткий вариант сериализации
     public static class SHORT extends ID {}
 

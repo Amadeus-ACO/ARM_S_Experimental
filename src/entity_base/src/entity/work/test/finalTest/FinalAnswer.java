@@ -1,7 +1,18 @@
 package  entity.work.test.finalTest;
 
-import entity.Entity;
+import entity.work.test.base.Question;
+import lombok.Getter;
 
-@javax.persistence.Entity
-public class FinalAnswer extends Entity {
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
+@Entity
+public class FinalAnswer extends entity.Entity {
+
+    @Getter
+    @OneToOne
+    private Question givenQuestion;
+
+    @Getter
+    private String givenAnswer;
 }

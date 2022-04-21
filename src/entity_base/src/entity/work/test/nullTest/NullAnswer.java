@@ -1,8 +1,19 @@
 package  entity.work.test.nullTest;
+import entity.work.test.base.Answer;
+import entity.work.test.base.Question;
+import lombok.Getter;
 
-import entity.Entity;
+import javax.persistence.*;
+import java.util.List;
+import java.util.UUID;
 
-@javax.persistence.Entity
-public class NullAnswer extends Entity {
+@Entity
+public class NullAnswer extends entity.Entity {
 
+    @Getter
+    @OneToOne
+    private Question givenQuestion;
+
+    @OneToMany
+    private List<Answer> givenAnswer;
 }

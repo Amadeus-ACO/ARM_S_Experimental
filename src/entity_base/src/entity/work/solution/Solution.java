@@ -14,7 +14,5 @@ public class Solution extends Entity {
     @OneToOne
     private Algorithm algorithm;
 
-    private String conclusion;
-
-    private String status;
+    //private String conclusion;
 }

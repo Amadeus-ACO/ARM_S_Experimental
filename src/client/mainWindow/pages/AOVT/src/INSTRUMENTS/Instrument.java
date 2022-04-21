@@ -85,6 +85,6 @@ public abstract class Instrument {
 
     public abstract void checkValue() throws IllegalArgumentException;
 
-    public abstract JsonObject getJson();
+   // public abstract JsonObject getJson();
 
 }

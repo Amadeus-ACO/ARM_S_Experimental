@@ -3,6 +3,7 @@ package client.mainWindow.pages.labPages.labPage.nullTest;
 import client.mainWindow.pages.labPages.labPage.base.stage.StageController;
 import client.mainWindow.pages.labPages.labPage.nullTest.base.Question;
 import com.google.gson.JsonObject;
+import entity.work.test.nullTest.NullTest;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;

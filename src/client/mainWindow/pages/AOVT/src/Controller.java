@@ -43,7 +43,7 @@ public class Controller {
         for(Step step: Step.steps){
             JsonArray instruments = new JsonArray();
             for(Instrument instrument: step.instruments){
-                instruments.add(instrument.getJson());
+                //instruments.add(instrument.getJson());
             }
             root.add(step.choiceBox.getValue(), instruments);
         }

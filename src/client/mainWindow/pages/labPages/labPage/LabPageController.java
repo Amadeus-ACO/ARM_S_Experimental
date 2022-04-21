@@ -10,10 +10,16 @@ import client.mainWindow.pages.labPages.labPage.report.ReportController;
 import client.mainWindow.pages.labPages.labPage.realization.RealizationController;
 import com.google.gson.JsonObject;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class LabPageController {
 
@@ -53,22 +59,24 @@ public class LabPageController {
      */
     void requestAddNewStage(String name, String type,
                             boolean passed, JsonObject config) {
-        StageButton stageButton; Region stageRoot;
+        StageButton stageButton;
+        Region stageRoot;
+        Parent root = null;
         switch (type) {
             // Постановка задачи
             case Stages.FORMULATION_PROBLEM -> {
                 FormulationTaskController formulationTaskController = new FormulationTaskController(config);
-                stageRoot = formulationTaskController.getRoot();
+                root = formulationTaskController.getRoot();
             }
             // Входное тестирование
             case Stages.NULL_TEST -> {
                 NullTestController nullTestController = new NullTestController(config);
-                stageRoot = nullTestController.getRoot();
+                root = nullTestController.getRoot();
             }
             // Алгоритм
             case Stages.ALGORITHM -> {
                 AlgorithmController algorithmController = new AlgorithmController(config);
-                stageRoot = algorithmController.getRoot();
+                root = algorithmController.getRoot();
             }
             // Реализация
             /*
@@ -81,12 +89,15 @@ public class LabPageController {
             // Финальное тестирование
             case Stages.FINAL_TEST -> {
                 FinalTestController finalTestController = new FinalTestController(config);
-                stageRoot = finalTestController.getRoot();
+                root = finalTestController.getRoot();
             }
             // Отчёт
             case Stages.REPORT -> {
-                ReportController reportController = new ReportController(config);
-                stageRoot = reportController.getRoot();
+                try {
+                    root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("main_window/pages/lab_list_page/labReportTab.fxml")));;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             default -> {
                 // TODO: Обработка ситуации, когда нельзя добавить этап
@@ -94,8 +105,9 @@ public class LabPageController {
             }
         }
 
-        stageButton = new StageButton(name, passed, stageRoot);
-        stageButton.setOnAction(event -> onStageButtonAction(type, stageRoot));
+        stageButton = new StageButton(name, passed, root);
+        Parent finalRoot = root;
+        stageButton.setOnAction(event -> onStageButtonAction(type, finalRoot));
         labPageView.addStageButton(stageButton);
 
         // TODO: Перенести StageButton в контроллер
@@ -112,7 +124,7 @@ public class LabPageController {
             stageTitleButtonGrid.getChildren().get(0).fireEvent(new ActionEvent());
     }
 
-    public void onStageButtonAction(String type, Region root) {
+    public void onStageButtonAction(String type, Parent root) {
         if (!currentStageType.equals(type)) {
             if (!currentStageType.isEmpty()) {
                 stagePane.getChildren().remove(1);

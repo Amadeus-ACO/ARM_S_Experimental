@@ -17,3 +17,5 @@ project(':ALG').projectDir = new File('src/client/mainWindow/pages/Amadey-Logic-
 
 include(':entity_base')
 project(':entity_base').projectDir = new File('src/entity_base')
+
+startParameter.excludedTaskNames+=':LogisimFX:build'

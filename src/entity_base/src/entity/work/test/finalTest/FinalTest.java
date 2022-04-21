@@ -14,5 +14,5 @@ import java.util.List;
 public class FinalTest extends Test {
 
     @OneToMany
-    private List<FinalAnswer> finalAnswerArrayList;
+    private List<FinalAnswer> finalAnswerList;
 }

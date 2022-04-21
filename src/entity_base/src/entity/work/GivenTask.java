@@ -1,5 +1,6 @@
 package entity.work;
 import entity.Entity;
+import entity.work.solution.Algorithm;
 import entity.work.solution.Solution;
 import entity.work.task.TaskVariant;
 import entity.work.test.finalTest.FinalTest;
@@ -52,7 +53,7 @@ public class GivenTask extends Entity {
     private NullTest nullTest;
 
     @OneToOne
-    private Solution solution;
+    private Algorithm algorithm;
 
     @OneToOne
     private FinalTest finalTest;

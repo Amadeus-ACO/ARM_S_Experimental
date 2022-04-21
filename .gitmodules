@@ -10,3 +10,6 @@
 [submodule "src/client/mainWindow/pages/Amadey-Logic-Game"]
 	path = src/client/mainWindow/pages/Amadey-Logic-Game
 	url = https://github.com/Amadeus-ACO/Amadey-Logic-Game.git
+[submodule "src/entity_base"]
+	path = src/entity_base
+	url = https://github.com/Amadeus-ACO/entity_base.git

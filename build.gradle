@@ -7,8 +7,9 @@ plugins {
 repositories {
     mavenLocal()
     mavenCentral()
+    maven { url 'https://jitpack.io' }
     flatDir {
-        dirs 'src/client/mainWindow/pages/LogisimFX/libs'
+        dirs 'src/client/mainWindow/pages/LogisimFX/libs', 'libs'
     }
 }
 
@@ -83,4 +84,11 @@ dependencies {
     implementation project(':ALG')
     implementation 'org.controlsfx:controlsfx:11.1.1'
     implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.6'
+
+    implementation 'com.github.Dansoftowner:PDFViewerFX:0.8'
+    implementation 'org.docx4j:docx4j-JAXB-ReferenceImpl:11.4.6'
+    implementation 'org.docx4j:docx4j-export-fo:11.4.6'
+    implementation 'org.apache.xmlgraphics:fop:2.7'
+
+    implementation 'org.jetbrains:annotations:23.0.0'
 }
