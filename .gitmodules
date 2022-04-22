@@ -4,9 +4,6 @@
 [submodule "src/client/mainWindow/pages/AOVT"]
 	path = src/client/mainWindow/pages/AOVT
 	url = https://github.com/Amadeus-ACO/AOVT
-[submodule "src/client/mainWindow/pages/LogisimFX"]
-	path = src/client/mainWindow/pages/LogisimFX
-	url = https://github.com/Pe3aTeJlb/LogisimFX.git
 [submodule "src/client/mainWindow/pages/Amadey-Logic-Game"]
 	path = src/client/mainWindow/pages/Amadey-Logic-Game
 	url = https://github.com/Amadeus-ACO/Amadey-Logic-Game.git
