@@ -38,7 +38,7 @@ public class MainPageModel {
         Text panelText = new Text("Text");
         VBox.setMargin(panelText, new Insets(10,10,10,10));
         panelText.setFont(new Font("Consolas", 16));
-        panelText.setText("Илавная страница");
+        panelText.setText("Главная страница");
 
         panelVBox.getChildren().addAll(titleChoiceBox, separator, panelText);
         return panelVBox;
