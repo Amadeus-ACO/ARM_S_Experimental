@@ -1,21 +1,20 @@
 package client.mainWindow.pages.labPages.labPage.finalTest;
 
+import LogisimFX.Startup;
 import LogisimFX.newgui.FrameManager;
 import client.mainWindow.pages.labPages.labPage.base.stage.StageController;
 
 import client.mainWindow.pages.labPages.labPage.finalTest.base.Question;
-import entity.work.test.base.Answer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class FinalTestController extends StageController {
 
@@ -69,37 +68,19 @@ public class FinalTestController extends StageController {
         int aIndex = 0;
         if(question.getType() == entity.work.test.base.Question.TYPE.FINAL_TEXT){
             root = new TextArea();
+            finalTestView.showQuestion(qIndex, question.getText(), root, order);
         }else if(question.getType() == entity.work.test.base.Question.TYPE.FINAL_AOVT){
             try {
                 root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("aovt_start.fxml")));
+                finalTestView.showQuestion(qIndex, question.getText(), root, order);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else if(question.getType() == entity.work.test.base.Question.TYPE.FINAL_LOVT){
-            root = FrameManager.scene.getRoot();
+            Startup startup = Startup.parseArgs(new String[0]);
+            startup.setOnSucceeded(event -> finalTestView.showQuestion(qIndex, question.getText(), FrameManager.getScene().getRoot(), order));
+            startup.run();
         }
-
-        finalTestView.showQuestion(qIndex, question.getText(), root, order);
-/*
-        for (Answer answer: question.get()) {
-            CheckBox answerCheckBox = new CheckBox(answer.getText());
-            int finalAIndex = aIndex;
-            if(question.getType() == entity.work.test.base.Question.TYPE.NULL_ONE_ANSWER){
-                answerCheckBox.setOnAction(event -> {
-                    for(CheckBox checkBox: answerCheckBoxList){
-                        if(checkBox != answerCheckBox) checkBox.setSelected(false);
-                    }
-                    onAnswerCheckBoxClick(qIndex, finalAIndex);
-                });
-            }else if(question.getType() == entity.work.test.base.Question.TYPE.NULL_MULTIPLE_ANSWER) {
-                answerCheckBox.setOnAction(event -> onAnswerCheckBoxClick(qIndex, finalAIndex));
-            }
-            answerCheckBoxList.add(answerCheckBox);
-            aIndex++;
-        }
-
- */
-
 
     }
 

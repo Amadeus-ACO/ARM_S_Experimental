@@ -1,6 +1,7 @@
 package client.mainWindow.tab;
 
 import AmadeyLogicGame.AmadeyLogicGame;
+import LogisimFX.Startup;
 import LogisimFX.newgui.FrameManager;
 import client.Config;
 import client.mainWindow.pages.Pages;
@@ -9,6 +10,7 @@ import client.mainWindow.pages.labPages.labPage.LabPageController;
 import client.mainWindow.pages.mainPage.MainPageController;
 import client.mainWindow.pages.trainingPage.TrainerPageController;
 import com.google.gson.JsonObject;
+import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -20,6 +22,7 @@ import javafx.scene.layout.Region;
 
 import java.io.IOException;
 import java.util.Objects;
+import java.util.concurrent.ExecutionException;
 
 public class TabController {
 
@@ -104,7 +107,11 @@ public class TabController {
             case Pages.LOGISIM_PAGE -> {
                 //Platform.runLater(() -> {
                 tab.setText(type);
-                tab.setContent(FrameManager.scene.getRoot());
+                Startup startup = Startup.parseArgs(params);
+                startup.setOnSucceeded(event -> tab.setContent(FrameManager.getScene().getRoot()));
+
+                startup.run();
+                //tab.setContent(FrameManager.scene.getRoot());
                 //FrameManager.stage.close();
                 //});
             }

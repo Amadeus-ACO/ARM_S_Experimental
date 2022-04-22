@@ -7,7 +7,9 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 
 public abstract class StageController {
+
     protected ScrollPane root;
+
     public StageController() {
         root = new ScrollPane();
         root.setFitToWidth(true);

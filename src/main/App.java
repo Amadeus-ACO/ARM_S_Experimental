@@ -126,8 +126,8 @@ public class App extends Application {
      */
     private void initLoginWindow() throws IOException {
         // Logisim Preload
-        Startup startup = Startup.parseArgs(new String[0]);
-        startup.run();
+      //  Startup startup = Startup.parseArgs(new String[0]);
+    //    startup.run();
 
         FXMLLoader fxmlLoader = new FXMLLoader(Objects.requireNonNull(getClass().getClassLoader().getResource("login_screen.fxml")));
         Parent root = fxmlLoader.load(); ((LoginController) fxmlLoader.getController()).setApp(this);

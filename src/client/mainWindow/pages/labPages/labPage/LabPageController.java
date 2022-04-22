@@ -75,6 +75,7 @@ public class LabPageController {
         });
         labPageView.addStageButton(stageButton);
 
+        onStageButtonAction(Stages.FORMULATION_PROBLEM, formulationTaskController.getRoot());
 
     }
 
