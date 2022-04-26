@@ -1,16 +1,12 @@
 package client.mainWindow.roadMap;
 
-import com.sun.javafx.scene.control.Properties;
 import entity.work.GivenTask;
+import entity.work.task.Task;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ContentDisplay;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.scene.Node;
+import javafx.scene.control.*;
+import javafx.scene.control.skin.ScrollPaneSkin;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -21,18 +17,12 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.TextAlignment;
 import javafx.util.Pair;
 
-import javax.swing.*;
-import java.util.ArrayList;
-
 public class RoadMapView {
 
     @FXML
     private HBox circleBox;
 
-    /**
-     * Аттрибуты
-     */
-    private ArrayList<Circle> circleList;
+    protected ScrollPane scrollPane;
 
     /**
      * Конструктор
@@ -43,9 +33,9 @@ public class RoadMapView {
 
     /**
      *
-     * @param circleList
+     * @param //circleList
      */
-    public void setCircleList(ArrayList<Circle> circleList) {
+    /*public void setCircleList(ArrayList<Circle> circleList) {
         this.circleList = circleList;
     }
 
@@ -58,6 +48,29 @@ public class RoadMapView {
 
     public void updateCircles() {
 
+    }*/
+
+    public void zoom(double deltaY) {
+        System.out.println(deltaY);
+        if (!circleBox.getChildren().isEmpty()) {
+            double circleScale = deltaY > 0 ? 0.1 : -0.1;
+            circleBox.setScaleX(circleBox.getScaleX() + circleScale);
+            circleBox.setScaleY(circleBox.getScaleY() + circleScale);
+
+            scrollPane.setMinSize(scrollPane.getWidth(), scrollPane.getHeight()*(1 + circleScale));
+        }
+        circleBox.requestLayout();
+            /*for (Node node: circleBox.getChildren()) {
+                System.out.println(node.getClass().getSimpleName());
+                switch (node.getClass().getSimpleName()) {
+                    case "Button":
+                        Button circleButton = ((Button) node);
+                        circleButton.setScaleX(circleButton.getScaleX() + circleScale);
+                        circleButton.setScaleY(circleButton.getScaleY() + circleScale);
+                        break;
+                }
+            }*/
+        //circleBox.resize
     }
 
     public void drawTaskCircle(Pair<GivenTask, Button> taskCircle) {
@@ -66,7 +79,6 @@ public class RoadMapView {
         Button button = taskCircle.getValue();
         button.setContentDisplay(ContentDisplay.CENTER);
         button.setStyle("-fx-background-color: transparent");
-        //button.setPadding(Insets.EMPTY);
 
         button.setText(givenTask.getTaskVariant().getTask().getNumber());
         button.setTextAlignment(TextAlignment.CENTER);
