@@ -29,8 +29,8 @@ public class WidgetPanelController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         DatePickerSkin skin = new DatePickerSkin(new DatePicker());
         Node calendarControl = skin.getPopupContent();
-
         widgetGridPane.add(calendarControl,0,6);
+        widgetGridPane.autosize();
     }
 
 }
