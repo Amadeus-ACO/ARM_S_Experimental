@@ -10,6 +10,3 @@
 [submodule "src/client/mainWindow/pages/LogisimFX"]
 	path = src/client/mainWindow/pages/LogisimFX
 	url = https://github.com/Amadeus-ACO/LogisimFX.git
-[submodule "src/entity_base"]
-	path = src/entity_base
-	url = https://github.com/Amadeus-ACO/entity_base
