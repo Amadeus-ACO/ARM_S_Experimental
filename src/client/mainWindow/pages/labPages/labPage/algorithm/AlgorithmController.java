@@ -28,6 +28,7 @@ public class AlgorithmController extends StageController {
 
         requestShowAlgorithm(givenTask);
 
+
     }
 
     void requestShowAlgorithm(GivenTask givenTask) {

@@ -15,16 +15,16 @@ import client.mainWindow.widgetPanel.WidgetPanelModel;
 import client.mainWindow.widgetPanel.WidgetPanelView;
 import com.google.gson.JsonObject;
 import entity.user.Student;
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ScrollPane;
 import main.App;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class MainController extends MainView implements Initializable {
@@ -59,9 +59,6 @@ public class MainController extends MainView implements Initializable {
     @FXML
     MenuBarController menuBarController;
 
-    @FXML
-    ScrollPane roadMapPane;
-
     private App app;
 
     public void setApp(App app) {
@@ -95,7 +92,6 @@ public class MainController extends MainView implements Initializable {
         // RoadMap Initialization
         roadMapController.setRoadMapModel(new RoadMapModel());
         roadMapController.setRoadMapView(new RoadMapView());
-        roadMapController.init(roadMapPane);
 
         // WidgetPanel Initialization
         widgetPanelController.setWidgetPanelModel(new WidgetPanelModel());
@@ -211,7 +207,7 @@ public class MainController extends MainView implements Initializable {
 
     public void requestUpdateModel(Student student) {
         mainModel.update(student);
-        roadMapController.requestUpdate(Collections.emptyList());
+        roadMapController.updateModel(student);
     }
 
 }

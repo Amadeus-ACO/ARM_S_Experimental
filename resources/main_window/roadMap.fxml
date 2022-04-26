@@ -3,17 +3,169 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:id="circleBox" alignment="CENTER" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minWidth="-Infinity" onScroll="#onScroll" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.roadMap.RoadMapController">
+<HBox fx:id="circleBox" alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.roadMap.RoadMapController">
+   <children>
+      <Label maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+         <graphic>
+            <StackPane>
+               <children>
+                  <Circle fx:id="ballVasya1" fill="#32e632" radius="20.0" stroke="#505050" strokeWidth="7.0" />
+                  <Label text="1">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+            </StackPane>
+         </graphic>
+         <tooltip>
+            <Tooltip>
+               <graphic>
+                  <VBox alignment="CENTER">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Лабораторная работа № 1">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="СДНФ, СКНФ">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="2.0" />
+                           </VBox.margin>
+                        </Label>
+                        <HBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity">
+                           <children>
+                              <Hyperlink text="Посмотреть">
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                              </Hyperlink>
+                              <Button alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #32e632;" text="Выполнена ✓">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="5.0" right="5.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </graphic>
+            </Tooltip>
+         </tooltip>
+      </Label>
+      <Line endX="-60.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <StackPane>
+         <children>
+            <Circle fx:id="ballVasya11" fill="#32e632" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+            <Label text="2" textFill="#000000cc">
+               <tooltip>
+                  <Tooltip text="Лабораторная работа № 1">
+                     <graphic>
+                        <Label text="Бебячка" />
+                     </graphic>
+                  </Tooltip>
+               </tooltip>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <Line endX="-80.0" layoutX="163.0" layoutY="37.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <StackPane layoutX="116.0" layoutY="20.0">
+         <children>
+            <Circle fx:id="ballVasya111" fill="#32e632" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+            <Label text="3">
+               <tooltip>
+                  <Tooltip text="Лабораторная работа № 1">
+                     <graphic>
+                        <Label text="Бебячка" />
+                     </graphic>
+                  </Tooltip>
+               </tooltip>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <Line endX="-60.0" layoutX="246.0" layoutY="36.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <StackPane layoutX="212.0" layoutY="20.0">
+         <children>
+            <Circle fx:id="ballVasya1111" fill="#f0f032" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+            <Label text="4" textFill="#000000cc">
+               <tooltip>
+                  <Tooltip text="Лабораторная работа № 1">
+                     <graphic>
+                        <Label text="Бебячка" />
+                     </graphic>
+                  </Tooltip>
+               </tooltip>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <Line endX="-60.0" layoutX="329.0" layoutY="36.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <StackPane layoutX="308.0" layoutY="20.0">
+         <children>
+            <Circle fx:id="ballVasya11111" fill="#f0f032" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+            <Label text="5" textFill="#000000cc">
+               <tooltip>
+                  <Tooltip text="Лабораторная работа № 1">
+                     <graphic>
+                        <Label text="Бебячка" />
+                     </graphic>
+                  </Tooltip>
+               </tooltip>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <Circle fill="#f0f032" layoutX="290.0" layoutY="35.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+      <Line endX="-60.0" layoutX="412.0" layoutY="36.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <Circle fill="#f0f032" layoutX="373.0" layoutY="35.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+      <Line endX="-60.0" layoutX="495.0" layoutY="36.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <Circle fill="#ee7a7a" layoutX="456.0" layoutY="35.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+      <Line endX="-60.0" layoutX="578.0" layoutY="36.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <Circle fill="#a0a0a0" layoutX="539.0" layoutY="35.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+      <Line endX="-60.0" layoutX="661.0" layoutY="36.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <Circle fill="#a0a0a0" layoutX="622.0" layoutY="35.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+      <Line endX="-60.0" layoutX="845.0" layoutY="45.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <Circle fill="#a0a0a0" layoutX="813.0" layoutY="45.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+      <Line endX="-60.0" layoutX="941.0" layoutY="45.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <Circle fill="#a0a0a0" layoutX="909.0" layoutY="45.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+      <Line endX="-60.0" layoutX="1037.0" layoutY="45.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <Circle fill="#a0a0a0" layoutX="1005.0" layoutY="45.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+      <Line endX="-60.0" layoutX="1133.0" layoutY="45.0" startX="-100.0" stroke="#505050" strokeWidth="7.0" />
+      <Button mnemonicParsing="false" style="-fx-background-color: transparent;" text="Button">
+         <graphic>
+            <Circle fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+         </graphic>
+      </Button>
+      <Circle fill="DODGERBLUE" radius="100.0" stroke="BLACK" strokeType="INSIDE" />
+      <Line endX="100.0" startX="-100.0" />
+      <Circle fill="#a0a0a0" layoutX="1101.0" layoutY="45.0" radius="21.0" stroke="#505050" strokeWidth="7.0" />
+   </children>
    <padding>
       <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
    </padding>
-   <children>
-      <Label text="Выданные задания отсутствуют">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </Label>
-   </children>
 </HBox>

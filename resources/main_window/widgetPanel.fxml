@@ -1,73 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.widgetPanel.WidgetPanelController">
+<GridPane fx:id="widgetGridPane" alignment="TOP_CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="250.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.mainWindow.widgetPanel.WidgetPanelController">
+   <columnConstraints>
+      <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="-Infinity" minHeight="-Infinity" valignment="CENTER" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="0.0" minHeight="-Infinity" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="0.0" minHeight="-Infinity" prefHeight="0.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="0.0" minHeight="-Infinity" prefHeight="0.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <GridPane fx:id="widgetGridPane" alignment="TOP_CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="250.0" AnchorPane.topAnchor="0.0">
-         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="ALWAYS" maxWidth="240.0" minWidth="240.0" prefWidth="240.0" />
-            <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-            <RowConstraints vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Label fx:id="FIOLabel" text="Иванов И.И.">
-               <font>
-                  <Font name="Lucida Sans Demibold" size="16.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="groupLabel" text="ИВБО-01-22" GridPane.rowIndex="1">
-               <GridPane.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Lucida Sans Demibold" size="16.0" />
-               </font>
-            </Label>
-            <Label fx:id="studLabel" text="123456" GridPane.rowIndex="2">
-               <GridPane.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </GridPane.margin>
-               <font>
-                  <Font name="Lucida Sans Demibold" size="16.0" />
-               </font>
-            </Label>
-            <ProgressBar maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" progress="0.38" GridPane.columnSpan="2" GridPane.rowIndex="4">
-               <GridPane.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </GridPane.margin>
-            </ProgressBar>
-            <Label fx:id="workStatusLabel11" layoutX="67.0" layoutY="322.0" text="Календарь" GridPane.rowIndex="5">
-               <font>
-                  <Font name="Lucida Sans Demibold" size="14.0" />
-               </font>
-               <GridPane.margin>
-                  <Insets bottom="5.0" top="5.0" />
-               </GridPane.margin>
-            </Label>
-            <Label fx:id="workStatusLabel" text="Сейчас: идёт пара" GridPane.rowIndex="3">
-               <font>
-                  <Font name="Lucida Sans Demibold" size="14.0" />
-               </font>
-            </Label>
-         </children>
-         <padding>
-            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-         </padding>
-      </GridPane>
+      <Label fx:id="FIOLabel" text="Иванов И.И.">
+         <font>
+            <Font name="Lucida Sans Demibold" size="16.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin></Label>
+      <Label fx:id="groupLabel" text="ИВБО-01-22" GridPane.rowIndex="1">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Lucida Sans Demibold" size="16.0" />
+         </font></Label>
+      <Label fx:id="studLabel" text="123456" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Lucida Sans Demibold" size="16.0" />
+         </font></Label>
+      <ProgressBar maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" progress="0.38" GridPane.columnSpan="2" GridPane.rowIndex="4">
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+      </ProgressBar>
+      <Label fx:id="workStatusLabel11" layoutX="67.0" layoutY="322.0" text="Календарь" GridPane.rowIndex="5">
+         <font>
+            <Font name="Lucida Sans Demibold" size="14.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="5.0" top="5.0" />
+         </GridPane.margin>
+      </Label>
+      <Label fx:id="workStatusLabel" text="Сейчас: идёт пара" GridPane.rowIndex="3">
+         <font>
+            <Font name="Lucida Sans Demibold" size="14.0" />
+         </font>
+      </Label>
+      <DatePicker GridPane.rowIndex="6" />
    </children>
-</AnchorPane>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>
