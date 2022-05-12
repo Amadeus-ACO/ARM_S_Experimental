@@ -2,14 +2,21 @@ package client.mainWindow.pages.labPages.labListPage.labDescription;
 
 import client.mainWindow.MainController;
 import client.mainWindow.pages.Pages;
+import entity.work.task.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 import javafx.scene.input.KeyEvent;
 
@@ -45,12 +52,16 @@ public class LabDescriptionController implements Initializable {
     @FXML
     Label formulationProblemLabel;
 
+    @FXML
+    Button TaskHelpBtn;
+    WebView TaskHelpWebView;
+
     private boolean control_flag;
     private boolean stop_scrolling = false;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        formulationProblemWebView.getEngine().load(new File("resources/lect/Lect1.html").toURI().toString());
+        formulationProblemWebView.getEngine().load(new File("resources/task1.html").toURI().toString());
         formulationProblemWebView.getEngine().getLoadWorker().stateProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     formulationProblemWebView.getEngine().executeScript(
@@ -86,6 +97,30 @@ public class LabDescriptionController implements Initializable {
         resultTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         startLabButton.setOnAction(e -> MainController.getInstance().requestOpenPage(Pages.LAB_PAGE));
+
+        TaskHelpWebView = new WebView();
+
+        TaskHelpBtn.setOnAction(event -> {
+
+            Stage stage = new Stage();
+
+            AnchorPane pane = new AnchorPane();
+            stage.setScene(new Scene(pane, 800, 600));
+            pane.getChildren().add(TaskHelpWebView);
+
+            AnchorPane.setBottomAnchor(TaskHelpWebView,0.0);
+            AnchorPane.setLeftAnchor(TaskHelpWebView,0.0);
+            AnchorPane.setRightAnchor(TaskHelpWebView,0.0);
+            AnchorPane.setTopAnchor(TaskHelpWebView,0.0);
+
+            TaskHelpWebView.getEngine().load(new File("resources/metod1.html").toURI().toString());
+
+            stage.setTitle("Теоретическая справка");
+
+            stage.show();
+
+        });
+
     }
 
     void onMouseEnteredFormulationProblem() {

@@ -1,6 +1,7 @@
 package client.loginWindow;
 
 import client.mainWindow.sectionMenu.labs.LabView;
+import entity.user.Student;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import main.App;
 import main.Main;
+import main.Web;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -35,12 +37,21 @@ public class LoginController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    public static Student student;
+
     @FXML
     void onLoginButtonAction(ActionEvent event) throws IOException {
         loginModel.setLogin(loginField.getText());
         loginModel.setPassword(passwordField.getText());
 
-
+        try {
+            student = Web.Auth(loginField.getText(), passwordField.getText());
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Ошибка авторизации");
+            alert.setHeaderText("Ошибка авторизации");
+            alert.setContentText("Ты обосрался в авторизации");
+        }
 
         app.setLoginSuccess(true);
     }

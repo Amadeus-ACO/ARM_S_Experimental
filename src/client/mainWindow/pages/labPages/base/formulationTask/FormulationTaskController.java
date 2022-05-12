@@ -1,12 +1,15 @@
 package client.mainWindow.pages.labPages.base.formulationTask;
 
 import com.google.gson.JsonObject;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.ScrollEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.web.WebView;
+import javafx.stage.Stage;
 
 import java.io.File;
 
@@ -20,6 +23,7 @@ public class FormulationTaskController {
 
     private WebView webView;
     private GridPane root;
+    private WebView TaskHelpWebView;
 
     public GridPane getRoot() {
         return root;
@@ -27,14 +31,34 @@ public class FormulationTaskController {
 
     public FormulationTaskController() {
 
+        TaskHelpWebView = new WebView();
+
         // Кнопка "Теоретическая справка по заданию"
         Button readHelpButton = new Button("Теоретическая справка по заданию");
+        readHelpButton.setOnAction(event -> {
+            Stage stage = new Stage();
+
+            AnchorPane pane = new AnchorPane();
+            stage.setScene(new Scene(pane, 800, 600));
+            pane.getChildren().add(TaskHelpWebView);
+
+            AnchorPane.setBottomAnchor(TaskHelpWebView,0.0);
+            AnchorPane.setLeftAnchor(TaskHelpWebView,0.0);
+            AnchorPane.setRightAnchor(TaskHelpWebView,0.0);
+            AnchorPane.setTopAnchor(TaskHelpWebView,0.0);
+
+            TaskHelpWebView.getEngine().load(new File("resources/metod1.html").toURI().toString());
+
+            stage.setTitle("Теоретическая справка");
+
+            stage.show();
+        });
         // TODO: Добавить, кагда появится раздел справки
         //       readHelpButton.setOnAction();
 
         // Браузер для отображения постановки задачи в формате HTML
         webView = new WebView();
-        webView.getEngine().load(new File("resources/lect/Lect1.html").toURI().toString());
+        webView.getEngine().load(new File("resources/task1.html").toURI().toString());
         webView.getEngine().getLoadWorker().stateProperty().addListener(
             (observable, oldValue, newValue) -> webView.getEngine().executeScript(
                 "var style = document.createElement('style');" +

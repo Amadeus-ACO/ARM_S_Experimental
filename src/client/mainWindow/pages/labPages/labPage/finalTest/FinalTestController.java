@@ -8,6 +8,7 @@ import client.mainWindow.pages.labPages.labPage.finalTest.base.Question;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.StackPane;
@@ -48,6 +49,14 @@ public class FinalTestController extends StageController {
     }
 
     private void onEndTestButtonClick(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Результат тестирования");
+        alert.setHeaderText("Результат тестирования");
+        alert.setContentText("Вы успешно прошли тестирование");
+
+        alert.showAndWait();
+
     }
 
     private void onNextButtonClick(ActionEvent actionEvent) {

@@ -1,15 +1,18 @@
 package client.mainWindow.pages.labPages.labPage.nullTest;
 
+import LogisimFX.IconsManager;
 import client.mainWindow.pages.labPages.labPage.base.stage.StageController;
 import client.mainWindow.pages.labPages.labPage.nullTest.base.Question;
 import com.google.gson.JsonObject;
 import entity.work.test.base.Answer;
 import entity.work.test.nullTest.NullTest;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +50,12 @@ public class NullTestController extends StageController {
     }
 
     private void onEndTestButtonClick(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Результат тестирования");
+        alert.setHeaderText("Результат тестирования");
+        alert.setContentText("Вы успешно прошли тестирование");
+
+        alert.showAndWait();
     }
 
     private void onNextButtonClick(ActionEvent actionEvent) {
