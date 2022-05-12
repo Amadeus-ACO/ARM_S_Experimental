@@ -5,6 +5,7 @@ import com.dansoftware.pdfdisplayer.PDFDisplayer;
 import com.google.gson.JsonObject;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.ImageView;
@@ -52,6 +53,7 @@ public class ReportController {
         displayer = new PDFDisplayer();
 
         viewerRoot.setContent(dragNdrop);
+        viewerRoot.setFitToHeight(true);
 
         viewerRoot.setOnDragOver(event -> {
             if (event.getGestureSource() != viewerRoot
@@ -100,8 +102,24 @@ public class ReportController {
         closeViewerButton.setOnAction(event -> {
             viewerRoot.setContent(null);
             viewerRoot.setContent(dragNdrop);
+            file = null;
         });
 
+        sendReportButton.setOnAction(event -> {
+            if (file != null) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Отправка отчета");
+            alert.setHeaderText("Отчет успешно отправлен");
+            alert.setContentText("Ожидайте оценки преподавателем");
+            alert.showAndWait();}
+            else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Ошибка");
+                alert.setHeaderText("Добавьте файл с отчетом");
+                alert.setContentText("Для отправки отчета его необходимо прикрепить");
+                alert.showAndWait();
+            }
+        });
     }
 
     private void convertToPdf(File file){

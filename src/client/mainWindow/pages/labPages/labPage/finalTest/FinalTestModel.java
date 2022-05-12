@@ -26,7 +26,7 @@ public class FinalTestModel {
 
         entity.work.test.base.Question question1 = new entity.work.test.base.Question();
         question1.setType(entity.work.test.base.Question.TYPE.FINAL_TEXT);
-        question1.setText("Программа-система - это");
+        question1.setText("Алгоритм перевода чисел из одной системы счисления в другую");
 
         finalAnswer1.setGivenQuestion(question1);
 

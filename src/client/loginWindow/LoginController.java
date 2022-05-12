@@ -50,7 +50,8 @@ public class LoginController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Ошибка авторизации");
             alert.setHeaderText("Ошибка авторизации");
-            alert.setContentText("Ты обосрался в авторизации");
+            alert.setContentText("Авторизация не удалась");
+            alert.showAndWait();
         }
 
         app.setLoginSuccess(true);

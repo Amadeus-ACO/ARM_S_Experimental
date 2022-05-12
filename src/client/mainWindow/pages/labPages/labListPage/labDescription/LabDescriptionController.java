@@ -62,6 +62,12 @@ public class LabDescriptionController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         formulationProblemWebView.getEngine().load(new File("resources/task1.html").toURI().toString());
+        formulationProblemWebView.setOnDragDropped(event -> {});
+        formulationProblemWebView.setOnDragOver(event -> {});
+        //formulationProblemWebView.setOnDragDetected(event -> {});
+        formulationProblemWebView.setOnDragDone(event -> {});
+        formulationProblemWebView.setOnDragEntered(event -> {});
+        formulationProblemWebView.setOnDragExited(event -> {});
         formulationProblemWebView.getEngine().getLoadWorker().stateProperty().addListener(
                 (observable, oldValue, newValue) -> {
                     formulationProblemWebView.getEngine().executeScript(

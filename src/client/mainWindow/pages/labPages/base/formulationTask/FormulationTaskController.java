@@ -70,6 +70,12 @@ public class FormulationTaskController {
         webView.setOnScroll(this::onScrollFormulationTask);
         webView.setOnKeyPressed(this::onKeyPressedFormulationTask);
         webView.setOnKeyReleased(this::onKeyReleasedFormulationTask);
+        webView.setOnDragDropped(event -> {});
+        webView.setOnDragOver(event -> {});
+        webView.setOnDragDetected(event -> {});
+        webView.setOnDragDone(event -> {});
+        webView.setOnDragEntered(event -> {});
+        webView.setOnDragExited(event -> {});
 
         // Таблица для группировки элементов в постановке задачи
         root = new GridPane();
