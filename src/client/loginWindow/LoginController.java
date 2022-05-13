@@ -47,6 +47,7 @@ public class LoginController implements Initializable {
         try {
             student = Web.Auth(loginField.getText(), passwordField.getText());
         }catch (Exception e){
+            System.out.println(e);
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Ошибка авторизации");
             alert.setHeaderText("Ошибка авторизации");
