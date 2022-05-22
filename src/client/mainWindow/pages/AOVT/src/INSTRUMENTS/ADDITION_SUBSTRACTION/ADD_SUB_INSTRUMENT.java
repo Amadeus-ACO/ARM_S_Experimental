@@ -249,7 +249,7 @@ public abstract class ADD_SUB_INSTRUMENT extends Instrument {
 
         this.separatorPane.getChildren().addAll(this.plusButton, this.minusButton/*, b*/);
         this.digitNet = new GridPane();
-        this.digitNet.setGridLinesVisible(true);
+        //this.digitNet.setGridLinesVisible(true);
 
         this.digit = digit;
         this.create_overflows(digit-1);

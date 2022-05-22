@@ -1,23 +1,20 @@
 package client.mainWindow.roadMap;
 
+import entity.user.Student;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.input.ZoomEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import entity.work.GivenTask;
+import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 import javafx.util.Pair;
+import main.Web;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /**
  * Класс-контроллер дорожной карты
@@ -25,30 +22,21 @@ import java.util.ResourceBundle;
 public class RoadMapController extends RoadMapView {
 
     @FXML
-    private HBox circleBox;
+    private HBox rectangleBox;
 
     /**
      * Аттрибуты класса
      */
-    private RoadMapModel roadMapModel;
-    private RoadMapView roadMapView;
-
-    private List<Pair<GivenTask, Button>> circleTaskList;
+    private RoadMapModel roadMapModel = new RoadMapModel();
+    private List<Pair<GivenTask, Button>> rectangleTaskList;
 
     public void setRoadMapModel(RoadMapModel roadMapModel) {
         this.roadMapModel = roadMapModel;
     }
 
-    public void setRoadMapView(RoadMapView roadMapView) {
-        this.roadMapView = roadMapView;
-    }
-    /*private void request () {
-
-    }*/
-
-    private Button createTaskCircle(GivenTask task) {
+    private Button createTaskRectangle(GivenTask task) {
         Button button = new Button();
-        button.setGraphic(new Circle());
+        button.setGraphic(new Rectangle());
         Tooltip tooltip = new Tooltip();
         tooltip.setShowDelay(Duration.millis(100));
         tooltip.setHideDelay(Duration.millis(100));
@@ -61,19 +49,30 @@ public class RoadMapController extends RoadMapView {
         scrollPane = pane;
     }
 
-    public void requestUpdate(List<GivenTask> givenTaskList) {
-        circleBox.getChildren().clear();
+    public void requestUpdate(Student student) {
+        rectangleBox.getChildren().clear();
 
         // Model
-        roadMapModel.update(givenTaskList);
+        try {
+            // Model
+            Optional<List<GivenTask>> optional = Optional.ofNullable(Web.getGivenTaskList(student));
+            List<GivenTask> givenTaskList = optional.isEmpty() ? Collections.emptyList() : optional.get();
 
-        // Controller
-        circleTaskList = new ArrayList<>();
-        for (GivenTask task : roadMapModel.getGivenTaskList())
-            circleTaskList.add(new Pair<>(task, createTaskCircle(task)));
+            roadMapModel.update(givenTaskList);
+            System.out.println(givenTaskList);
 
-        // View
-        circleTaskList.forEach(this::drawTaskCircle);
+            // Controller
+            rectangleTaskList = new ArrayList<>();
+            for (GivenTask task : roadMapModel.getGivenTaskList())
+                rectangleTaskList.add(new Pair<>(task, createTaskRectangle(task)));
+
+            // View
+            rectangleTaskList.forEach(this::drawTaskRectangle);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void onScroll(ScrollEvent scrollEvent) {

@@ -15,13 +15,13 @@
       "tabList": [
         {
           "page": {
-            "type": "Main",
+            "type": "Главная страница",
             "config": {}
           }
         },
         {
           "page": {
-            "type": "Main",
+            "type": "Главная страница",
             "config": {}
           }
         },

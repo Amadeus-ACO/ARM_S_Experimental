@@ -343,17 +343,17 @@ public class TabManagerController extends TabManagerView implements Initializabl
      */
     public void addDragAndDropSupport(TabPane tabPane) {
         // Add listeners for "tabPane" for adding/removing DragHandlers
-        tabPane.getTabs().forEach(this::addDragHandlers);
+        // tabPane.getTabs().forEach(this::addDragHandlers);
         tabPane.getTabs().addListener((ListChangeListener.Change<? extends Tab> c) -> {
             while (c.next()) {
                 // Вкладка была добавлена
                 if (c.wasAdded()) {
-                    c.getAddedSubList().forEach(this::addDragHandlers);
+                    //c.getAddedSubList().forEach(this::addDragHandlers);
                 }
 
                 // Вкладка была удалена
                 if (c.wasRemoved()) {
-                    c.getRemoved().forEach(this::removeDragHandlers);
+                   // c.getRemoved().forEach(this::removeDragHandlers);
                 }
             }
         });

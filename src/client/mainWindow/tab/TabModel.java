@@ -21,8 +21,11 @@ public class TabModel {
 
     void loadConfig(JsonObject config) {
         JsonObject pageConfig = config.get("page").getAsJsonObject();
-        tabController.requestOpenPage(pageConfig);
-
+        try {
+            tabController.requestOpenPage(pageConfig);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 

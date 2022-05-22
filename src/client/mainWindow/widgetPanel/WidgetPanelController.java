@@ -1,29 +1,29 @@
 package client.mainWindow.widgetPanel;
 
+import entity.user.Student;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.skin.DatePickerSkin;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class WidgetPanelController implements Initializable {
+public class WidgetPanelController extends WidgetPanelView implements Initializable {
 
     @FXML
     private GridPane widgetGridPane;
 
-    private WidgetPanelView widgetPanelView;
-    private WidgetPanelModel widgetPanelModel;
+    @FXML
+    private Label studentNameLabel;
 
-    public void setWidgetPanelView(WidgetPanelView widgetPanelView) {
-        this.widgetPanelView = widgetPanelView;
-    }
-    public void setWidgetPanelModel(WidgetPanelModel widgetPanelModel) {
-        this.widgetPanelModel = widgetPanelModel;
-    }
+    @FXML
+    private Label studentGroupNameLabel;
+
+    private WidgetPanelModel widgetPanelModel = new WidgetPanelModel();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -33,4 +33,16 @@ public class WidgetPanelController implements Initializable {
         widgetGridPane.autosize();
     }
 
+    public void requestUpdate(Student student) {
+        // Model
+        widgetPanelModel.update(student.getName(),
+                                student.getStudentGroup().getName()
+        );
+
+        // Controller
+        studentNameLabel.setText(widgetPanelModel.getStudentName());
+        studentGroupNameLabel.setText(widgetPanelModel.getStudentGroupName());
+
+        // View
+    }
 }

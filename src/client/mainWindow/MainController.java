@@ -3,9 +3,8 @@ package client.mainWindow;
 import client.mainWindow.menuBar.MenuBarController;
 import client.mainWindow.menuBar.MenuBarModel;
 import client.mainWindow.menuBar.MenuBarView;
+import client.mainWindow.pages.Pages;
 import client.mainWindow.roadMap.RoadMapController;
-import client.mainWindow.roadMap.RoadMapModel;
-import client.mainWindow.roadMap.RoadMapView;
 import client.mainWindow.sectionMenu.SectionMenuController;
 import client.mainWindow.tabManager.TabManagerController;
 import client.mainWindow.tabManager.TabManagerView;
@@ -14,17 +13,18 @@ import client.mainWindow.widgetPanel.WidgetPanelController;
 import client.mainWindow.widgetPanel.WidgetPanelModel;
 import client.mainWindow.widgetPanel.WidgetPanelView;
 import com.google.gson.JsonObject;
+import entity.Section;
 import entity.user.Student;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import main.App;
+import main.Web;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.ResourceBundle;
 
 public class MainController extends MainView implements Initializable {
@@ -93,13 +93,10 @@ public class MainController extends MainView implements Initializable {
         /** -------------- Deprecated ---------------- */
         // System.out.println("hi");
         // RoadMap Initialization
-        roadMapController.setRoadMapModel(new RoadMapModel());
-        roadMapController.setRoadMapView(new RoadMapView());
         roadMapController.init(roadMapPane);
 
         // WidgetPanel Initialization
-        widgetPanelController.setWidgetPanelModel(new WidgetPanelModel());
-        widgetPanelController.setWidgetPanelView(new WidgetPanelView());
+
 
         // SectionMenu Initialization
         // sectionMenuController.setSectionMenuModel(new SectionMenuModel());
@@ -129,7 +126,7 @@ public class MainController extends MainView implements Initializable {
      *
      * @param config - конфигурация главной страницы
      */
-    public void requestLoadConfig(JsonObject config) {
+    public void requestLoadWindowConfig(JsonObject config) {
         mainModel.loadConfig(config);
     }
 
@@ -201,17 +198,28 @@ public class MainController extends MainView implements Initializable {
      * Запроос на открытие страницы
      * @param pageType - тип страницы
      */
-    public void requestOpenPage(String pageType, String... params) {
-        focusedTabPaneController.requestOpenPage(pageType, params);
+    public void requestOpenPage(String pageType, Object... params) {
+        switch (pageType) {
+            case Pages.LAB_LIST_PAGE -> {
+                focusedTabPaneController.requestOpenPage(pageType,
+                        Web.getGivenTaskList(mainModel.getStudent()),
+                        Web.getSectionTree(Section.TYPE.TASK)
+                );
+            }
+            default -> focusedTabPaneController.requestOpenPage(pageType, params);
+
+        }
     }
 
     public int getTabManagerCount() {
         return tabManagerControllerList.size();
     }
 
-    public void requestUpdateModel(Student student) {
+    public void requestUpdate(Student student) {
         mainModel.update(student);
-        roadMapController.requestUpdate(Collections.emptyList());
+
+        roadMapController.requestUpdate(student);
+        widgetPanelController.requestUpdate(student);
     }
 
 }

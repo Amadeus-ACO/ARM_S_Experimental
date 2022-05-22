@@ -1,23 +1,15 @@
 package client.loginWindow;
 
-import client.mainWindow.sectionMenu.labs.LabView;
 import entity.user.Student;
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import main.App;
-import main.Main;
 import main.Web;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URL;
-import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
@@ -37,6 +29,12 @@ public class LoginController implements Initializable {
     @FXML
     private Label errorLabel;
 
+    @FXML
+    private ProgressBar loadProgressBar;
+
+    @FXML
+    private Label loadStatusLabel;
+
     public static Student student;
 
     @FXML
@@ -47,15 +45,15 @@ public class LoginController implements Initializable {
         try {
             student = Web.Auth(loginField.getText(), passwordField.getText());
         }catch (Exception e){
-            System.out.println(e);
+            e.printStackTrace();
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Ошибка авторизации");
             alert.setHeaderText("Ошибка авторизации");
             alert.setContentText("Авторизация не удалась");
             alert.showAndWait();
+            return;
         }
-
-        app.setLoginSuccess(true);
+        app.requestOpenMainWindow(student);
     }
 
     private App app;
@@ -76,9 +74,10 @@ public class LoginController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         this.loginView = new LoginView();
         this.loginModel = new LoginModel();
+
+        loadProgressBar.setVisible(false);
+        loadStatusLabel.setVisible(false);
     }
-
-
 
     public void setApp(App app) {
         this.app = app;

@@ -38,7 +38,7 @@ public abstract class IEEE extends Instrument {
     public IEEE(String label_text, int index, Step step){
         super(label_text,index,step);
         this.digitNet = new GridPane();
-        this.digitNet.setGridLinesVisible(true);
+        //this.digitNet.setGridLinesVisible(true);
         this.titledPane.setContent(vBox_IEEE);
         vBox_IEEE.getChildren().addAll(this.digitNet,this.ieee_grid);
 

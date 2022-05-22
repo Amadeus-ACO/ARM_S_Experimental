@@ -5,9 +5,13 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import entity.user.Student;
+import lombok.Getter;
 
 public class MainModel {
     private final MainController mainController;
+
+    @Getter
+    private Student student;
 
     /**
      * Загрузка конфигурации и настройка главной страницы по конфигурации
@@ -68,7 +72,7 @@ public class MainModel {
         }
     }
 
-
     public void update(Student student) {
+        this.student = student;
     }
 }

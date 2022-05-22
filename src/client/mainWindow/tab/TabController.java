@@ -9,7 +9,12 @@ import client.mainWindow.pages.labPages.labListPage.LabListPageController;
 import client.mainWindow.pages.labPages.labPage.LabPageController;
 import client.mainWindow.pages.mainPage.MainPageController;
 import client.mainWindow.pages.trainingPage.TrainerPageController;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.JsonObject;
+import entity.Entity;
+import entity.EntityMap;
+import entity.Section;
+import entity.work.GivenTask;
 import javafx.application.Platform;
 import javafx.beans.Observable;
 import javafx.event.Event;
@@ -21,6 +26,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
@@ -49,7 +55,7 @@ public class TabController {
         requestOpenPage(type);
     }
 
-    public void requestOpenPage(String type, String... params) {
+    public void requestOpenPage(String type, Object... params) {
         // Какая-то работа с контроллером страницы....
         switch (type) {
 
@@ -75,7 +81,8 @@ public class TabController {
             }
 
             case Pages.LAB_LIST_PAGE -> {
-                LabListPageController labListController = new LabListPageController(Config.load("labList"));
+                LabListPageController labListController = new LabListPageController();
+                labListController.update((List<GivenTask>) params[0], (Section) params[1]);
                 tab.setText(type);
                 tab.setContent(labListController.getRoot());
                 //tab.setContent(labListController.getRoot());
@@ -100,14 +107,14 @@ public class TabController {
 
             case Pages.ALG_PAGE -> {
                   tab.setText(type);
-                  tab.setContent(AmadeyLogicGame.load(params).getRoot());
+                  tab.setContent(AmadeyLogicGame.load((String[]) params).getRoot());
                   tab.setOnCloseRequest(event -> AmadeyLogicGame.terminateApp());
             }
 
             case Pages.LOGISIM_PAGE -> {
                 //Platform.runLater(() -> {
                 tab.setText(type);
-                Startup startup = Startup.parseArgs(params);
+                Startup startup = Startup.parseArgs((String[]) params);
                 startup.setOnSucceeded(event -> tab.setContent(FrameManager.getScene().getRoot()));
 
                 startup.run();
@@ -132,7 +139,9 @@ public class TabController {
 
                  */
             }
-
+            default -> {
+                System.out.println("Неправильная страница");
+            }
         }
 
         // tab.getContent().focusedProperty().addListener(this::onFocusChanged);

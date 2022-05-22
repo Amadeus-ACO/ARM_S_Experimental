@@ -50,7 +50,7 @@ public class Division extends Instrument {
         super("Деление в столбик", index, step);
 
         this.digitNet = new GridPane();
-        this.digitNet.setGridLinesVisible(true);
+        //this.digitNet.setGridLinesVisible(true);
 
         this.digit_dem = digit_dem;
 
@@ -168,7 +168,7 @@ public class Division extends Instrument {
 
         innerVbox.getChildren().add(pane);
         //innerVbox.getChildren().add(new Pane(new Label("&nbsp;")));
-        this.digitPane.setGridLinesVisible(true);
+        //this.digitPane.setGridLinesVisible(true);
         innerVbox.getChildren().add(this.digitPane);
         innerVbox.getChildren().add(pane1);
         this.titledPane.setContent(innerVbox);

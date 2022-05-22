@@ -22,7 +22,7 @@
             <RowConstraints vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label fx:id="FIOLabel" text="Иванов И.И.">
+            <Label fx:id="studentNameLabel" text="Иванов И.И.">
                <font>
                   <Font name="Lucida Sans Demibold" size="16.0" />
                </font>
@@ -30,7 +30,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="groupLabel" text="ИВБО-01-22" GridPane.rowIndex="1">
+            <Label fx:id="studentGroupNameLabel" text="ИВБО-01-22" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets bottom="5.0" top="5.0" />
                </GridPane.margin>
@@ -38,7 +38,7 @@
                   <Font name="Lucida Sans Demibold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="studLabel" text="123456" GridPane.rowIndex="2">
+            <Label fx:id="studentNumberLabel" text="123456" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets bottom="5.0" top="5.0" />
                </GridPane.margin>
@@ -59,7 +59,7 @@
                   <Insets bottom="5.0" top="5.0" />
                </GridPane.margin>
             </Label>
-            <Label fx:id="workStatusLabel" text="Сейчас: идёт пара" GridPane.rowIndex="3">
+            <Label fx:id="pairStatusLabel" text="Сейчас: идёт пара" GridPane.rowIndex="3">
                <font>
                   <Font name="Lucida Sans Demibold" size="14.0" />
                </font>

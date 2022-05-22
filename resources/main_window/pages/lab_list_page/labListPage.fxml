@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.SplitPane?>
-<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.control.*?>
 
-<SplitPane dividerPositions="0.29797979797979796" xmlns="http://javafx.com/javafx/15" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.29797979797979796" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
   <items>
       <TreeView fx:id="labTree" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" />
       <fx:include fx:id="labDescription" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" source="labDescription.fxml" />

@@ -56,7 +56,7 @@ public class TabPaneController {
         tabPane.getTabs().add(tabController.getTab());
     }
 
-    public void requestOpenPage(String pageType, String... params) {
+    public void requestOpenPage(String pageType, Object... params) {
         TabController tabController = new TabController();
         tabController.requestOpenPage(pageType, params);
 

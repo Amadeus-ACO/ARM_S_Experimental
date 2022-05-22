@@ -18,7 +18,8 @@ public class RoadMapModel {
     private List<GivenTask> givenTaskList;
 
     public void update(List<GivenTask> givenTaskList) {
-        this.givenTaskList = new ArrayList<>();
+        this.givenTaskList = givenTaskList;
+        /*this.givenTaskList = new ArrayList<>();
 
         Section section = new Section();
         Random random = new Random();
@@ -51,7 +52,7 @@ public class RoadMapModel {
             });
 
             this.givenTaskList.add(givenTask);
-        }
+        }*/
     }
 
 

@@ -4,12 +4,12 @@ public class Pages {
     /**
      * Главная страница
      */
-    public static final String MAIN_PAGE = "Main";
+    public static final String MAIN_PAGE = "Главная страница";// "Главная страница";
 
     /**
      * Список лабораторных работ
      */
-    public static final String LAB_LIST_PAGE = "Lab_List_Page";
+    public static final String LAB_LIST_PAGE = "Лабораторные работы";
 
     /**
      * Страница лабораторной работы
