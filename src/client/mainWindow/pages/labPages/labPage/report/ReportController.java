@@ -1,8 +1,6 @@
 package client.mainWindow.pages.labPages.labPage.report;
 
-import client.mainWindow.pages.labPages.labPage.base.stage.StageController;
 import com.dansoftware.pdfdisplayer.PDFDisplayer;
-import com.google.gson.JsonObject;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -20,7 +18,6 @@ import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
 
 import java.io.*;
-import java.net.URISyntaxException;
 import java.util.Objects;
 
 public class ReportController {
@@ -29,7 +26,7 @@ public class ReportController {
     private ScrollPane viewerRoot;
 
     @FXML
-    private Button reportRulesButton;
+    private Button generateReportButton;
 
     @FXML
     private Button sendReportButton;
@@ -45,7 +42,7 @@ public class ReportController {
     private PDFDisplayer displayer;
     private String inputfilepath;
 
-    private ImageView dragNdrop = new ImageView("drag-and-drop.png");
+    private ImageView dragNdrop = new ImageView("report.png");
 
     @FXML
     public void initialize() {
@@ -55,10 +52,10 @@ public class ReportController {
         viewerRoot.setContent(dragNdrop);
         viewerRoot.setFitToHeight(true);
 
-        viewerRoot.setOnDragOver(event -> {
+        /*viewerRoot.setOnDragOver(event -> {
             if (event.getGestureSource() != viewerRoot
                     && event.getDragboard().hasFiles()) {
-                /* allow for both copying and moving, whatever user chooses */
+
                 event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
             }
             event.consume();
@@ -82,18 +79,17 @@ public class ReportController {
 
                 }
             }
-            /* let the source know whether the string was successfully
-             * transferred and used */
+
             event.setDropCompleted(success);
 
             event.consume();
         });
-
-        reportRulesButton.setOnAction(event -> {
+*/
+        generateReportButton.setOnAction(event -> {
             viewerRoot.setContent(null);
             viewerRoot.setContent(displayer.toNode());
             try {
-                displayer.loadPDF(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("docx_rules.pdf")).toURI()));
+                displayer.loadPDF(new File(Objects.requireNonNull(getClass().getClassLoader().getResource("report_info.pdf")).toURI()));
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -115,8 +111,8 @@ public class ReportController {
             else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Ошибка");
-                alert.setHeaderText("Добавьте файл с отчетом");
-                alert.setContentText("Для отправки отчета его необходимо прикрепить");
+                alert.setHeaderText("Отчет не сгенерирован");
+                alert.setContentText("Необходима генерация отчета");
                 alert.showAndWait();
             }
         });

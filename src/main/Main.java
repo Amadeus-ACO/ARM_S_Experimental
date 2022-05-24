@@ -82,7 +82,7 @@ public class Main {
                 .build();
 
         return WebClient.builder()
-                .baseUrl("http://localhost:8080")
+                .baseUrl("http://194.190.152.231:8080")
                 .exchangeStrategies(strategies)
                 .build();
     }

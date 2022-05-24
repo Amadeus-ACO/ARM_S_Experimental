@@ -91,4 +91,6 @@ dependencies {
     implementation 'org.apache.xmlgraphics:fop:2.7'
 
     implementation 'org.jetbrains:annotations:23.0.0'
+
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.3'
 }

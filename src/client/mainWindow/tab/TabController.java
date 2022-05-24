@@ -107,14 +107,14 @@ public class TabController {
 
             case Pages.ALG_PAGE -> {
                   tab.setText(type);
-                  tab.setContent(AmadeyLogicGame.load((String[]) params).getRoot());
+                  tab.setContent(AmadeyLogicGame.load(new String[] {"Test"}).getRoot());
                   tab.setOnCloseRequest(event -> AmadeyLogicGame.terminateApp());
             }
 
             case Pages.LOGISIM_PAGE -> {
                 //Platform.runLater(() -> {
                 tab.setText(type);
-                Startup startup = Startup.parseArgs((String[]) params);
+                Startup startup = Startup.parseArgs(new String[] {});
                 startup.setOnSucceeded(event -> tab.setContent(FrameManager.getScene().getRoot()));
 
                 startup.run();

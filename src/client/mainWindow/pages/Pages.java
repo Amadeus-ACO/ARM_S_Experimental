@@ -9,17 +9,17 @@ public class Pages {
     /**
      * Список лабораторных работ
      */
-    public static final String LAB_LIST_PAGE = "Лабораторные работы";
+    public static final String LAB_LIST_PAGE = "Работы";
 
     /**
      * Страница лабораторной работы
      */
-    public static final String LAB_PAGE = "Lab_Page";
+    public static final String LAB_PAGE = "Работа";
 
     /**
      * Страница тренажеров
      */
-    public static final String TRAINING_PAGE = "Training_Page";
+    public static final String TRAINING_PAGE = "Тренажеры";
 
     /**
      * Алгоритм с инструментами АОВТ
@@ -39,7 +39,7 @@ public class Pages {
     /**
      * Страница лекций
      */
-    public static final String LECTURE_PAGE = "Lecture_Page";
+    public static final String LECTURE_PAGE = "Лекции";
 
 }
 

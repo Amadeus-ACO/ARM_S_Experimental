@@ -13,6 +13,10 @@ import INSTRUMENTS.IEEE.IEEEStandart;
 import INSTRUMENTS.IEEE.ieeeAdd;
 import INSTRUMENTS.MULTIPLICATION_BASED.MultiplicationInstrument;
 import INSTRUMENTS.MULTIPLICATION_BASED.TranslateFractionalPart;
+import INSTRUMENTS.TABLE.Controller;
+import INSTRUMENTS.TABLE.Model;
+import INSTRUMENTS.TABLE.Table;
+import INSTRUMENTS.TABLE.View;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
@@ -184,6 +188,25 @@ public class Step {
                 this.instruments.add(expression);
                 break;
 
+            case "Таблица истинности":
+                //Table table = new Table("Таблица", vBox_list.getChildren().size(), this);
+                ArrayList<Color> list = new ArrayList<>();
+                for (int i = 0; i < Math.pow(2,Integer.parseInt(this.firstParamField.getText()) +1 ); i++) {
+                    list.add(null);
+                }
+
+
+                Model model = new Model(Integer.parseInt(this.firstParamField.getText()), list);
+                Controller controller  = new Controller();
+
+                View view = new View(model, controller, vBox_list.getChildren().size(), this, Integer.parseInt(this.firstParamField.getText()));
+
+                controller.setModel(model);
+                controller.setView(view);
+                this.vBox_list.getChildren().addAll(view.vBox);
+                this.instruments.add(view);
+
+
             default:
                 return;
         }
@@ -297,7 +320,7 @@ public class Step {
     public void change_optional_fields() {
         // columnIndex, rowIndex
         switch (this.options_instrument.getValue()) {
-            case "Сложение в столбик", "Вычитание в столбик", "Умножение в столбик" -> {
+            case "Сложение в столбик", "Вычитание в столбик", "Умножение в столбик", "Таблица истинности" -> {
                 this.insHeader.getChildren().clear();
                 this.insHeader.add(new Label("Выберите инструмент из списка:"), 0, 0);
                 this.insHeader.add(this.options_instrument, 1, 0);

@@ -23,7 +23,7 @@ public class AlgorithmController extends StageController {
 
         givenTask = new GivenTask();
         Algorithm algorithm = new Algorithm();
-        algorithm.setType(Algorithm.TYPE.LOVT);
+        algorithm.setType(Algorithm.TYPE.AOVT);
         givenTask.setAlgorithm(algorithm);
 
         requestShowAlgorithm(givenTask);
@@ -37,18 +37,23 @@ public class AlgorithmController extends StageController {
             case AOVT: {
                 try {
                     ((ScrollPane)getRoot()).setContent(FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("aovt_start.fxml"))));
+                    ((ScrollPane)getRoot()).setFitToHeight(true);
+                    ((ScrollPane)getRoot()).setFitToWidth(true);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                break;
             }
             case ALG: {
                 ((ScrollPane)getRoot()).setContent(AmadeyLogicGame.load(new String[]{"Test"}).getRoot());
+                break;
             }
             case LOVT: {
                 Startup startup = Startup.parseArgs(new String[0]);
                 startup.setOnSucceeded(event ->  ((ScrollPane)getRoot()).setContent(FrameManager.getScene().getRoot()));
                 startup.run();
-
+                break;
             }
         }
 
