@@ -15,7 +15,7 @@ import INSTRUMENTS.MULTIPLICATION_BASED.MultiplicationInstrument;
 import INSTRUMENTS.MULTIPLICATION_BASED.TranslateFractionalPart;
 import INSTRUMENTS.TABLE.Controller;
 import INSTRUMENTS.TABLE.Model;
-import INSTRUMENTS.TABLE.Table;
+
 import INSTRUMENTS.TABLE.View;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -199,12 +199,18 @@ public class Step {
                 Model model = new Model(Integer.parseInt(this.firstParamField.getText()), list);
                 Controller controller  = new Controller();
 
-                View view = new View(model, controller, vBox_list.getChildren().size(), this, Integer.parseInt(this.firstParamField.getText()));
+                View view = new View(
+                        model,
+                        controller
+                        /*vBox_list.getChildren().size(),
+                        this,
+                        Integer.parseInt(this.firstParamField.getText())*/
+                );
 
                 controller.setModel(model);
                 controller.setView(view);
-                this.vBox_list.getChildren().addAll(view.vBox);
-                this.instruments.add(view);
+                this.vBox_list.getChildren().addAll(view.getGridPane());
+                //this.instruments.add(view);
 
 
             default:

@@ -32,3 +32,5 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.22'
     annotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
+//sourceCompatibility = JavaVersion.VERSION_14
+//targetCompatibility = JavaVersion.VERSION_14

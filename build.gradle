@@ -32,6 +32,8 @@ application {
         applicationDefaultJvmArgs.add('-Dfile.encoding=UTF-8')
 }
 
+//java.toolchain.languageVersion = JavaLanguageVersion.of(15)
+
 sourceSets.main.java {compileJava {
     options.encoding = "UTF-8"
 
